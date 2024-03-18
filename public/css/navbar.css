@@ -1,0 +1,44 @@
+/* navbar */
+.navbar {
+    font-size: 1.5em;
+    z-index: 2;
+    font-weight: bold;
+}
+
+.btn {
+    font-size: 24px;
+}
+
+.form {
+    font-size: 1.5em;
+}
+
+.dropdown-menu {
+    font-size: 24px;
+}
+
+.nav-item {
+    display: flex;
+    align-items: center;
+}
+
+.search-container {
+    position: absolute;
+    right: 0;
+    margin-right: 280px;
+    display: none;
+    transition: all 0.5s ease-in-out;
+}
+
+.search-container.active {
+    font-size: 24px;
+    margin-left: 10px;
+    display: block;
+    width: 200px;
+}
+
+.search-container input[type="text"] {
+    font-size: 24px;
+}
+
+/* navbar */

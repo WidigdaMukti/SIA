@@ -1,0 +1,91 @@
+/* Warna latar belakang */
+.bg-green {
+    background-color: #008000;
+}
+
+.bg-green-1 {
+    background-color: #a6bb8d;
+}
+
+.bg-green-2 {
+    background-color: #61876e;
+}
+
+.bg-green-3 {
+    background-color: #3c6255;
+}
+
+.bg-green-4 {
+    background-color: #f2f9f6;
+}
+
+/* Warna teks */
+.text-red {
+    color: #ff0000;
+}
+
+.text-green {
+    color: #008000;
+}
+
+.text-green-1 {
+    color: #a6bb8d;
+}
+
+.text-green-2 {
+    color: #61876e;
+}
+
+.text-green-3 {
+    color: #3c6255;
+}
+
+.text-blue {
+    color: #0000ff;
+}
+
+.text-yellow {
+    color: #ffff00;
+}
+
+.text-orange {
+    color: #f4a259;
+}
+
+.text-orange-1 {
+    color: #f3b664;
+}
+
+.text-purple {
+    color: #800080;
+}
+
+.text-pink {
+    color: #ffc0cb;
+}
+
+.text-brown {
+    color: #a52a2a;
+}
+
+.text-gray {
+    color: #808080;
+}
+
+.text-black {
+    color: #000000;
+}
+
+.text-white {
+    color: #ffffff;
+}
+
+/* Warna border */
+/* .border-custom {
+    border-color: #3c6255;
+} */
+
+/* Warna hover */
+/* .hover-custom:hover {
+    background-color: #3c6255;
+} */
