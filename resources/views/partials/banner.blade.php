@@ -4,8 +4,8 @@
         <h1 style="font-size: 3em; font-weight: bold;">{{ $title }}</h1>
         <nav style="--bs-breadcrumb-divider: '/';" aria-label="breadcrumb">
             <ol class="breadcrumb" style=" font-size: 1.3em;">
-                <li class="breadcrumb-item "><a class="text-black link-banner text-decoration-none"
-                        href="/">Beranda</a></li>
+                <li class="breadcrumb-item "><a class="text-black link-banner text-decoration-none" href="/">Beranda
+                        SD</a></li>
                 <li class="breadcrumb-item text-green-1" aria-current="page" style="font-weight: bold;">
                     {{ $title }}</li>
             </ol>
