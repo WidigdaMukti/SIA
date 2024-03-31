@@ -2,27 +2,27 @@
 
 @section('content')
     @include('partials.banner')
-    <div class="container-fluid p-2 pb-3" style="display: flex; justify-content: center;">
-        <div class="pb-5" style="align-content: center">
+    <div class="container-fluid p-2 d-flex justify-content-center">
+        <div class="" style="align-content: center">
             <div class="row mb-4">
-                <div class="col">
+                <div class="col d-flex justify-content-center me-4">
                     @include('partials.card.card')
                 </div>
-                <div class="col">
+                <div class="col d-flex justify-content-center me-4">
                     @include('partials.card.card')
                 </div>
-                <div class="col">
+                <div class="col d-flex justify-content-center mb-4">
                     @include('partials.card.card')
                 </div>
             </div>
-            <div class="row">
-                <div class="col">
+            <div class="row mb-4">
+                <div class="col d-flex justify-content-center me-4">
                     @include('partials.card.card')
                 </div>
-                <div class="col">
+                <div class="col d-flex justify-content-center me-4">
                     @include('partials.card.card')
                 </div>
-                <div class="col">
+                <div class="col d-flex justify-content-center mb-4">
                     @include('partials.card.card')
                 </div>
             </div>

@@ -1,20 +1,23 @@
 <link rel="stylesheet" href="css/button.css">
+
 @extends('layouts.main')
 
 @section('content')
     @include('partials.carousel')
     {{-- Sambutan Kepsek --}}
     <div class="container-fluid"
-        style="display: flex; align-items: center; height:800px; background-image: url('img/artboard bg.png'); background-size: cover;">
-        <div class="row">
+        style="display: flex; align-items: center; background-image: url('img/artboard bg.png'); background-size: cover; overflow: auto;">
+        <div class="row w-100">
             <div class="col-md-4 d-flex align-items-center justify-content-center flex-column">
-                <img src="{{ asset('img/kepsek.png') }}" alt="" style="height: auto; width: 80%;">
+                <img src="{{ asset('img/kepsek.png') }}" alt="" class="img-fluid p-4" style="max-width: 90%;"
+                    data-aos="fade-right" data-aos-easing="ease-in-sine" data-aos-duration="1000">
             </div>
-            <div class="col-md-8 text-white pe-5" style="font-size: 1.5em">
-                <div class="container">
-                    <p class="mb-5">Sambutan Kepala sekolah <span style="font-weight: bold;">SDIT Al Qudwah
+            <div data-aos="fade-zoom-in" data-aos-easing="ease-in-back" data-aos-duration="1000"
+                class="col-md-8 text-white responsive-text-normal d-flex align-items-center justify-content-center flex-column">
+                <div class="container p-4">
+                    <p class="mb-3">Sambutan Kepala sekolah <span style="font-weight: bold;">SDIT Al Qudwah
                             Ngadirejo</span></p>
-                    <h4 class="mb-4" style="font-weight: bold;">Assalamualaikum warahmatullahi wabarakatuh</h4>
+                    <p class="mb-2" style="font-weight: bold;">Assalamualaikum warahmatullahi wabarakatuh</p>
                     <p style="text-align: justify;">Visi sekolah yaitu Terwujudnya lulusan yang berbudi, mandiri,
                         berprestasi,
                         Cinta NKRI dengan Al
@@ -35,66 +38,100 @@
                     <p style="text-align: justify;">
                         Demikian sekapur sirih tentang SDIT Al Qudwah semoga mampu berkolaborasi dan menginspirasi.
                     </p>
-                    <h4 class="mt-4" style="font-weight: bold;">wassalamualaikum warahmatullahi wabarakatuh</h4>
+                    <p class="mt-2" style="font-weight: bold;">wassalamualaikum warahmatullahi wabarakatuh</p>
                 </div>
             </div>
         </div>
     </div>
     {{-- Program Unggulan --}}
-    <div class="container-fluid pb-5">
+    <div class="container-fluid">
         <div class="row">
-            <div class="col-md-6 d-flex align-items-center justify-content-center flex-column">
-                <div class="container text-left" style="width: 55em;">
-                    <h1 class="mb-4 text-green-3" style="font-size: 4em; font-weight: bold;">Program Unggulan</h1>
-                    <p class="text-gray mb-5" style="font-size: 2em; font-weight: bold;">Membentuk Generasi Islami yang
-                        Beradab,
-                        Mahir dalam
-                        Al-Quran, dan Unggul dalam Pengetahuan</p>
-                    <a href="/program" class="btn-large text-decoration-none"
-                        style="background-color: #61876E; color: white;">Selengkapnya</a>
+            <div class="col-md-6 d-flex align-items-center justify-content-center flex-column pb-2 px-4">
+                <div class="container text-left p-5">
+                    <h1 class="mb-4 text-green-3 responsive-text-title-1" style="font-weight: bold;">Program Unggulan</h1>
+                    <p class="text-gray mb-3 responsive-text-title-6" style="font-weight: bold;">
+                        Membentuk Generasi Islami yang Beradab, Mahir dalam Al-Quran, dan Unggul dalam Pengetahuan</p>
+                    <a href="/program" class="btn btn-lg btn-large text-decoration-none btn-program">Selengkapnya</a>
                 </div>
-
             </div>
-            <div class="col-md-6">
+            <div class="col-md-6 p-0">
                 <img src="{{ asset('img/tahfidz.JPG') }}" alt="Deskripsi Gambar"
                     style="height: 100%; width: 100%; object-fit: cover;">
             </div>
         </div>
     </div>
     {{-- Informasi Terbaru --}}
-    <div class="d-flex justify-content-center py-5">
-        <h1 style="font-size: 4em; font-weight: bold;">Informasi Terbaru</h1>
+    <div class="d-flex justify-content-center my-4 mt-5">
+        <h1 class="responsive-text-title-1" style="font-weight: bold;">Informasi Terbaru</h1>
     </div>
-    <div class="container-fluid p-2 pb-3" style="display: flex; justify-content: center;">
-        <div class="" style="align-content: center">
-            <div class="row mb-4">
-                <div class="col">
-                    @include('partials.card.card')
-                </div>
-                <div class="col">
-                    @include('partials.card.card')
-                </div>
-                <div class="col">
-                    @include('partials.card.card')
-                </div>
+
+    <div class="container-fluid p-2 d-flex justify-content-center">
+        <div class="row mb-3 d-flex justify-content-center">
+            <div class="col mb-4 d-flex justify-content-center me-4">
+                @include('partials.card.card')
+            </div>
+            <div class="col mb-4 d-flex justify-content-center me-4">
+                @include('partials.card.card')
+            </div>
+            <div class="col d-flex justify-content-center">
+                @include('partials.card.card')
             </div>
         </div>
     </div>
-    <div class="d-flex justify-content-center pb-5">
-        <a href="/informasi-umum" class="btn-large text-decoration-none"
-            style="background-color: #61876E; color: white;">Informasi Lainya</a>
+
+    <div class="d-flex justify-content-center mb-1">
+        <a href="/informasi-umum" class="btn btn-lg btn-large text-decoration-none btn-informasi">Informasi Lainya</a>
     </div>
+
     {{-- Pendaftaran --}}
     <div class="container-fluid py-5 mb-5">
-        <div class="container bg-green-4 text-center p-5 rounded-4"
-            style="max-width: 79%; border: 1px solid rgb(236, 236, 236);">
-            <h1 class="mb-3" style="font-size: 3.8em; font-weight: bold;">Penerimaan Peserta Didik Baru</h1>
-            <p class="text-gray mb-5" style="font-size: 1.8em; font-weight: bold;">Saatnya mewujudkan masa depan yang lebih
+        <div class="container bg-green-4 text-center p-4 rounded-4"
+            style="max-width: 86%; border: 1px solid rgb(236, 236, 236);">
+            <h1 class="mb-3 responsive-text-title-2" style="font-weight: bold;">Penerimaan Peserta Didik Baru</h1>
+            <p class="text-gray mb-4 responsive-text-title-6" style="font-weight: bold;">Saatnya mewujudkan masa depan yang
+                lebih
                 cerah bersama Sekolah Dasar Islam Terpadu Al-Qudwah</p>
-            <a href="/ppdb-online" class="btn-large text-decoration-none"
-                style="background-color: #61876E; color: white; display: inline-flex; align-items: center;">
+            <a href="/ppdb-online" class="btn btn-lg btn-large btn-daftar text-decoration-none"
+                style=" display: inline-flex; align-items: center;">
                 Daftar Sekarang
             </a>
         </div>
     </div>
 @endsection
+
+<style>
+    .btn-large.btn-program {
+        background-color: #61876E;
+        color: white;
+        transition: all 0.3s ease;
+    }
+
+    .btn-large.btn-program:hover {
+        background-color: #3c6255;
+        color: white;
+    }
+
+    .btn-large.btn-informasi {
+        background-color: #61876E;
+        color: white;
+        transition: all 0.3s ease;
+    }
+
+    .btn-large.btn-informasi:hover {
+        background-color: #3c6255;
+        color: white;
+    }
+
+    .btn-large.btn-daftar {
+        border: 3px solid #61876E;
+        background-color: transparent;
+        color: #61876E;
+        font-weight: bold;
+        transition: all 0.3s ease;
+    }
+
+    .btn-large.btn-daftar:hover {
+        background-color: #61876E;
+        color: white;
+    }
+</style>
