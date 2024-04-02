@@ -1,65 +1,73 @@
-<link rel="stylesheet" href="css/button.css">
-
 @extends('layouts.main')
 
 @section('content')
     @include('partials.banner')
-    <div class="container-fluid p-2 pb-5 mb-1" style="font-size: 150%">
-        <div class="text-justify pb-5" style="padding-left: 10.5%; padding-right: 10.5%">
-            <h1 class="mb-5" style="font-size: 2vw; font-weight: bold;">Persyaratan PPDB untuk SDIT Al Qudwah Ngadirejo
+    <div class="container-fluid">
+        <div class="text-justify" style="padding-left: 8vw; padding-right: 8vw">
+            <h1 class="mb-4 responsive-text-title-5" style="font-weight: bold;">Persyaratan PPDB untuk SDIT Al Qudwah
+                Ngadirejo
             </h1>
-            <ol>
-                <li>Fotokopi Akte Kelahiran (2 lembar)
+            <ol class="responsive-text-normal">
+                <li class="mb-2" style="font-weight: bold;">Fotokopi Akte Kelahiran (2 lembar)
                     <ul>
-                        <li>Akte kelahiran calon siswa harus disertakan dalam bentuk fotokopi sebanyak 2 lembar.</li>
+                        <li style="font-weight: normal;">Akte kelahiran calon siswa harus disertakan dalam bentuk fotokopi
+                            sebanyak 2 lembar.</li>
                     </ul>
                 </li>
-                <li>Fotokopi Kartu Keluarga (2 lembar)
+                <li class="mb-2" style="font-weight: bold;">Fotokopi Kartu Keluarga (2 lembar)
                     <ul>
-                        <li>Kartu Keluarga (KK) calon siswa juga harus disertakan dalam bentuk fotokopi sebanyak 2 lembar.
+                        <li style="font-weight: normal;">Kartu Keluarga (KK) calon siswa juga harus disertakan dalam bentuk
+                            fotokopi sebanyak 2 lembar.
                         </li>
                     </ul>
                 </li>
-                <li>Fotokopi KTP Orang Tua (2 lembar)
+                <li class="mb-2" style="font-weight: bold;">Fotokopi KTP Orang Tua (2 lembar)
                     <ul>
-                        <li>KTP orang tua atau wali yang menjadi penanggung jawab calon siswa harus disertakan dalam bentuk
+                        <li style="font-weight: normal;">KTP orang tua atau wali yang menjadi penanggung jawab calon siswa
+                            harus disertakan dalam bentuk
                             fotokopi sebanyak 2 lembar.</li>
                     </ul>
                 </li>
-                <li>Pas Foto Calon Siswa (3x4 cm)
+                <li class="mb-2" style="font-weight: bold;">Pas Foto Calon Siswa (3x4 cm)
                     <ul>
-                        <li>Pas foto calon siswa harus berukuran 3x4 cm dan dapat digunakan untuk keperluan administrasi
+                        <li style="font-weight: normal;">Pas foto calon siswa harus berukuran 3x4 cm dan dapat digunakan
+                            untuk keperluan administrasi
                             sekolah.
                         </li>
                     </ul>
                 </li>
-                <li>Usia Calon Siswa
+                <li class="mb-2" style="font-weight: bold;">Usia Calon Siswa
                     <ul>
-                        <li>Calon siswa harus berusia minimal 5,5 tahun pada saat mendaftar.</li>
+                        <li style="font-weight: normal;">Calon siswa harus berusia minimal 5,5 tahun pada saat mendaftar.
+                        </li>
                     </ul>
                 </li>
-                <li>Calon Pindahan
+                <li class="mb-2" style="font-weight: bold;">Calon Pindahan
                     <ul>
-                        <li>Calon siswa pindahan diperbolehkan mendaftar selama kuota masih mencukupi.</li>
+                        <li style="font-weight: normal;">Calon siswa pindahan diperbolehkan mendaftar selama kuota masih
+                            mencukupi.</li>
                     </ul>
                 </li>
-                <li>Biaya Pendaftaran
+                <li class="mb-2" style="font-weight: bold;">Biaya Pendaftaran
                     <ul>
-                        <li>Biaya pendaftaran untuk calon siswa dari dalam TKIT Alqudwah adalah Rp 75.000.</li>
-                        <li>Biaya pendaftaran untuk calon siswa dari luar TKIT Alqudwah adalah Rp 100.000.</li>
+                        <li style="font-weight: normal;">Biaya pendaftaran untuk calon siswa dari dalam TKIT Alqudwah adalah
+                            Rp 75.000.</li>
+                        <li style="font-weight: normal;">Biaya pendaftaran untuk calon siswa dari luar TKIT Alqudwah adalah
+                            Rp 100.000.</li>
                     </ul>
                 </li>
             </ol>
         </div>
     </div>
     <div class="container-fluid py-5 mb-5">
-        <div class="container bg-green-4 text-center p-5 rounded-4"
-            style="max-width: 79%; border: 1px solid rgb(236, 236, 236);">
-            <h1 class="mb-3" style="font-size: 2.8vw; font-weight: bold;">Penerimaan Peserta Didik Baru</h1>
-            <p class="text-gray mb-5" style="font-size: 1.2vw; font-weight: bold;">Saatnya mewujudkan masa depan yang lebih
+        <div class="container bg-green-4 text-center p-4 rounded-4"
+            style="max-width: 86%; border: 1px solid rgb(236, 236, 236);">
+            <h1 class="mb-3 responsive-text-title-2" style="font-weight: bold;">Penerimaan Peserta Didik Baru</h1>
+            <p class="text-gray mb-4 responsive-text-title-6" style="font-weight: bold;">Saatnya mewujudkan masa depan yang
+                lebih
                 cerah bersama Sekolah Dasar Islam Terpadu Al-Qudwah</p>
-            <a href="/ppdb-online" class="btn-large text-decoration-none"
-                style="background-color: #61876E; color: white; display: inline-flex; align-items: center;">
+            <a href="/ppdb-online" class="btn btn-lg btn-daftar text-decoration-none"
+                style=" display: inline-flex; align-items: center;">
                 Daftar Sekarang
             </a>
         </div>
@@ -67,12 +75,16 @@
 @endsection
 
 <style>
-    ol>li {
-        margin-bottom: 1%;
+    .btn.btn-daftar {
+        border: 3px solid #61876E;
+        background-color: transparent;
+        color: #61876E;
         font-weight: bold;
+        transition: all 0.3s ease;
     }
 
-    ul>li {
-        font-weight: normal;
+    .btn.btn-daftar:hover {
+        background-color: #61876E;
+        color: white;
     }
 </style>

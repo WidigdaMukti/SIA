@@ -85,12 +85,6 @@ Route::get('/galeri', function () {
     ]);
 });
 
-Route::get('/ppdb-online', function () {
-    return view('ppdb', [
-        "title" => "PPDB Online",
-    ]);
-});
-
 Route::get('/card-content', function () {
     return view('card-content', [
         "title" => "Content",

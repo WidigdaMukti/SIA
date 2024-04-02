@@ -1,0 +1,52 @@
+/* Title */
+.responsive-text-title {
+    font-size: clamp(2rem, 3vw, 4.5rem);
+}
+
+.responsive-text-title-1 {
+    font-size: clamp(1.8rem, 3vw, 4rem);
+}
+
+.responsive-text-title-2 {
+    font-size: clamp(1.6rem, 2.4vw, 3.5rem);
+}
+
+.responsive-text-title-3 {
+    font-size: clamp(2rem, 3.3vw, 3rem);
+}
+
+.responsive-text-title-4 {
+    font-size: clamp(1.5rem, 2.7vw, 2.5rem);
+}
+
+.responsive-text-title-5 {
+    font-size: clamp(1.3rem, 1.6vw, 2rem);
+}
+
+.responsive-text-title-6 {
+    font-size: clamp(1rem, 1.4vw, 1.4rem);
+}
+
+/* heading */
+.responsive-text-head {
+    font-size: clamp(1.2rem, 1.4vw, 1.4rem);
+}
+
+.responsive-text-head-1 {
+    font-size: clamp(1.1rem, 1.4vw, 1.4rem);
+}
+
+.responsive-text-head-2 {
+    font-size: clamp(1rem, 1.2vw, 1.2rem);
+}
+
+/* Nomal */
+.responsive-text-normal {
+    font-size: clamp(1rem, 1vw, 1rem);
+}
+.responsive-text-normal-1 {
+    font-size: clamp(0.8rem, 1vw, 1rem);
+}
+.responsive-text-normal-2 {
+    font-size: clamp(0.8rem, 0.8vw, 1rem);
+}
