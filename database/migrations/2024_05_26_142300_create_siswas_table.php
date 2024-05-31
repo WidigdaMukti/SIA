@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('siswas', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('nik_siswa');
-            $table->integer('id_role');
+            $table->unsignedBigInteger('id_kelas');
             $table->integer('nik_guru')->nullable();
             $table->integer('nisn')->nullable();
             $table->integer('nipd')->nullable();
@@ -57,10 +57,10 @@ return new class extends Migration
             $table->string('layak_pip')->nullable();
             $table->string('alasan_layak_pip')->nullable();
             $table->string('kebutuhan_khusus')->nullable();
-            $table->integer('id_kelas')->nullable();
             $table->timestamps();
 
             $table->foreign('nik_siswa')->references('nik')->on('users')->onDelete('cascade');
+            $table->foreign('id_kelas')->references('id')->on('kelas')->onDelete('cascade');
         });
     }
 

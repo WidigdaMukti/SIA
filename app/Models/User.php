@@ -25,6 +25,7 @@ class User extends Authenticatable implements FilamentUser, HasName
         'nama_lengkap',
         'email',
         'password',
+        'role_id'
     ];
 
     /**
@@ -65,5 +66,10 @@ class User extends Authenticatable implements FilamentUser, HasName
     public function adminGuru()
     {
         return $this->hasOne(Siswa::class, 'nik', 'nik_guru');
+    }
+
+    public function usersRole()
+    {
+        return $this->belongsTo(UserRole::class);
     }
 }

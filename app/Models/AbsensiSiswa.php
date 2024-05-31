@@ -8,4 +8,17 @@ use Illuminate\Database\Eloquent\Model;
 class AbsensiSiswa extends Model
 {
     use HasFactory;
+
+    protected $table = 'absensi_siswas';
+    protected $guarded = [];
+
+    public function absenSiswa()
+    {
+        return $this->belongsTo(Siswa::class, 'nik_siswa', 'nik_siswa');
+    }
+
+    public function mapel()
+    {
+        return $this->belongsTo(MapelKelas::class, 'id_mapel_kelas', 'id');
+    }
 }

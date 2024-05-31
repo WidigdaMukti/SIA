@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\User;
+use App\Models\Kelas;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,11 +18,20 @@ class SiswaFactory extends Factory
      */
     public function definition(): array
     {
+        // $kelas = Kelas::factory(6)->create();
+        // $id_kelas = $kelas->id;
+        Kelas::factory()->create();
+
         return [
-            'nik_siswa' => function() {
-                return User::inRandomOrder()->first()->nik;
+            // 'nik_siswa' => function() {
+            //     return User::inRandomOrder()->first()->nik;
+            // },
+            // 'nik_siswa' => $this->faker->unique()->randomNumber(8),
+            'id_kelas' => function() {
+                return Kelas::inRandomOrder()->first()->id;
             },
-            'id_role' => $this->faker->randomNumber(2),
+            'nik_siswa' => $this->faker->randomNumber(9),
+            // 'id_kelas' => $id_kelas,
             'nik_guru' => $this->faker->randomNumber(8),
             'nisn' => $this->faker->randomNumber(8),
             'nipd' => $this->faker->randomNumber(8),
@@ -64,7 +74,6 @@ class SiswaFactory extends Factory
             'layak_pip' => $this->faker->randomElement(['Ya', 'Tidak']),
             'alasan_layak_pip' => $this->faker->sentence,
             'kebutuhan_khusus' => $this->faker->randomElement(['Tidak', 'Netra', 'Rungu', 'Grahita Ringan', 'Grahita Sedang', 'Daksa Ringan', 'Daksa Sedang', 'Laras', 'Wicara', 'Tuna Ganda', 'Hiper Aktif', 'Cerdas Istimewa', 'Bakat Istimewa', 'Kesulitan Belajar', 'Narkoba', 'Indigo', 'Down Sindrome', 'Autis']),
-            'id_kelas' => $this->faker->randomNumber(2),
         ];
     }
 }

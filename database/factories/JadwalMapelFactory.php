@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\MapelKelas;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,7 +18,12 @@ class JadwalMapelFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'id_mapel_kelas' => function() {
+                return MapelKelas::inRandomOrder()->first()->id;
+            },
+            'hari' => $this->faker->dayOfWeek,
+            'jam_mulai' => $this->faker->time('H:i:s'),
+            'jam_selesai' => $this->faker->time('H:i:s'),
         ];
     }
 }

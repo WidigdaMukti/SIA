@@ -17,4 +17,14 @@ class AdminGuru extends Model
     {
         return $this->belongsTo(User::class, 'nik_guru', 'nik');
     }
+
+    public function waliKelas()
+    {
+        return $this->hasOne(Kelas::class, 'nik_guru', 'nik_guru');
+    }
+
+    public function guruMapel()
+    {
+        return $this->hasMany(MapelKelas::class, 'nik_guru', 'nik_guru_mapel');
+    }
 }

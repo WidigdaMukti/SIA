@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\MapelKelas;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -18,10 +19,10 @@ class AdminGuruFactory extends Factory
     public function definition(): array
     {
         return [
-            'nik_guru' => function() {
-            return User::inRandomOrder()->first()->nik;
-            },
-            'id_role' => $this->faker->numberBetween(1, 3),
+            // 'nik_guru' => function() {
+            //     return User::inRandomOrder()->first()->nik;
+            // },
+            'nik_guru' => $this->faker->randomNumber(9),
             'nuptk' => $this->faker->randomNumber(),
             'nama_lengkap' => $this->faker->name,
             'jenis_kelamin' => $this->faker->randomElement(['Laki-laki', 'Perempuan']),

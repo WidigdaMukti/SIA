@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('orang_tuas', function (Blueprint $table) {
             $table->id();
-            $table->integer('nik_siswa')->nullable();
+            $table->unsignedBigInteger('nik_siswa');
             $table->integer('nik_ayah')->nullable();
             $table->string('nama_lengkap_ayah')->nullable();
             $table->string('tempat_lahir_ayah')->nullable();
@@ -25,11 +25,11 @@ return new class extends Migration
             $table->integer('gaji_perbulan_ayah')->nullable();
             $table->text('alamat_kantor_ayah')->nullable();
             $table->text('alamat_rumah_ayah')->nullable();
-            $table->integer('no_hp_ayah')->nullable();
+            $table->bigInteger('no_hp_ayah')->nullable();
             $table->integer('nik_wali')->nullable();
             $table->string('nama_lengkap_wali')->nullable();
             $table->string('tempat_lahir_wali')->nullable();
-            $table->integer('tanggal_lahir_wali')->nullable();
+            $table->date('tanggal_lahir_wali')->nullable();
             $table->string('agama_wali')->nullable();
             $table->string('kewarganegaraan_wali')->nullable();
             $table->string('pendidikan_terakhir_wali')->nullable();
@@ -37,7 +37,7 @@ return new class extends Migration
             $table->integer('gaji_wali_perbulan')->nullable();
             $table->text('alamat_kantor_wali')->nullable();
             $table->text('alamat_rumah_wali')->nullable();
-            $table->integer('no_hp_wali')->nullable();
+            $table->bigInteger('no_hp_wali')->nullable();
             $table->integer('nik_ibu')->nullable();
             $table->string('nama_lengkap_ibu')->nullable();
             $table->string('tempat_lahir_ibu')->nullable();
@@ -49,8 +49,10 @@ return new class extends Migration
             $table->integer('gaji_ibu_perbulan')->nullable();
             $table->text('alamat_kantor_ibu')->nullable();
             $table->text('alamat_rumah_ibu')->nullable();
-            $table->integer('no_hp_ibu')->nullable();
+            $table->bigInteger('no_hp_ibu')->nullable();
             $table->timestamps();
+
+            $table->foreign('nik_siswa')->references('nik_siswa')->on('siswas')->onDelete('cascade');
         });
     }
 

@@ -13,10 +13,13 @@ return new class extends Migration
     {
         Schema::create('mapel_kelas', function (Blueprint $table) {
             $table->id();
-            $table->integer('id_kelas')->nullable();
-            $table->integer('nik_guru_mapel')->nullable();
-            $table->integer('nama_mapel')->nullable();
+            $table->unsignedBigInteger('id_kelas');
+            $table->unsignedBigInteger('nik_guru_mapel');
+            $table->string('nama_mapel');
             $table->timestamps();
+
+            $table->foreign('id_kelas')->references('id')->on('kelas')->onDelete('cascade');
+            $table->foreign('nik_guru_mapel')->references('nik_guru')->on('admin_gurus')->onDelete('cascade');
         });
     }
 

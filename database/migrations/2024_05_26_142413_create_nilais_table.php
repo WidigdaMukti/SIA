@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('nilais', function (Blueprint $table) {
             $table->id();
-            $table->integer('nik_siswa')->nullable();
-            $table->integer('id_mapel_kelas')->nullable();
+            $table->unsignedBigInteger('nik_siswa');
+            $table->unsignedBigInteger('id_mapel_kelas');
             $table->integer('kkm')->nullable();
             $table->integer('nilai_uh1')->nullable();
             $table->integer('nilai_uh2')->nullable();
@@ -26,6 +26,9 @@ return new class extends Migration
             $table->integer('nilai_uas')->nullable();
             $table->integer('rata_rata')->nullable();
             $table->timestamps();
+
+            $table->foreign('nik_siswa')->references('nik_siswa')->on('siswas')->onDelete('cascade');
+            $table->foreign('id_mapel_kelas')->references('id')->on('mapel_kelas')->onDelete('cascade');
         });
     }
 
