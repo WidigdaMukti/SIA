@@ -13,7 +13,6 @@ return new class extends Migration
     {
         Schema::create('admin_gurus', function (Blueprint $table) {
             $table->id();
-            $table->integer('id_role')->nullable();
             $table->unsignedBigInteger('nik_guru');
             $table->integer('nuptk')->nullable();
             $table->string('nama_lengkap')->nullable();

@@ -17,7 +17,7 @@ class UserRoleFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            // 'nama' => $this->faker->randomElement(['admin', 'guru', 'siswa' ])
         ];
     }
 }

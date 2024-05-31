@@ -12,11 +12,13 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('tahun_akademiks', function (Blueprint $table) {
-            $table->id();
-            $table->bigInteger('semester')->nullable();
-            $table->date('tanggal_mulai')->nullable();
-            $table->date('tanggal_selesai')->nullable();
+            $table->bigIncrements('id');
+            $table->string('semester');
+            $table->date('tanggal_mulai');
+            $table->date('tanggal_selesai');
             $table->timestamps();
+
+            // $table->foreign('id')->references('id_tahun_akademik')->on('kelas')->onDelete('cascade');
         });
     }
 

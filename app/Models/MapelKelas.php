@@ -8,4 +8,32 @@ use Illuminate\Database\Eloquent\Model;
 class MapelKelas extends Model
 {
     use HasFactory;
+
+    protected $table = 'mapel_kelas';
+    protected $guarded = [];
+
+    public function kelas()
+    {
+        return $this->belongsTo(Kelas::class, 'id_kelas', 'id');
+    }
+
+    public function guruMapel()
+    {
+        return $this->belongsTo(AdminGuru::class, 'nik_guru_mapel', 'nik_guru');
+    }
+
+    public function jadwalMapel()
+    {
+        return $this->hasMany(JadwalMapel::class, 'id_mapel_kelas', 'id');
+    }
+
+    public function nilaiMapel()
+    {
+        return $this->hasMany(Nilai::class, 'id_mapel_kelas', 'id');
+    }
+
+    public function absenMapel()
+    {
+        return $this->hasMany(AbsensiSiswa::class, 'id_mapel_kelas', 'id');
+    }
 }

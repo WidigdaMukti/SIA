@@ -11,13 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('absensi_siswas', function (Blueprint $table) {
+        Schema::create('jadwal_mapels', function (Blueprint $table) {
             $table->id();
-            $table->integer('nik_siswa')->nullable();
-            $table->integer('id_mapel_kelas_ke')->nullable();
-            $table->date('tanggal')->nullable();
-            $table->string('status', 255)->nullable();
+            $table->unsignedBigInteger('id_mapel_kelas');
+            $table->string('hari');
+            $table->time('jam_mulai');
+            $table->time('jam_selesai');
             $table->timestamps();
+
+            $table->foreign('id_mapel_kelas')->references('id')->on('mapel_kelas')->onDelete('cascade');
         });
     }
 
@@ -26,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('absensi_siswas');
+        Schema::dropIfExists('jadwal_mapels');
     }
 };

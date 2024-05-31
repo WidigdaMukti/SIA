@@ -2,6 +2,8 @@
 
 namespace Database\Factories;
 
+use App\Models\MapelKelas;
+use App\Models\Siswa;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,7 +19,14 @@ class AbsensiSiswaFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'nik_siswa' => function() {
+                return Siswa::inRandomOrder()->first()->nik_siswa;
+            },
+            'id_mapel_kelas' => function() {
+                return MapelKelas::inRandomOrder()->first()->id;
+            },
+            'tanggal' => $this->faker->date(),
+            'status' => $this->faker->randomElement(['Hadir', 'Tidak Hadir']),
         ];
     }
 }

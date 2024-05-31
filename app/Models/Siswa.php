@@ -65,4 +65,24 @@ class Siswa extends Model
     {
         return $this->belongsTo(User::class, 'nik_siswa', 'nik');
     }
+
+    public function orangTua()
+    {
+        return $this->hasOne(OrangTua::class, 'nik_siswa');
+    }
+
+    public function kelas()
+    {
+        return $this->belongsTo(Kelas::class, 'id_kelas');
+    }
+
+    public function nilai()
+    {
+        return $this->hasMany(Nilai::class, 'nik_siswa', 'nik_siswa');
+    }
+
+    public function absen()
+    {
+        return $this->hasMany(AbsensiSiswa::class, 'nik_siswa', 'nik_siswa');
+    }
 }

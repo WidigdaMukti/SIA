@@ -13,11 +13,13 @@ return new class extends Migration
     {
         Schema::create('kelas', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('nik_siswa')->nullable();
-            $table->bigInteger('id_mapel_kelas_ke')->nullable();
-            $table->date('tanggal')->nullable();
-            $table->string('status', 255)->nullable();
+            $table->unsignedBigInteger('nik_guru');
+            $table->unsignedBigInteger('id_tahun_akademik');
+            $table->string('tingkat_kelas');
             $table->timestamps();
+
+            $table->foreign('nik_guru')->references('nik_guru')->on('admin_gurus')->onDelete('cascade');
+            $table->foreign('id_tahun_akademik')->references('id')->on('tahun_akademiks')->onDelete('cascade');
         });
     }
 
