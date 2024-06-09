@@ -16,10 +16,11 @@ return new class extends Migration
             $table->unsignedBigInteger('id_kelas');
             $table->unsignedBigInteger('nik_guru_mapel');
             $table->string('nama_mapel');
+            // $table->boolean('status')->default(1);
             $table->timestamps();
 
-            $table->foreign('id_kelas')->references('id')->on('kelas')->onDelete('cascade');
-            $table->foreign('nik_guru_mapel')->references('nik_guru')->on('admin_gurus')->onDelete('cascade');
+            $table->foreign('id_kelas')->references('id')->on('kelas')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('nik_guru_mapel')->references('nik_guru')->on('admin_gurus')->onUpdate('cascade')->onDelete('cascade');
         });
     }
 

@@ -13,7 +13,7 @@ class MapelKelasPolicy
      */
     public function viewAny(User $user): bool
     {
-        //
+        return true;
     }
 
     /**
@@ -21,7 +21,7 @@ class MapelKelasPolicy
      */
     public function view(User $user, MapelKelas $mapelKelas): bool
     {
-        //
+        return true;
     }
 
     /**
@@ -29,7 +29,7 @@ class MapelKelasPolicy
      */
     public function create(User $user): bool
     {
-        //
+        return true;
     }
 
     /**
@@ -37,7 +37,7 @@ class MapelKelasPolicy
      */
     public function update(User $user, MapelKelas $mapelKelas): bool
     {
-        //
+        return true;
     }
 
     /**
@@ -45,7 +45,7 @@ class MapelKelasPolicy
      */
     public function delete(User $user, MapelKelas $mapelKelas): bool
     {
-        //
+        return true;
     }
 
     /**
@@ -53,7 +53,7 @@ class MapelKelasPolicy
      */
     public function restore(User $user, MapelKelas $mapelKelas): bool
     {
-        //
+        return true;
     }
 
     /**
@@ -61,6 +61,6 @@ class MapelKelasPolicy
      */
     public function forceDelete(User $user, MapelKelas $mapelKelas): bool
     {
-        //
+        return true;
     }
 }

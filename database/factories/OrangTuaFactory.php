@@ -60,6 +60,7 @@ class OrangTuaFactory extends Factory
             'alamat_kantor_ibu' => $this->faker->address,
             'alamat_rumah_ibu' => $this->faker->address,
             'no_hp_ibu' => $this->faker->randomNumber(),
+            // 'status_orang_tua' => $this->faker->boolean()
         ];
     }
 }

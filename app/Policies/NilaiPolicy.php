@@ -13,7 +13,7 @@ class NilaiPolicy
      */
     public function viewAny(User $user): bool
     {
-        //
+        return true;
     }
 
     /**
@@ -21,7 +21,7 @@ class NilaiPolicy
      */
     public function view(User $user, Nilai $nilai): bool
     {
-        //
+        return true;
     }
 
     /**
@@ -29,7 +29,7 @@ class NilaiPolicy
      */
     public function create(User $user): bool
     {
-        //
+        return true;
     }
 
     /**
@@ -37,7 +37,7 @@ class NilaiPolicy
      */
     public function update(User $user, Nilai $nilai): bool
     {
-        //
+        return true;
     }
 
     /**
@@ -45,7 +45,7 @@ class NilaiPolicy
      */
     public function delete(User $user, Nilai $nilai): bool
     {
-        //
+        return true;
     }
 
     /**
@@ -53,7 +53,7 @@ class NilaiPolicy
      */
     public function restore(User $user, Nilai $nilai): bool
     {
-        //
+        return true;
     }
 
     /**
@@ -61,6 +61,6 @@ class NilaiPolicy
      */
     public function forceDelete(User $user, Nilai $nilai): bool
     {
-        //
+        return true;
     }
 }

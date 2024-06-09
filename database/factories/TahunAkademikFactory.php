@@ -16,7 +16,9 @@ class TahunAkademikFactory extends Factory
      */
     public function definition(): array
     {
+        $year = $this->faker->year;
         return [
+            'periode' => $year . '/' . ($year + 1),
             'semester' => $this->faker->randomElement(['ganjil', 'genap']),
             'tanggal_mulai' => $this->faker->date,
             'tanggal_selesai' => $this->faker->dateTimeBetween('+6 months', '+1 year')->format('Y-m-d')

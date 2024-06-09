@@ -33,14 +33,19 @@ class KelasFactory extends Factory
         $tingkat_kelas = $this->faker->randomElement(['I', 'II', 'III', 'IV', 'V', 'VI']);
 
         $tahun_akademik_id = TahunAkademik::pluck('id')->toArray();
-
+        $year = $this->faker->year;
         return [
             // 'nik_guru' => $map[$tingkat_kelas],
             'nik_guru' => function() {
                 return AdminGuru::inRandomOrder()->first()->nik_guru;
             },
-            'id_tahun_akademik' => $this->faker->randomElement($tahun_akademik_id),
+            // 'id_tahun_akademik' => $this->faker->randomElement($tahun_akademik_id),
+
+            'semester' => $this->faker->randomElement(['Ganjil', 'Genap']),
+            'tanggal_mulai' => date('Y-m-d', strtotime("01-01-$year")),
+            'tanggal_selesai' => date('Y-m-d', strtotime("30-06-" . ($year))),
             'tingkat_kelas' => $tingkat_kelas,
+            'status' => $this->faker->boolean(),
         ];
     }
 }

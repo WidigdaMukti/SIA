@@ -22,11 +22,14 @@ class AbsensiSiswaFactory extends Factory
             'nik_siswa' => function() {
                 return Siswa::inRandomOrder()->first()->nik_siswa;
             },
+            // 'id_siswa' => function() {
+            //     return Siswa::inRandomOrder()->first()->id;
+            // },
             'id_mapel_kelas' => function() {
                 return MapelKelas::inRandomOrder()->first()->id;
             },
             'tanggal' => $this->faker->date(),
-            'status' => $this->faker->randomElement(['Hadir', 'Tidak Hadir']),
+            'status_kehadiran' => $this->faker->boolean(),
         ];
     }
 }

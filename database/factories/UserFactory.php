@@ -43,6 +43,7 @@ class UserFactory extends Factory
             'role_id' => function() {
                 return UserRole::inRandomOrder()->first()->id;
             },
+            'status' => fake()->boolean(),
             'remember_token' => Str::random(10),
         ];
     }

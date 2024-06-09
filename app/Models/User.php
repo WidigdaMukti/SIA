@@ -60,16 +60,26 @@ class User extends Authenticatable implements FilamentUser, HasName
 
     public function siswa()
     {
-        return $this->hasOne(Siswa::class, 'nik', 'nik_siswa');
+        return $this->hasOne(Siswa::class, 'nik_siswa', 'nik');
+    }
+
+    public function orangTua()
+    {
+        return $this->hasOne(OrangTua::class, 'nik_siswa', 'nik');
     }
 
     public function adminGuru()
     {
-        return $this->hasOne(Siswa::class, 'nik', 'nik_guru');
+        return $this->hasOne(AdminGuru::class, 'nik', 'nik_guru');
     }
 
     public function usersRole()
     {
-        return $this->belongsTo(UserRole::class);
+        return $this->belongsTo(UserRole::class, 'role_id', 'id');
     }
+
+    // public function scopeActive($query)
+    // {
+    //     return $query->where('status', 1);
+    // }
 }

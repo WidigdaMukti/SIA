@@ -13,7 +13,7 @@ class AdminGuruPolicy
      */
     public function viewAny(User $user): bool
     {
-        //
+        return true;
     }
 
     /**
@@ -21,7 +21,7 @@ class AdminGuruPolicy
      */
     public function view(User $user, AdminGuru $adminGuru): bool
     {
-        //
+        return true;
     }
 
     /**
@@ -29,7 +29,7 @@ class AdminGuruPolicy
      */
     public function create(User $user): bool
     {
-        //
+        return true;
     }
 
     /**
@@ -37,7 +37,7 @@ class AdminGuruPolicy
      */
     public function update(User $user, AdminGuru $adminGuru): bool
     {
-        //
+        return true;
     }
 
     /**
@@ -45,7 +45,7 @@ class AdminGuruPolicy
      */
     public function delete(User $user, AdminGuru $adminGuru): bool
     {
-        //
+        return true;
     }
 
     /**
@@ -53,7 +53,7 @@ class AdminGuruPolicy
      */
     public function restore(User $user, AdminGuru $adminGuru): bool
     {
-        //
+        return true;
     }
 
     /**
@@ -61,6 +61,6 @@ class AdminGuruPolicy
      */
     public function forceDelete(User $user, AdminGuru $adminGuru): bool
     {
-        //
+        return true;
     }
 }

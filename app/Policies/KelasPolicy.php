@@ -13,7 +13,7 @@ class KelasPolicy
      */
     public function viewAny(User $user): bool
     {
-        //
+        return true;
     }
 
     /**
@@ -21,7 +21,7 @@ class KelasPolicy
      */
     public function view(User $user, Kelas $kelas): bool
     {
-        //
+        return true;
     }
 
     /**
@@ -29,7 +29,7 @@ class KelasPolicy
      */
     public function create(User $user): bool
     {
-        //
+        return true;
     }
 
     /**
@@ -37,7 +37,7 @@ class KelasPolicy
      */
     public function update(User $user, Kelas $kelas): bool
     {
-        //
+        return true;
     }
 
     /**
@@ -45,7 +45,7 @@ class KelasPolicy
      */
     public function delete(User $user, Kelas $kelas): bool
     {
-        //
+        return true;
     }
 
     /**
@@ -53,7 +53,7 @@ class KelasPolicy
      */
     public function restore(User $user, Kelas $kelas): bool
     {
-        //
+        return true;
     }
 
     /**
@@ -61,6 +61,6 @@ class KelasPolicy
      */
     public function forceDelete(User $user, Kelas $kelas): bool
     {
-        //
+        return true;
     }
 }

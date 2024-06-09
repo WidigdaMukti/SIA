@@ -28,6 +28,7 @@ class MapelKelasFactory extends Factory
                 return AdminGuru::inRandomOrder()->first()->nik_guru;
             },
             'nama_mapel' => $this->faker->randomElement(['Matematika', 'Bahasa Indonesia', 'Bahasa Inggris', 'IPA', 'IPS', 'PKN']),
+            // 'status' => $this->faker->boolean(),
         ];
     }
 

@@ -24,6 +24,7 @@ class JadwalMapelFactory extends Factory
             'hari' => $this->faker->dayOfWeek,
             'jam_mulai' => $this->faker->time('H:i:s'),
             'jam_selesai' => $this->faker->time('H:i:s'),
+            // 'status' => $this->faker->boolean()
         ];
     }
 }

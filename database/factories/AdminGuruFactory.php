@@ -29,8 +29,8 @@ class AdminGuruFactory extends Factory
             'tempat_lahir' => $this->faker->city,
             'tanggal_lahir' => $this->faker->date,
             'nip' => $this->faker->randomNumber(),
-            'status_kepegawaian' => $this->faker->randomElement(['PNS', 'Non-PNS']),
-            'jenis_ptk' => $this->faker->randomElement(['Guru', 'Dosen']),
+            'status_kepegawaian' => $this->faker->randomElement(['GTY/PTY', 'Guru Honor Sekolah']),
+            'jenis_ptk' => $this->faker->randomElement(['Guru Mapel', 'Guru Kelas']),
             'agama' => $this->faker->randomElement(['Islam', 'Kristen', 'Katolik', 'Hindu', 'Buddha']),
             'alamat_rumah' => $this->faker->address,
             'no_hp' => $this->faker->randomNumber(),
@@ -42,7 +42,7 @@ class AdminGuruFactory extends Factory
             'tmt_pengangkatan' => $this->faker->date,
             'lembaga_pengangkatan' => $this->faker->company,
             'pangkat_golongan' => $this->faker->randomElement(['III/a', 'III/b', 'III/c', 'III/d']),
-            'sumber_gaji' => $this->faker->randomElement(['Pemerintah', 'Swasta']),
+            'sumber_gaji' => $this->faker->randomElement(['Pemerintah', 'Swasta', 'Yayasan']),
             'nama_ibu_kandung' => $this->faker->name('female'),
             'status_perkawinan' => $this->faker->randomElement(['Belum Menikah', 'Menikah']),
             'nama_suami_atau_istri' => $this->faker->name,
@@ -50,7 +50,7 @@ class AdminGuruFactory extends Factory
             'pekerjaan_suami_atau_istri' => $this->faker->jobTitle,
             'tmt_pns' => $this->faker->date,
             'lisensi_kepsek' => $this->faker->randomElement(['Ya', 'Tidak']),
-            'diklat_kepegawaian' => $this->faker->randomElement(['Sertifikasi', 'Magang']),
+            'diklat_kepegawaian' => $this->faker->randomElement(['Ya', 'Tidak']),
             'keahlian_braille' => $this->faker->randomElement(['Ya', 'Tidak']),
             'keahlian_bahasa_isyarat' => $this->faker->randomElement(['Ya', 'Tidak']),
             'npwp' => $this->faker->randomNumber(),
@@ -62,8 +62,8 @@ class AdminGuruFactory extends Factory
             'no_kk' => $this->faker->randomNumber(),
             'karpeg' => $this->faker->randomElement(['Ya', 'Tidak']),
             'karis_karsu' => $this->faker->randomElement(['Ya', 'Tidak']),
-            'nuks' => $this->faker->randomNumber(),
-            'id_kelas_mengajar' => $this->faker->numberBetween(1, 10),
+            'nuks' => $this->faker->randomElement(['Ya', 'Tidak']),
+            // 'status_admin_guru' => $this->faker->boolean()
         ];
     }
 }

@@ -13,19 +13,21 @@ return new class extends Migration
     {
         Schema::create('admin_gurus', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('nik_guru');
-            $table->integer('nuptk')->nullable();
+            $table->unsignedBigInteger('nik_guru')->nullable();
+            $table->bigInteger('no_kk')->nullable();
+            $table->bigInteger('nuptk')->nullable();
+            $table->bigInteger('nip')->nullable();
             $table->string('nama_lengkap')->nullable();
+            $table->string('email')->unique();
             $table->string('jenis_kelamin')->nullable();
             $table->string('tempat_lahir')->nullable();
             $table->date('tanggal_lahir')->nullable();
-            $table->integer('nip')->nullable();
-            $table->string('status_kepegawaian')->nullable();
-            $table->string('jenis_ptk')->nullable();
+            $table->string('kewarganegaraan')->nullable();
             $table->string('agama')->nullable();
             $table->text('alamat_rumah')->nullable();
-            $table->integer('no_hp')->nullable();
-            $table->string('email')->nullable();
+            $table->bigInteger('no_hp')->nullable();
+            $table->string('status_kepegawaian')->nullable();
+            $table->string('jenis_ptk')->nullable();
             $table->string('tugas_tambahan')->nullable();
             $table->string('sk_cpns')->nullable();
             $table->string('tanggal_cpns')->nullable();
@@ -37,27 +39,25 @@ return new class extends Migration
             $table->string('nama_ibu_kandung')->nullable();
             $table->string('status_perkawinan')->nullable();
             $table->string('nama_suami_atau_istri')->nullable();
-            $table->integer('nip_suami_atau_istri')->nullable();
+            $table->bigInteger('nip_suami_atau_istri')->nullable();
             $table->string('pekerjaan_suami_atau_istri')->nullable();
             $table->string('tmt_pns')->nullable();
             $table->string('lisensi_kepsek')->nullable();
             $table->string('diklat_kepegawaian')->nullable();
             $table->string('keahlian_braille')->nullable();
             $table->string('keahlian_bahasa_isyarat')->nullable();
-            $table->integer('npwp')->nullable();
+            $table->bigInteger('npwp')->nullable();
             $table->string('nama_wajib_pajak')->nullable();
-            $table->string('kewarganegaraan')->nullable();
             $table->string('bank')->nullable();
             $table->bigInteger('norek_bank')->nullable();
             $table->string('rek_anama')->nullable();
-            $table->integer('no_kk')->nullable();
             $table->string('karpeg')->nullable();
             $table->string('karis_karsu')->nullable();
-            $table->integer('nuks')->nullable();
-            $table->integer('id_kelas_mengajar')->nullable();
+            $table->string('nuks')->nullable();
+            // $table->boolean('status_admin_guru');
             $table->timestamps();
 
-            $table->foreign('nik_guru')->references('nik')->on('users')->onDelete('cascade');
+            $table->foreign('nik_guru')->references('nik')->on('users')->onUpdate('cascade')->onDelete('cascade');
         });
     }
 
