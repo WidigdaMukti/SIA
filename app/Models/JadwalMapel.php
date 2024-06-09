@@ -16,4 +16,13 @@ class JadwalMapel extends Model
     {
         return $this->belongsTo(MapelKelas::class, 'id_mapel_kelas', 'id');
     }
+
+    public function scopeActiveKelas($query)
+    {
+        return $query->whereHas('mapelKelas', function ($query) {
+            $query->whereHas('kelas', function ($query) {
+                $query->where('status', 1);
+            });
+        });
+    }
 }

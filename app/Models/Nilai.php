@@ -21,4 +21,13 @@ class Nilai extends Model
     {
         return $this->belongsTo(MapelKelas::class, 'id_mapel_kelas', 'id');
     }
+
+    public function scopeActiveNilaiSiswa($query)
+    {
+        return $query->whereHas('siswa', function ($query) {
+            $query->whereHas('user', function ($query) {
+                $query->where('status', 1)->where('role_id', 3);
+            });
+        });
+    }
 }

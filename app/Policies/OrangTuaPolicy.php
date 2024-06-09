@@ -13,7 +13,7 @@ class OrangTuaPolicy
      */
     public function viewAny(User $user): bool
     {
-        //
+        return true;
     }
 
     /**
@@ -21,7 +21,7 @@ class OrangTuaPolicy
      */
     public function view(User $user, OrangTua $orangTua): bool
     {
-        //
+        return true;
     }
 
     /**
@@ -29,7 +29,7 @@ class OrangTuaPolicy
      */
     public function create(User $user): bool
     {
-        //
+        return false;
     }
 
     /**
@@ -37,7 +37,7 @@ class OrangTuaPolicy
      */
     public function update(User $user, OrangTua $orangTua): bool
     {
-        //
+        return true;
     }
 
     /**
@@ -45,7 +45,7 @@ class OrangTuaPolicy
      */
     public function delete(User $user, OrangTua $orangTua): bool
     {
-        //
+        return true;
     }
 
     /**
@@ -53,7 +53,7 @@ class OrangTuaPolicy
      */
     public function restore(User $user, OrangTua $orangTua): bool
     {
-        //
+        return true;
     }
 
     /**
@@ -61,6 +61,6 @@ class OrangTuaPolicy
      */
     public function forceDelete(User $user, OrangTua $orangTua): bool
     {
-        //
+        return true;
     }
 }

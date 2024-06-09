@@ -13,12 +13,12 @@ return new class extends Migration
     {
         Schema::create('siswas', function (Blueprint $table) {
             $table->id();
+            // $table->bigInteger('nik_guru')->nullable();
+            $table->unsignedBigInteger('id_kelas')->nullable();
             $table->unsignedBigInteger('nik_siswa');
-            $table->unsignedBigInteger('id_kelas');
-            $table->integer('nik_guru')->nullable();
-            $table->integer('nisn')->nullable();
-            $table->integer('nipd')->nullable();
-            $table->integer('no_kk')->nullable();
+            $table->bigInteger('nisn')->nullable();
+            $table->bigInteger('nipd')->nullable();
+            $table->bigInteger('no_kk')->nullable();
             $table->string('nama_lengkap')->nullable();
             $table->string('jenis_kelamin')->nullable();
             $table->string('tempat_lahir')->nullable();
@@ -27,6 +27,7 @@ return new class extends Migration
             $table->string('kewarganegaraan')->nullable();
             $table->integer('jumlah_saudara_kandung')->nullable();
             $table->integer('jumlah_saudara_tiri')->nullable();
+            $table->integer('jumlah_saudara_angkat')->nullable();
             $table->string('bahasa_sehari-hari')->nullable();
             $table->integer('berat_badan')->nullable();
             $table->integer('tinggi_badan')->nullable();
@@ -39,28 +40,29 @@ return new class extends Migration
             $table->string('masuk_sekolah_sebagai')->nullable();
             $table->string('asal_anak')->nullable();
             $table->string('nama_tk')->nullable();
-            $table->integer('no_tahun_surat_ket')->nullable();
+            $table->string('no_tahun_surat_ket')->nullable();
             $table->integer('lama_belajar')->nullable();
-            $table->integer('skhun')->nullable();
+            $table->string('skhun')->nullable();
             $table->string('penerima_kps')->nullable();
-            $table->integer('no_kps')->nullable();
-            $table->integer('no_peserta_ujian_nasional')->nullable();
-            $table->integer('no_seri_ijazah')->nullable();
+            $table->string('no_kps')->nullable();
+            $table->string('no_peserta_ujian_nasional')->nullable();
+            $table->string('no_seri_ijazah')->nullable();
             $table->string('penerima_kip')->nullable();
-            $table->integer('nomor_kip')->nullable();
+            $table->bigInteger('nomor_kip')->nullable();
             $table->string('nama_kip')->nullable();
             $table->string('no_kks')->nullable();
             $table->string('no_registrasi_akta_lahir')->nullable();
             $table->string('bank')->nullable();
-            $table->integer('no_rek_bank')->nullable();
+            $table->bigInteger('no_rek_bank')->nullable();
             $table->string('rek_atas_nama')->nullable();
             $table->string('layak_pip')->nullable();
             $table->string('alasan_layak_pip')->nullable();
             $table->string('kebutuhan_khusus')->nullable();
+            // $table->boolean('status_siswa');
             $table->timestamps();
 
-            $table->foreign('nik_siswa')->references('nik')->on('users')->onDelete('cascade');
-            $table->foreign('id_kelas')->references('id')->on('kelas')->onDelete('cascade');
+            $table->foreign('nik_siswa')->references('nik')->on('users')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('id_kelas')->references('id')->on('kelas')->onDelete('set null')->onUpdate('cascade');;
         });
     }
 

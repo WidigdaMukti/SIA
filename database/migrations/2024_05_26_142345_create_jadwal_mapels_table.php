@@ -17,9 +17,10 @@ return new class extends Migration
             $table->string('hari');
             $table->time('jam_mulai');
             $table->time('jam_selesai');
+            // $table->boolean('status');
             $table->timestamps();
 
-            $table->foreign('id_mapel_kelas')->references('id')->on('mapel_kelas')->onDelete('cascade');
+            $table->foreign('id_mapel_kelas')->references('id')->on('mapel_kelas')->onUpdate('cascade')->onDelete('cascade');
         });
     }
 

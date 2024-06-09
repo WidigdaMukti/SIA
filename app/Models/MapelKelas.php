@@ -36,4 +36,11 @@ class MapelKelas extends Model
     {
         return $this->hasMany(AbsensiSiswa::class, 'id_mapel_kelas', 'id');
     }
+
+    public function scopeActiveKelas($query)
+    {
+        return $query->whereHas('kelas', function ($query) {
+            $query->where('status', 1);
+        });
+    }
 }

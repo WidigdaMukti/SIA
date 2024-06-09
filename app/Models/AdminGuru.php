@@ -27,4 +27,18 @@ class AdminGuru extends Model
     {
         return $this->hasMany(MapelKelas::class, 'nik_guru', 'nik_guru_mapel');
     }
+
+    public function scopeActiveUserWithRole($query)
+    {
+        return $query->whereHas('user', function ($query) {
+            $query->where('status', 1)->whereIn('role_id', [1, 2]);
+        });
+    }
+
+    public function scopeActiveGuru($query)
+    {
+        return $query->whereHas('user', function ($query) {
+            $query->where('status', 1)->where('role_id', 2);
+        });
+    }
 }

@@ -27,6 +27,7 @@ class SiaAdminPanelProvider extends PanelProvider
             ->id('siaAdmin')
             ->path('siaAdmin')
             ->login()
+            ->breadcrumbs(false)
             ->sidebarCollapsibleOnDesktop()
             ->colors([
                 'primary' => Color::Amber,
@@ -39,7 +40,7 @@ class SiaAdminPanelProvider extends PanelProvider
             ->discoverWidgets(in: app_path('Filament/SiaAdmin/Widgets'), for: 'App\\Filament\\SiaAdmin\\Widgets')
             ->widgets([
                 Widgets\AccountWidget::class,
-                Widgets\FilamentInfoWidget::class,
+                // Widgets\FilamentInfoWidget::class,
             ])
             ->middleware([
                 EncryptCookies::class,

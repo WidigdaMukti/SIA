@@ -14,6 +14,8 @@ return new class extends Migration
         Schema::create('orang_tuas', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('nik_siswa');
+            // $table->foreignId('nik_siswa')->constrained('siswas');
+
             $table->integer('nik_ayah')->nullable();
             $table->string('nama_lengkap_ayah')->nullable();
             $table->string('tempat_lahir_ayah')->nullable();
@@ -22,10 +24,11 @@ return new class extends Migration
             $table->string('kewarganegaraan_ayah')->nullable();
             $table->string('pendidikan_terakhir_ayah')->nullable();
             $table->string('pekerjaan_ayah')->nullable();
-            $table->integer('gaji_perbulan_ayah')->nullable();
+            $table->string('gaji_perbulan_ayah')->nullable();
             $table->text('alamat_kantor_ayah')->nullable();
             $table->text('alamat_rumah_ayah')->nullable();
             $table->bigInteger('no_hp_ayah')->nullable();
+
             $table->integer('nik_wali')->nullable();
             $table->string('nama_lengkap_wali')->nullable();
             $table->string('tempat_lahir_wali')->nullable();
@@ -34,10 +37,11 @@ return new class extends Migration
             $table->string('kewarganegaraan_wali')->nullable();
             $table->string('pendidikan_terakhir_wali')->nullable();
             $table->string('pekerjaan_wali')->nullable();
-            $table->integer('gaji_wali_perbulan')->nullable();
+            $table->string('gaji_wali_perbulan')->nullable();
             $table->text('alamat_kantor_wali')->nullable();
             $table->text('alamat_rumah_wali')->nullable();
             $table->bigInteger('no_hp_wali')->nullable();
+
             $table->integer('nik_ibu')->nullable();
             $table->string('nama_lengkap_ibu')->nullable();
             $table->string('tempat_lahir_ibu')->nullable();
@@ -46,13 +50,14 @@ return new class extends Migration
             $table->string('kewarganegaraan_ibu')->nullable();
             $table->string('pendidikan_terakhir_ibu')->nullable();
             $table->string('pekerjaan_ibu')->nullable();
-            $table->integer('gaji_ibu_perbulan')->nullable();
+            $table->string('gaji_ibu_perbulan')->nullable();
             $table->text('alamat_kantor_ibu')->nullable();
             $table->text('alamat_rumah_ibu')->nullable();
             $table->bigInteger('no_hp_ibu')->nullable();
+            // $table->boolean('status_orang_tua');
             $table->timestamps();
 
-            $table->foreign('nik_siswa')->references('nik_siswa')->on('siswas')->onDelete('cascade');
+            $table->foreign('nik_siswa')->references('nik_siswa')->on('siswas')->onUpdate('cascade');
         });
     }
 

@@ -28,7 +28,8 @@ class DatabaseSeeder extends Seeder
         UserRole::factory()->create(['nama' => 'guru']);
         UserRole::factory()->create(['nama' => 'siswa']);
 
-        TahunAkademik::factory(6)->create();
+        // TahunAkademik::factory(6)->create();
+        // Kelas::factory()->create()
         \App\Models\User::factory(20)->create();
 
         MapelKelas::factory(20)->create();

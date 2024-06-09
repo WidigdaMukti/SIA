@@ -13,7 +13,7 @@ class TahunAkademikPolicy
      */
     public function viewAny(User $user): bool
     {
-        //
+        return false;
     }
 
     /**
@@ -21,7 +21,7 @@ class TahunAkademikPolicy
      */
     public function view(User $user, TahunAkademik $tahunAkademik): bool
     {
-        //
+        return true;
     }
 
     /**
@@ -29,7 +29,7 @@ class TahunAkademikPolicy
      */
     public function create(User $user): bool
     {
-        //
+        return true;
     }
 
     /**
@@ -37,7 +37,7 @@ class TahunAkademikPolicy
      */
     public function update(User $user, TahunAkademik $tahunAkademik): bool
     {
-        //
+        return true;
     }
 
     /**
@@ -45,7 +45,7 @@ class TahunAkademikPolicy
      */
     public function delete(User $user, TahunAkademik $tahunAkademik): bool
     {
-        //
+        return true;
     }
 
     /**
@@ -53,7 +53,7 @@ class TahunAkademikPolicy
      */
     public function restore(User $user, TahunAkademik $tahunAkademik): bool
     {
-        //
+        return true;
     }
 
     /**
@@ -61,6 +61,6 @@ class TahunAkademikPolicy
      */
     public function forceDelete(User $user, TahunAkademik $tahunAkademik): bool
     {
-        //
+        return true;
     }
 }
