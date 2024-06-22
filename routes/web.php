@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BeritaController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,11 +14,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('beranda', [
-        "title" => "Beranda",
-    ]);
-});
+// Route::get('/', function () {
+//     return view('beranda', [
+//         "title" => "Beranda",
+//     ]);
+// });
+
+Route::get('/', [BeritaController::class, 'index'])->name('Beranda');
+Route::get('/card-content/{id}', [BeritaController::class, 'indexContentBerita'])->name('berita');
 
 Route::get('/ppdb-online', function () {
     return view('ppdb', [
@@ -85,11 +89,11 @@ Route::get('/galeri', function () {
     ]);
 });
 
-Route::get('/card-content', function () {
-    return view('card-content', [
-        "title" => "Content",
-    ]);
-});
+// Route::get('/card-content', function () {
+//     return view('card-content', [
+//         "title" => "Content",
+//     ]);
+// });
 
 Route::get('/detail-galeri', function () {
     return view('detail-galeri', [

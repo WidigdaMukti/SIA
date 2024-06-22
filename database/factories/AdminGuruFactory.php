@@ -24,7 +24,7 @@ class AdminGuruFactory extends Factory
             // },
             'nik_guru' => $this->faker->randomNumber(9),
             'nuptk' => $this->faker->randomNumber(),
-            'nama_lengkap' => $this->faker->name,
+            'nama_lengkap_tendik' => $this->faker->name,
             'jenis_kelamin' => $this->faker->randomElement(['Laki-laki', 'Perempuan']),
             'tempat_lahir' => $this->faker->city,
             'tanggal_lahir' => $this->faker->date,

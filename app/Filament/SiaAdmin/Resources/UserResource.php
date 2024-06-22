@@ -108,11 +108,11 @@ class UserResource extends Resource
                     ->sortable()
             ])
             ->filters([
-                SelectFilter::make('role_id')
-                    ->label('Role')
-                    ->options(
-                        UserRole::all()->pluck('nama', 'id')->toArray()
-                    ),
+                // SelectFilter::make('role_id')
+                //     ->label('Role')
+                //     ->options(
+                //         UserRole::all()->pluck('nama', 'id')->toArray()
+                //     ),
                 SelectFilter::make('status')
                     ->label('Status Akun')
                     ->options([

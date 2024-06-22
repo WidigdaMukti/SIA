@@ -27,6 +27,7 @@ class SiaAdminPanelProvider extends PanelProvider
             ->id('siaAdmin')
             ->path('siaAdmin')
             ->login()
+            ->registration()
             ->breadcrumbs(false)
             ->sidebarCollapsibleOnDesktop()
             ->colors([

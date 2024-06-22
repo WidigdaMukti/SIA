@@ -77,9 +77,13 @@ class KelasResource extends Resource
                 TextColumn::make('nama_guru')
                     ->label('Nama Wali Kelas')
                     ->getStateUsing(function (Kelas $kelas) {
-                        return $kelas->adminGuru->nama_lengkap;
+                        return $kelas->adminGuru->nama_lengkap_tendik;
                     })
-                    ->searchable(),
+                    ->searchable(query: function (Builder $query, string $search): Builder {
+                        return $query->whereHas('adminGuru', function ($query) use ($search) {
+                            $query->where('nama_lengkap_tendik', 'like', '%' . $search . '%');
+                        });
+                    }),
                 TextColumn::make('semester'),
                 TextColumn::make('tanggal_mulai')
                     ->formatStateUsing(function ($record) {
@@ -99,19 +103,9 @@ class KelasResource extends Resource
                     ->sortable()
             ])
             ->filters([
-                SelectFilter::make('tingkat_kelas')
-                    ->label('Tingkat Kelas')
-                    ->options(function () {
-                        return Kelas::query()
-                            ->get()
-                            ->sortBy('tingkat_kelas')
-                            ->mapWithKeys(function ($kelas) {
-                                return [$kelas->tingkat_kelas => $kelas->tingkat_kelas];
-                            });
-                    }),
                 SelectFilter::make('semester')
                     ->options(function () {
-                        return Kelas::query()
+                        return Kelas::kelasActive()
                             ->get()
                             ->sortBy('semester')
                             ->mapWithKeys(function ($kelas) {

@@ -34,7 +34,7 @@ class Siswa extends Model
 
     public function kelas()
     {
-        return $this->belongsTo(Kelas::class, 'id_kelas', 'id');
+        return $this->belongsTo(Kelas::class, 'kelas_id', 'id');
     }
 
     public function nilai()

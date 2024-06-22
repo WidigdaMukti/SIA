@@ -29,7 +29,7 @@ class SiswaFactory extends Factory
             // 'nik_siswa' => $this->faker->unique()->randomNumber(8),
             // 'id_kelas' => $id_kelas,
             // 'nik_guru' => $this->faker->randomNumber(8),
-            'id_kelas' => function() {
+            'kelas_id' => function() {
                 return Kelas::inRandomOrder()->first()->id;
             },
             'nik_siswa' => $this->faker->randomNumber(9),
