@@ -61,7 +61,7 @@ class AdminGuruResource extends Resource
                                 TextInput::make('nip')
                                     ->label('NIP')
                                     ->numeric(),
-                                TextInput::make('nama_lengkap')
+                                TextInput::make('nama_lengkap_tendik')
                                     ->label('Nama Lengkap')
                                     ->required()
                                     ->autocapitalize('words'),
@@ -229,11 +229,11 @@ class AdminGuruResource extends Resource
                 TextColumn::make('nik_guru')
                     ->label('NIK Guru')
                     ->searchable(),
-                TextColumn::make('nama_lengkap')
+                TextColumn::make('nama_lengkap_tendik')
                     ->label('Nama Lengkap')
                     ->searchable()
                     ->getStateUsing(function ($record) {
-                        return ucwords($record->nama_lengkap);
+                        return ucwords($record->nama_lengkap_tendik);
                     }),
                 TextColumn::make('jenis_kelamin')
                     ->label('Jenis Kelamin'),

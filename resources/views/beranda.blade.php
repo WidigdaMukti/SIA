@@ -67,6 +67,39 @@
 
     <div class="container-fluid p-2 d-flex justify-content-center">
         <div class="row mb-3 d-flex justify-content-center">
+            @foreach($dataBerita as $berita)
+            <div class="col mb-4 d-flex justify-content-center me-4">
+                <div class="card" style="width: 24rem; height: 32rem;">
+                    <div class="img-container rounded-1" style="overflow: hidden;">
+                        <a href="{{ route('berita', ['id' => $berita->id]) }}" class="img-link">
+                            <img src="{{ asset('storage/' . $berita->gambar_thumbnail) }}" alt="Thumbnail Gambar">
+                        </a>
+                    </div>
+                    <div class="card-body p-4">
+                        <p class="text-gray responsive-text-normal-2">
+                            <i class="bi bi-calendar-week me-2" aria-hidden="true"></i> {{ $berita->created_at->format('d F Y') }}
+                        </p>
+                        <a class="text-decoration-none" href="{{ route('berita', ['id' => $berita->id]) }}">
+                            <h2 class="card-title text-truncate mb-2 text-black responsive-text-head"
+                                style="font-weight:bold;">{{ $berita->judul }}</h2>
+                        </a>
+                        <p class="card-text text-gray responsive-text-normal"
+                            style="display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical; overflow: hidden;">
+                            {{ $berita->slug }}
+                        </p>
+                        {{--  <p class="card-text text-gray responsive-text-normal"
+                            style="display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical; overflow: hidden;">
+                            {!! convertMarkdownToHtml($berita->paragraf_1) !!}
+                        </p>  --}}
+                    </div>
+                </div>
+            </div>
+            @endforeach
+        </div>
+    </div>
+
+    {{--  <div class="container-fluid p-2 d-flex justify-content-center">
+        <div class="row mb-3 d-flex justify-content-center">
             <div class="col mb-4 d-flex justify-content-center me-4">
                 @include('partials.card.card')
             </div>
@@ -77,7 +110,7 @@
                 @include('partials.card.card')
             </div>
         </div>
-    </div>
+    </div>  --}}
 
     <div class="d-flex justify-content-center mb-1">
         <a href="/informasi-umum" class="btn btn-lg btn-large text-decoration-none btn-informasi">Informasi Lainya</a>

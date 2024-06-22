@@ -30,4 +30,14 @@ class Nilai extends Model
             });
         });
     }
+
+    public function scopeSearchGuruMapel($query, $term)
+    {
+        return $query->whereHas('mapel', function ($query) use ($term) {
+            $query->whereHas('guruMapel', function ($query) use ($term) {
+                $query->where('nama_lengkap', 'like', '%'.$term.'%');
+            });
+        });
+    }
+
 }

@@ -2,25 +2,27 @@
 
 namespace App\Filament\SiaAdmin\Resources;
 
-use App\Filament\SiaAdmin\Resources\JadwalMapelResource\Pages;
-use App\Filament\SiaAdmin\Resources\JadwalMapelResource\RelationManagers;
-use App\Models\JadwalMapel;
-use App\Models\Kelas;
-use App\Models\MapelKelas;
 use Carbon\Carbon;
 use Filament\Forms;
-use Filament\Forms\Components\Card;
-use Filament\Forms\Components\DatePicker;
-use Filament\Forms\Components\Select;
-use Filament\Forms\Components\TimePicker;
-use Filament\Forms\Form;
-use Filament\Resources\Resource;
 use Filament\Tables;
-use Filament\Tables\Actions\ActionGroup;
-use Filament\Tables\Columns\TextColumn;
+use App\Models\Kelas;
+use Filament\Forms\Form;
+use App\Models\MapelKelas;
 use Filament\Tables\Table;
+use App\Models\JadwalMapel;
+use Filament\Resources\Resource;
+use Filament\Forms\Components\Card;
+use Filament\Forms\Components\Select;
+use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Actions\ActionGroup;
+use Filament\Forms\Components\DatePicker;
+use Filament\Forms\Components\TimePicker;
+use Filament\Tables\Filters\SelectFilter;
 use Illuminate\Database\Eloquent\Builder;
+use Symfony\Component\HttpFoundation\Request;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use App\Filament\SiaAdmin\Resources\JadwalMapelResource\Pages;
+use App\Filament\SiaAdmin\Resources\JadwalMapelResource\RelationManagers;
 
 class JadwalMapelResource extends Resource
 {
@@ -85,29 +87,55 @@ class JadwalMapelResource extends Resource
                     ->getStateUsing(function ($record) {
                         return ucfirst($record->hari);
                     }),
-                TextColumn::make('jam_mulai'),
-                TextColumn::make('jam_selesai'),
+                TextColumn::make('jam_mulai')
+                    ->label('Jam Mulai'),
+                TextColumn::make('jam_selesai')
+                    ->label('Jam Selesai'),
                 TextColumn::make('nama_mapel')
-                ->getStateUsing(function (JadwalMapel $mapelKelas) {
-                    return ucwords($mapelKelas->mapelKelas->nama_mapel);
-                }),
+                    ->label('Mata Pelajaran')
+                    ->getStateUsing(function (JadwalMapel $mapelKelas) {
+                        return ucwords($mapelKelas->mapelKelas->nama_mapel);
+                    }),
                 TextColumn::make('nama_guru_mapel')
-                ->getStateUsing(function (JadwalMapel $mapelKelas) {
-                    return ucwords($mapelKelas->mapelKelas->guruMapel->nama_lengkap);
-                }),
-                TextColumn::make('Kelas / Semester / Tahun Ajaran')
-                    ->label('Kelas / Semester / Tahun Ajaran')
+                    ->label('Guru Mata Pelajaran')
+                    ->getStateUsing(function (JadwalMapel $mapelKelas) {
+                        return ucwords($mapelKelas->mapelKelas->guruMapel->nama_lengkap_tendik);
+                    }),
+                TextColumn::make('Kelas / Semester')
+                    ->label('Kelas / Semester')
                     ->getStateUsing(function (JadwalMapel $mapelKelas) {
                         $kelas = $mapelKelas->mapelKelas->kelas->tingkat_kelas;
                         $semester = $mapelKelas->mapelKelas->kelas->semester;
+                        // $tanggalMulai = Carbon::parse($mapelKelas->mapelKelas->kelas->tanggal_mulai)->format('Y/m');
+                        // $tanggalSelesai = Carbon::parse($mapelKelas->mapelKelas->kelas->tanggal_selesai)->format('Y/m');
+                        $label = "{$kelas} / {$semester}";
+                        return ucwords($label);
+                    }),
+                TextColumn::make('Tahun Ajaran')
+                    ->label('Tahun Ajaran')
+                    ->getStateUsing(function (JadwalMapel $mapelKelas) {
+                        // $kelas = $mapelKelas->mapelKelas->kelas->tingkat_kelas;
+                        // $semester = $mapelKelas->mapelKelas->kelas->semester;
                         $tanggalMulai = Carbon::parse($mapelKelas->mapelKelas->kelas->tanggal_mulai)->format('Y/m');
                         $tanggalSelesai = Carbon::parse($mapelKelas->mapelKelas->kelas->tanggal_selesai)->format('Y/m');
-                        $label = "{$kelas} / {$semester} / {$tanggalMulai} - {$tanggalSelesai}";
+                        $label = "{$tanggalMulai} - {$tanggalSelesai}";
                         return ucwords($label);
                     }),
             ])
             ->filters([
-                //
+                SelectFilter::make('semester')
+                    ->label('Semester')
+                    ->options([
+                        'ganjil' => 'Ganjil',
+                        'genap' => 'Genap',
+                    ])
+                    ->query(function (Builder $query, array $data) {
+                        if (isset($data['value'])) {
+                            $query->whereHas('mapelKelas.kelas', function (Builder $query) use ($data) {
+                                $query->where('semester', $data['value']);
+                            });
+                        }
+                    }),
             ])
             ->actions([
                 ActionGroup::make([

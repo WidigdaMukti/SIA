@@ -283,14 +283,14 @@ class SiswaResource extends Resource
             ])
             ->filters([
                 //
-                SelectFilter::make('Agama')->options([
-                    'islam' => 'Islam',
-                    'kristen' => 'Kristen',
-                    'katolik' => 'Katolik',
-                    'hindu' => 'Hindu',
-                    'budha' => 'Budha',
-                    'konghucu' => 'Konghucu',
-                ])
+                // SelectFilter::make('Agama')->options([
+                //     'islam' => 'Islam',
+                //     'kristen' => 'Kristen',
+                //     'katolik' => 'Katolik',
+                //     'hindu' => 'Hindu',
+                //     'budha' => 'Budha',
+                //     'konghucu' => 'Konghucu',
+                // ])
             ])
             ->actions([
                 Tables\Actions\ViewAction::make(),
@@ -324,7 +324,6 @@ class SiswaResource extends Resource
     {
         return [
             "NIK" => $record->nik_siswa,
-            "Kelas" => $record->id_kelas,
         ];
     }
 }

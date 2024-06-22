@@ -9,6 +9,8 @@ use App\Models\AdminGuru;
 use Illuminate\Database\Eloquent\Model;
 use Filament\Resources\Pages\CreateRecord;
 use App\Filament\SiaAdmin\Resources\UserResource;
+use App\Models\AbsensiSiswa;
+use App\Models\Nilai;
 use App\Models\OrangTua;
 
 class CreateUser extends CreateRecord
@@ -33,6 +35,16 @@ class CreateUser extends CreateRecord
             $orangTuaBaru->nik_siswa = $siswaBaru->nik_siswa;
             // Isi kolom lainnya untuk orang tua
             $orangTuaBaru->save();
+
+            $absenSiswa = new AbsensiSiswa();
+            $absenSiswa->nik_siswa = $siswaBaru->nik_siswa;
+            // Isi kolom lainnya untuk absensi siswa
+            $absenSiswa->save();
+
+            $nilai = new Nilai();
+            $nilai->nik_siswa = $siswaBaru->nik_siswa;
+            // Isi kolom lainnya untuk nilai
+            $nilai->save();
 
             return $siswaBaru;
         } elseif ($user->role_id == 1 || $user->role_id == 2) {

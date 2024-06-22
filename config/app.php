@@ -167,8 +167,8 @@ return [
         App\Providers\AuthServiceProvider::class,
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
-        App\Providers\Filament\YesPanelProvider::class,
         App\Providers\Filament\SiaAdminPanelProvider::class,
+        App\Providers\Filament\SiaGuruPanelProvider::class,
         App\Providers\RouteServiceProvider::class,
     ])->toArray(),
 

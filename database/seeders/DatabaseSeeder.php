@@ -6,6 +6,7 @@ namespace Database\Seeders;
 
 use App\Models\AbsensiSiswa;
 use App\Models\AdminGuru;
+use App\Models\Berita;
 use App\Models\JadwalMapel;
 use App\Models\Kelas;
 use App\Models\MapelKelas;
@@ -36,6 +37,7 @@ class DatabaseSeeder extends Seeder
         JadwalMapel::factory(20)->create();
         Nilai::factory(30)->create();
         AbsensiSiswa::factory(30)->create();
+        Berita::factory(1)->create();
         // \App\Models\User::factory()->create([
         //     'nik' => '123456578',
         //     'nama_lengkap' => 'Bagas Gumelar',

@@ -31,4 +31,9 @@ class Kelas extends Model
     {
         return $this->hasMany(MapelKelas::class);
     }
+
+    public function scopeKelasActive()
+    {
+        return $this->where('status', 1);
+    }
 }

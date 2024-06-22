@@ -17,7 +17,7 @@ return new class extends Migration
             $table->bigInteger('no_kk')->nullable();
             $table->bigInteger('nuptk')->nullable();
             $table->bigInteger('nip')->nullable();
-            $table->string('nama_lengkap')->nullable();
+            $table->string('nama_lengkap_tendik')->nullable();
             $table->string('email')->unique();
             $table->string('jenis_kelamin')->nullable();
             $table->string('tempat_lahir')->nullable();

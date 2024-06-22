@@ -61,7 +61,7 @@ class MapelKelasResource extends Resource
                                 ->get()
                                 ->mapWithKeys(function ($guru) {
                                     // $nikGuruMapel = $guru->nik_guru;
-                                    $namaGuruMapel = $guru->nama_lengkap;
+                                    $namaGuruMapel = $guru->nama_lengkap_tendik;
                                     // $label = "$nikGuruMapel/$namaGuruMapel";
                                     $label = "$namaGuruMapel";
                                     return [$guru->nik_guru => $label];
@@ -83,9 +83,13 @@ class MapelKelasResource extends Resource
                 TextColumn::make('nama_guru_mapel')
                     ->label('Guru Mata Pelajaran')
                     ->getStateUsing(function (MapelKelas $guruMapel) {
-                        return $guruMapel->guruMapel->nama_lengkap;
+                        return $guruMapel->guruMapel->nama_lengkap_tendik;
                     })
-                    ->searchable(),
+                    ->searchable(query: function (Builder $query, string $search): Builder {
+                        return $query->whereHas('guruMapel', function ($query) use ($search) {
+                            $query->where('nama_lengkap_tendik', 'like', '%' . $search . '%');
+                        });
+                    }),
                 TextColumn::make('tingkat_kelas')
                     ->getStateUsing(function (MapelKelas $kelas) {
                         return $kelas->kelas->tingkat_kelas;
@@ -109,6 +113,7 @@ class MapelKelasResource extends Resource
             ])
             ->filters([
                 SelectFilter::make('nama_mapel')
+                    ->label('Mata Pelajaran')
                     // ->multiple()
                     ->options(function () {
                         // Ambil semua nama_mapel unik dari database
@@ -125,36 +130,19 @@ class MapelKelasResource extends Resource
 
                         return $options;
                     }),
-                SelectFilter::make('id_kelas')
-                    ->options(function () {
-                        return MapelKelas::query()
-                            ->get()
-                            ->mapWithKeys(function ($kelas) {
-                                $tingkatKelas = $kelas->kelas->tingkat_kelas;
-                                return [$kelas->kelas->id => $tingkatKelas];
+                SelectFilter::make('semester')
+                    ->label('Semester')
+                    ->options([
+                        'ganjil' => 'Ganjil',
+                        'genap' => 'Genap',
+                    ])
+                    ->query(function (Builder $query, array $data) {
+                        if (isset($data['value'])) {
+                            $query->whereHas('kelas', function (Builder $query) use ($data) {
+                                $query->where('semester', $data['value']);
                             });
+                        }
                     }),
-
-                    // SelectFilter::make('mapel_kelas_semester')
-                    //     ->multiple()
-                    //     ->options(function () {
-                    //         // Ambil semua MapelKelas dari database
-                    //         $mapelKelas = MapelKelas::query()
-                    //             ->with('kelas')
-                    //             ->get();
-
-                    //         // Ubah setiap MapelKelas menjadi string yang mencakup nama_mapel, tingkat_kelas, dan semester
-                    //         $options = $mapelKelas->mapWithKeys(function ($mapelKelas) {
-                    //             $namaMapel = $mapelKelas->nama_mapel;
-                    //             $tingkatKelas = $mapelKelas->kelas->tingkat_kelas;
-                    //             $semester = $mapelKelas->kelas->semester;
-                    //             $label = "{$namaMapel}, Kelas {$tingkatKelas}, Semester {$semester}";
-
-                    //             return [$mapelKelas->id => $label];
-                    //         });
-
-                    //         return $options;
-                    //     }),
             ])
 
             ->actions([

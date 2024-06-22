@@ -21,7 +21,7 @@ class MapelKelasFactory extends Factory
     public function definition(): array
     {
         return [
-            'id_kelas' => function() {
+            'kelas_id' => function() {
                 return Kelas::inRandomOrder()->first()->id;
             },
             'nik_guru_mapel' => function() {
