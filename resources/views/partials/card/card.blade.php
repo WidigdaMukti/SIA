@@ -2,7 +2,7 @@
     <div class="img-container rounded-1" style="overflow: hidden;">
         <a href="/card-content" class="img-link">
             <img src="{{ asset('img/carousel1.jpg') }}" class="card-img-top" alt="..."
-                style="object-fit: cover; height: 100%; width: 100%;">
+                style="object-fit: cover; height: 19rem; width: 100%;">
         </a>
     </div>
     <div class="card-body p-4">
