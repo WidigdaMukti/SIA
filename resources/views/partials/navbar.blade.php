@@ -1,9 +1,7 @@
-<link rel="stylesheet" href="css/navbar.css">
-
 <nav class="navbar fixed-top navbar-expand-xxl navbar-light bg-transparent">
     <div class="container-fluid" style="padding-left:7%; padding-right:7%;">
         <a class="navbar-brand me-5" href="/">
-            <img src="svg/logo.svg" alt="Logo" width="200px" height="auto">
+            <img src="/svg/logo.svg" alt="Logo" width="200px" height="auto">
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -56,7 +54,7 @@
                         Informasi
                     </a>
                     <ul class="dropdown-menu border-0 shadow">
-                        <li><a class="dropdown-item" href="/informasi-umum">Informasi Umum</a></li>
+                        <li><a class="dropdown-item" href="/Informasi">Informasi Umum</a></li>
                         <li>
                             <hr class="dropdown-divider">
                         </li>
@@ -135,28 +133,32 @@
 
 <script>
     // transparansi navbar
-    $(window).scroll(function() {
-        if ($(this).scrollTop() > 50) {
-            // Jika posisi scroll lebih dari 50
-            $(".navbar").removeClass("bg-transparent"); // Hapus kelas 'bg-transparent'
-            $(".navbar").addClass("bg-light"); // Tambahkan kelas 'bg-light'
-        } else if ($('.navbar-toggler').hasClass('collapsed')) {
-            // Jika posisi scroll kurang dari atau sama dengan 50 dan navbar dalam keadaan collapsed
-            $(".navbar").removeClass("bg-light"); // Hapus kelas 'bg-light'
-            $(".navbar").addClass("bg-transparent"); // Tambahkan kelas 'bg-transparent'
+    $(document).ready(function() {
+        // Fungsi untuk menangani perubahan warna navbar saat scroll
+        function updateNavbarBackground() {
+            if ($(window).scrollTop() > 50) {
+                $(".navbar").removeClass("bg-transparent");
+                $(".navbar").addClass("bg-light");
+            } else {
+                $(".navbar").removeClass("bg-light");
+                $(".navbar").addClass("bg-transparent");
+            }
         }
-    });
 
-    // Ubah warna latar belakang navbar saat tombol toggler ditekan
-    $('.navbar-toggler').click(function() {
-        if ($('.navbar-toggler').hasClass('collapsed') && $(window).scrollTop() <= 50) {
-            // Jika navbar dalam keadaan collapsed dan posisi scroll kurang dari atau sama dengan 50
-            $(".navbar").removeClass("bg-light"); // Hapus kelas 'bg-light'
-            $(".navbar").addClass("bg-transparent"); // Tambahkan kelas 'bg-transparent'
-        } else {
-            // Jika navbar tidak dalam keadaan collapsed atau posisi scroll lebih dari 50
-            $(".navbar").removeClass("bg-transparent"); // Hapus kelas 'bg-transparent'
-            $(".navbar").addClass("bg-light"); // Tambahkan kelas 'bg-light'
-        }
+        // Panggil fungsi pertama kali saat halaman dimuat
+        updateNavbarBackground();
+
+        // Panggil fungsi setiap kali terjadi scroll
+        $(window).scroll(function() {
+            updateNavbarBackground();
+        });
+
+        // Fungsi untuk menangani perubahan warna navbar saat tombol toggler ditekan
+        $(".navbar-toggler").click(function() {
+            if ($(window).scrollTop() <= 50) {
+                // Jika posisi scroll kurang dari atau sama dengan 50
+                $(".navbar").toggleClass("bg-light bg-transparent");
+            }
+        });
     });
 </script>

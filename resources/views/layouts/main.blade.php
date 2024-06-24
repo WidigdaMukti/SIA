@@ -17,9 +17,9 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
-    <link rel="stylesheet" href="css/color.css">
-    <link rel="stylesheet" href="css/responsive.css">
-    <link rel="stylesheet" href="css/responsive-button.css">
+    <link rel="stylesheet" href="/css/color.css">
+    <link rel="stylesheet" href="/css/responsive.css">
+    <link rel="stylesheet" href="/css/responsive-button.css">
 
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
 

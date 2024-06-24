@@ -9,7 +9,7 @@
                 <!-- Grid column -->
                 <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mt-3">
                     <a class="" href="/">
-                        <img class="mb-4" src="svg/bw logo.svg" alt="logo" width="260px" height="auto">
+                        <img class="mb-4" src="/svg/bw logo.svg" alt="logo" width="260px" height="auto">
                     </a>
                     <p class="mb-3 responsive-text-normal">
                         SDIT Al Qudwah merupakan sekolah yang berkomitmen untuk mengembangkan fitrah anak-anak dengan

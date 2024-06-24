@@ -15,7 +15,8 @@ class BeritaController extends Controller
     public function index()
     {
         $title = "Beranda";
-        $dataBerita = Berita::all();
+        $dataBerita = Berita::orderBy('created_at', 'desc')->get();
+        $beritaTerbaru = $dataBerita->take(3); // Ambil 3 berita terbaru
 
         // Konversi paragraf_1 dari setiap berita ke HTML
         $dataBerita = $dataBerita->map(function ($berita) {
@@ -23,7 +24,24 @@ class BeritaController extends Controller
             return $berita;
         });
 
-        return view('beranda', compact('title', 'dataBerita'));
+        return view('beranda', compact('title', 'dataBerita', 'beritaTerbaru'));
+    }
+
+    /**
+     * Display all news in info-umum.
+     */
+    public function infoUmum()
+    {
+        $title = "Informasi Umum";
+        $dataBerita = Berita::orderBy('created_at', 'desc')->paginate(6); // Pagination dengan 6 berita per halaman
+
+        // Konversi paragraf_1 dari setiap berita ke HTML
+        $dataBerita->getCollection()->transform(function ($berita) {
+            $berita->paragraf_1 = convertMarkdownToHtml($berita->paragraf_1);
+            return $berita;
+        });
+
+        return view('info-umum', compact('title', 'dataBerita'));
     }
 
     public function indexContentBerita($id)
@@ -40,7 +58,7 @@ class BeritaController extends Controller
         }
 
         // Mengarahkan ke file blade card.blade.php di folder partials/card
-        return view('card-content', compact('title', 'berita'));
+        return view('content.Berita', compact('title', 'berita'));
     }
 
     /**
