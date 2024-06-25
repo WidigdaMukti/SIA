@@ -17,21 +17,6 @@ class Siswa extends Model
         return $this->belongsTo(User::class, 'nik_siswa', 'nik');
     }
 
-    // public function orangTua()
-    // {
-    //     return $this->hasOne(OrangTua::class, 'nik_siswa');
-    // }
-
-    // public function orangTua()
-    // {
-    //     return $this->belongsTo(OrangTua::class, 'nik_siswa', 'nik_siswa');
-    // }
-
-    // public function user()
-    // {
-    //     return $this->hasOne(User::class, 'nik_siswa', 'nik');
-    // }
-
     public function kelas()
     {
         return $this->belongsTo(Kelas::class, 'kelas_id', 'id');
