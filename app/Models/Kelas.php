@@ -24,7 +24,7 @@ class Kelas extends Model
 
     public function siswa()
     {
-        return $this->hasMany(Siswa::class, 'id_kelas', 'id');
+        return $this->hasMany(Siswa::class, 'kelas_id', 'id');
     }
 
     public function mapelKelas()
@@ -36,4 +36,10 @@ class Kelas extends Model
     {
         return $this->where('status', 1);
     }
+
+    public function scopeRelasiWaliKelas()
+    {
+        return $this->siswa;
+    }
+
 }
