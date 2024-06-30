@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('status')->default('baru');
             $table->string('nama_lengkap');
-            $table->integer('nik');
+            $table->bigInteger('nik');
             $table->string('jenis_kelamin');
             $table->string('tempat_lahir');
             $table->date('tanggal_lahir');
