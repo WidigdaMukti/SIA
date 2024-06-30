@@ -26,6 +26,12 @@ class BeritaResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-paper-clip';
 
+    protected static ?string $navigationGroup = 'Kelola Website';
+
+    public static ?string $recordTitleAttribute = 'judul';
+
+    protected static ?int $navigationSort = 0;
+
     public static function form(Form $form): Form
     {
         return $form
@@ -38,7 +44,7 @@ class BeritaResource extends Resource
                         ->imageEditor()
                         ->disk('public')
                         ->directory('img/berita'),
-                        // ->visibility('private'),
+                    // ->visibility('private'),
                     TextInput::make('judul'),
                     TextInput::make('slug'),
                     MarkdownEditor::make('content')
@@ -55,7 +61,7 @@ class BeritaResource extends Resource
             ->columns([
                 ImageColumn::make('gambar_thumbnail')
                     ->label('Thumbnail Gambar'),
-                    // ->square(),
+                // ->square(),
                 TextColumn::make('judul'),
                 TextColumn::make('slug'),
 

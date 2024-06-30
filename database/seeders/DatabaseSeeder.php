@@ -12,6 +12,7 @@ use App\Models\Kelas;
 use App\Models\MapelKelas;
 use App\Models\Nilai;
 use App\Models\OrangTua;
+use App\Models\ppdb;
 use App\Models\Siswa;
 use App\Models\TahunAkademik;
 use App\Models\UserRole;
@@ -38,6 +39,7 @@ class DatabaseSeeder extends Seeder
         Nilai::factory(30)->create();
         AbsensiSiswa::factory(30)->create();
         Berita::factory(1)->create();
+        ppdb::factory(2)->create();
         // \App\Models\User::factory()->create([
         //     'nik' => '123456578',
         //     'nama_lengkap' => 'Bagas Gumelar',

@@ -25,7 +25,13 @@ class GuruStaffResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-photo';
 
+    protected static ?string $navigationGroup = 'Kelola Website';
+
+    protected static ?int $navigationSort = 5;
+
     protected static ?string $label = 'Foto Guru & Staf';
+
+    public static ?string $recordTitleAttribute = 'nama';
 
     public static function form(Form $form): Form
     {
