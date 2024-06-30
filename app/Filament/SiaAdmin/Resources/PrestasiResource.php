@@ -25,6 +25,12 @@ class PrestasiResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-trophy';
 
+    protected static ?string $navigationGroup = 'Kelola Website';
+
+    protected static ?int $navigationSort = 3;
+
+    public static ?string $recordTitleAttribute = 'nama';
+
     public static function form(Form $form): Form
     {
         return $form

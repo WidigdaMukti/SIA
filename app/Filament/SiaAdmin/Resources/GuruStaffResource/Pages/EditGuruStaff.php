@@ -16,4 +16,8 @@ class EditGuruStaff extends EditRecord
             Actions\DeleteAction::make(),
         ];
     }
+    protected function getRedirectUrl(): ?string
+    {
+        return route('filament.siaAdmin.resources.guru-staffs.index');
+    }
 }

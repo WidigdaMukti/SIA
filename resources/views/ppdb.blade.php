@@ -19,10 +19,45 @@
             @include('partials.form-ppdb')
         </div>
     </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="successModal" tabindex="-1" aria-labelledby="successModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title d-flex flex-column align-items-center text-center" id="successModalLabel"
+                        style="font-weight: bold; width: 100%;">
+                        <span class="mb-3">
+                            <i class="bi bi-check-circle-fill text-success" style="font-size: 4rem;"></i>
+                        </span>
+                        <span>Pendaftaran Berhasil</span>
+                    </h5>
+                </div>
+                <div class="modal-body text-center">
+                    Pendaftaran Anda telah berhasil disimpan, Bukti Pendaftaran akan dikirim melalui nomor yang telah diisi
+                    sebelumnya, harap cek secara berkala!
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn" data-bs-dismiss="modal"
+                        style="background-color: #3c6255; color: white;">Tutup</button>
+                    <!-- Tambahan tombol lain jika diperlukan -->
+                </div>
+            </div>
+        </div>
+    </div>
+@endsection
+
+@section('page-script')
+    <script>
+        $(document).ready(function() {
+            @if (session('success'))
+                $('#successModal').modal('show');
+            @endif
+        });
+    </script>
 @endsection
 
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.10.0/js/bootstrap-datepicker.min.js">
 </script>
 <link rel="stylesheet"
     href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.10.0/css/bootstrap-datepicker.min.css">
@@ -63,31 +98,3 @@
         /* Setara dengan mb-4 di Bootstrap */
     }
 </style>
-
-<script>
-    $(document).ready(function() {
-        $('.input-group.date').datepicker({
-            format: "dd/mm/yyyy",
-            autoclose: true,
-            todayHighlight: true
-        });
-
-        // Sembunyikan div saat halaman dimuat dan ubah class margin
-        $('.tk-info').hide();
-        $('.batas-5').addClass('batas-5').removeClass('batas-4');
-
-        // Tampilkan atau sembunyikan div berdasarkan pilihan select
-        $('.form-select').change(function() {
-            if ($(this).val() == '2') {
-                // Tampilkan div dan ubah class margin
-                $('.tk-info').show();
-                $('.batas-5').addClass('batas-4').removeClass('batas-5');
-            } else {
-                // Sembunyikan div dan ubah class margin
-                $('.tk-info').hide();
-                $('.batas-4').addClass('batas-5').removeClass('batas-4');
-            }
-        });
-
-    });
-</script>

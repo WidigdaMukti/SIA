@@ -59,6 +59,10 @@
         <i class="bi bi-whatsapp"></i><span class="ms-2 d-none d-md-inline">Hubungi Kami</span>
     </a>
 
+    <div>
+        @yield('page-script')
+    </div>
+
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"

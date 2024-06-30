@@ -9,4 +9,9 @@ use Filament\Resources\Pages\CreateRecord;
 class CreateGuruStaff extends CreateRecord
 {
     protected static string $resource = GuruStaffResource::class;
+
+    protected function getRedirectUrl(): string
+    {
+        return route('filament.siaAdmin.resources.guru_staffs.index');
+    }
 }
