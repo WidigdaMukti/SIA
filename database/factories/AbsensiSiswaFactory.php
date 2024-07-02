@@ -28,8 +28,8 @@ class AbsensiSiswaFactory extends Factory
             'id_mapel_kelas' => function() {
                 return MapelKelas::inRandomOrder()->first()->id;
             },
-            'tanggal' => $this->faker->date(),
-            'status_kehadiran' => $this->faker->boolean(),
+            // 'tanggal' => $this->faker->date(),
+            // 'status_kehadiran' => $this->faker->boolean(),
         ];
     }
 }

@@ -4,14 +4,18 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
+use App\Models\AbsenKehadiran;
 use App\Models\AbsensiSiswa;
 use App\Models\AdminGuru;
 use App\Models\Berita;
+use App\Models\EkskulRaport;
 use App\Models\JadwalMapel;
 use App\Models\Kelas;
 use App\Models\MapelKelas;
+use App\Models\MapelRaport;
 use App\Models\Nilai;
 use App\Models\OrangTua;
+use App\Models\RaportSiswa;
 use App\Models\ppdb;
 use App\Models\Siswa;
 use App\Models\TahunAkademik;
@@ -39,6 +43,10 @@ class DatabaseSeeder extends Seeder
         Nilai::factory(30)->create();
         AbsensiSiswa::factory(30)->create();
         Berita::factory(1)->create();
+        RaportSiswa::factory(20)->create();
+        MapelRaport::factory(20)->create();
+        EkskulRaport::factory(20)->create();
+        AbsenKehadiran::factory(20)->create();
         ppdb::factory(2)->create();
         // \App\Models\User::factory()->create([
         //     'nik' => '123456578',

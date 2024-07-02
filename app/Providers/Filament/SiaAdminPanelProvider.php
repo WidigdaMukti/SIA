@@ -2,6 +2,7 @@
 
 namespace App\Providers\Filament;
 
+use App\Http\Middleware\CheckUserRole;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\DisableBladeIconComponents;
 use Filament\Http\Middleware\DispatchServingFilamentEvent;
@@ -28,7 +29,7 @@ class SiaAdminPanelProvider extends PanelProvider
             ->id('siaAdmin')
             ->path('siaAdmin')
             ->login()
-            ->registration()
+            ->passwordReset()
             ->breadcrumbs(false)
             ->sidebarCollapsibleOnDesktop()
             ->colors([
@@ -54,12 +55,14 @@ class SiaAdminPanelProvider extends PanelProvider
                 SubstituteBindings::class,
                 DisableBladeIconComponents::class,
                 DispatchServingFilamentEvent::class,
+                // CheckUserRole::class. ':siaAdmin'
             ])
             ->authMiddleware([
                 Authenticate::class,
-            ])
-            ->plugins([
-                FilamentEditProfilePlugin::make()
             ]);
+            // ->authGate('siaAdmin')
+            // ->plugins([
+            //     FilamentEditProfilePlugin::make()
+            // ]);
     }
 }
