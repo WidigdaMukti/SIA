@@ -25,6 +25,12 @@ class EkstrakulikulerResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-paint-brush';
 
+    protected static ?string $navigationGroup = 'Kelola Website';
+
+    public static ?string $recordTitleAttribute = 'nama';
+
+    protected static ?int $navigationSort = 1;
+
     public static function form(Form $form): Form
     {
         return $form

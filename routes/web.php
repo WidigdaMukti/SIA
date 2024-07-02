@@ -8,6 +8,7 @@ use App\Http\Controllers\EkstrakulikulerController;
 use App\Http\Controllers\GaleriController;
 use App\Http\Controllers\breadcrumbController;
 use App\Http\Controllers\PdfExportController;
+use App\Http\Controllers\PpdbController;
 use App\Models\Prestasi;
 use App\Models\Program;
 use Illuminate\Support\Facades\Route;
@@ -59,6 +60,8 @@ Route::get('/ppdb-online', function () {
         "title" => "PPDB Online",
     ]);
 });
+
+Route::post('/ppdb-online', [PpdbController::class, 'store'])->name('ppdb.store');
 
 Route::get('/tentang-kami', function () {
     return view('tentang', [

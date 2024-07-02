@@ -25,6 +25,12 @@ class GaleriResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-photo';
 
+    protected static ?string $navigationGroup = 'Kelola Website';
+
+    public static ?string $recordTitleAttribute = 'judul';
+
+    protected static ?int $navigationSort = 4;
+
     public static function form(Form $form): Form
     {
         return $form
