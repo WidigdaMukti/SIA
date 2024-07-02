@@ -32,6 +32,11 @@ class Siswa extends Model
         return $this->hasMany(AbsensiSiswa::class, 'nik_siswa', 'nik_siswa');
     }
 
+    public function raportSiswa()
+    {
+        return $this->hasMany(RaportSiswa::class, 'nik_siswa', 'nik_siswa');
+    }
+
     public function scopeActiveUserWithRole($query)
     {
         return $query->whereHas('user', function ($query) {

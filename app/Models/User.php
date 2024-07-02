@@ -48,9 +48,48 @@ class User extends Authenticatable implements FilamentUser, HasName
         'password' => 'hashed',
     ];
 
+    const ROLE_ADMIN = 1;
+    const ROLE_GURU = 2;
+    const ROLE_SISWA = 3;
+
+    const ROLES = [
+        self::ROLE_ADMIN => 1,
+        self::ROLE_GURU => 2,
+        self::ROLE_SISWA => 3
+    ];
+
+    public function isAdmin()
+    {
+        return $this->role_id === self::ROLE_ADMIN;
+    }
+
+    public function isGuru()
+    {
+        return $this->role_id === self::ROLE_GURU;
+    }
+
+    public function isSiswa()
+    {
+        return $this->role_id === self::ROLE_SISWA;
+    }
+
+
     public function canAccessPanel(Panel $panel): bool
     {
-        return true;
+        if ($this->status == 0) {
+            return false; // Jika status user adalah 0, maka tidak dapat mengakses panel apa pun
+        }
+
+        switch ($panel->getId()) {
+            case 'siaAdmin':
+                return $this->role_id == 1;
+            case 'siaGuru':
+                return $this->role_id == 2;
+            case 'siaSiswa':
+                return $this->role_id == 3;
+            default:
+                return false;
+        }
     }
 
     public function getFilamentName(): string

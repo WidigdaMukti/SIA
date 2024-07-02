@@ -7,6 +7,7 @@ use App\Http\Controllers\PrestasiController;
 use App\Http\Controllers\EkstrakulikulerController;
 use App\Http\Controllers\GaleriController;
 use App\Http\Controllers\breadcrumbController;
+use App\Http\Controllers\PdfExportController;
 use App\Models\Prestasi;
 use App\Models\Program;
 use Illuminate\Support\Facades\Route;
@@ -130,3 +131,11 @@ Route::get('/sistem-informasi', function () {
 //         "title" => "Detail Galeri",
 //     ]);
 // });
+
+Route::get('/download/{id}', [PdfExportController::class, 'exportPdf'])->name('export.pdf');
+Route::get('/download/{id}', [PdfExportController::class, 'downloadPdf'])->name('export.pdf');
+Route::get('/pdf-export', [PdfExportController::class, 'index'])->name('pdf.export');
+Route::get('/pdf/{id}', [PdfExportController::class, 'showPdf'])->name('pdf.show-raports');
+// Route::get('/pdf/', [PdfExportController::class, 'index'])->name('pdf.show');
+// Route::get('/generate-pdf',[PdfExportController::class, 'generatePdf'])->name('pdf');
+

@@ -5,15 +5,20 @@ namespace App\Filament\SiaGuru\Resources;
 use Filament\Forms;
 use Filament\Tables;
 use App\Models\Nilai;
+use App\Models\Siswa;
 use Filament\Forms\Form;
+use App\Models\MapelKelas;
 use Filament\Tables\Table;
 use Filament\Resources\Resource;
+use Filament\Forms\Components\Card;
+use Filament\Forms\Components\Select;
 use Filament\Support\Enums\FontWeight;
 use Filament\Tables\Columns\TextColumn;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use App\Filament\SiaGuru\Resources\NilaiResource\Pages;
 use App\Filament\SiaGuru\Resources\NilaiResource\RelationManagers;
+use Filament\Forms\Components\TextInput;
 
 class NilaiResource extends Resource
 {
@@ -25,13 +30,107 @@ class NilaiResource extends Resource
     {
         return $form
             ->schema([
-                //
+                Card::make([
+                    Select::make('nik_siswa')
+                        ->label('Nama Siswa')
+                        ->options(function() {
+                            return Siswa::activeUserWithRole()
+                                ->get()
+                                ->mapWithKeys(function ($siswa) {
+                                    $nikSiswa = $siswa->nik_siswa;
+                                    $namaSiswa = $siswa->nama_lengkap;
+                                    $tingkatKelas = $siswa->kelas->tingkat_kelas;
+                                    $semester = $siswa->kelas->semester;
+                                    $label = "$nikSiswa - $namaSiswa - $tingkatKelas - $semester";
+                                    // $label = "$namaSiswa";
+                                    return [$siswa->nik_siswa => $label];
+                                });
+                        })
+                        ->searchable(),
+                    Select::make('id_mapel_kelas')
+                        ->label('Mata Pelajaran')
+                        ->options(function() {
+                            return MapelKelas::query()
+                                ->get()
+                                ->mapWithKeys(function ($mapelKelas) {
+                                    $namaMapel = $mapelKelas->nama_mapel;
+                                    $namaGuruMapel = $mapelKelas->guruMapel->nama_lengkap_tendik;
+                                    $label = "$namaMapel - $namaGuruMapel";
+                                    return [$mapelKelas->id => $label];
+                                });
+                        })
+                        ->searchable(),
+                    TextInput::make('kkm')
+                        ->label('KKM')
+                        ->default(0)
+                        ->numeric()
+                        ->required(),
+                    TextInput::make('nilai_uh1')
+                        ->label('Ulangan Harian 1')
+                        ->default(0)
+                        ->numeric(),
+                    TextInput::make('nilai_uh2')
+                        ->label('Ulangan Harian 2')
+                        ->default(0)
+                        ->numeric(),
+                    TextInput::make('nilai_uh3')
+                        ->label('Ulangan Harian 3')
+                        ->default(0)
+                        ->numeric(),
+                    TextInput::make('nilai_tgs_1')
+                        ->label('Tugas 1')
+                        ->default(0)
+                        ->numeric(),
+                    TextInput::make('nilai_tgs_2')
+                        ->label('Tugas 2')
+                        ->default(0)
+                        ->numeric(),
+                    TextInput::make('nilai_tgs_3')
+                        ->label('Tugas 3')
+                        ->default(0)
+                        ->numeric(),
+                    TextInput::make('nilai_uts')
+                        ->label('UTS')
+                        ->default(0)
+                        ->numeric(),
+                    TextInput::make('nilai_uas')
+                        ->label('UAS')
+                        ->default(0)
+                        ->numeric(),
+                    TextInput::make('rata_rata')
+                        ->label('Rata - rata')
+                        ->hidden()
+                        ->default(0)
+                        ->numeric()
+                        ->reactive()
+                        ->disabled()
+                        ->afterStateUpdated(function ($state, callable $set) {
+                            $totalNilai = collect([
+                                $state['nilai_uh1'],
+                                $state['nilai_uh2'],
+                                $state['nilai_uh3'],
+                                $state['nilai_tgs_1'],
+                                $state['nilai_tgs_2'],
+                                $state['nilai_tgs_3'],
+                                $state['nilai_uts'],
+                                $state['nilai_uas']
+                            ])->filter(function ($value) {
+                                return $value !== null;
+                            });
+
+                            $rataRata = $totalNilai->count() > 0 ? round($totalNilai->avg(), 2) : 0;
+                            $set('rata_rata', $rataRata);
+                        }),
+                ])->columns(2),
             ]);
     }
 
     public static function table(Table $table): Table
     {
         return $table
+        ->query(
+            Nilai::activeNilaiSiswa()
+        )
         ->columns([
             TextColumn::make('nik_siswa')
                 ->label('NIK Siswa')

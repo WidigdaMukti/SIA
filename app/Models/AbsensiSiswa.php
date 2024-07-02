@@ -22,6 +22,11 @@ class AbsensiSiswa extends Model
         return $this->belongsTo(MapelKelas::class, 'id_mapel_kelas', 'id');
     }
 
+    public function absenKehadiran()
+    {
+        return $this->hasMany(AbsenKehadiran::class, 'id_absensi_siswa', 'id');
+    }
+
     public function scopeActiveAbsenSiswa($query)
     {
         return $query->whereHas('absenSiswa', function ($query) {

@@ -169,6 +169,7 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\Filament\SiaAdminPanelProvider::class,
         App\Providers\Filament\SiaGuruPanelProvider::class,
+        App\Providers\Filament\SiaSiswaPanelProvider::class,
         App\Providers\RouteServiceProvider::class,
     ])->toArray(),
 

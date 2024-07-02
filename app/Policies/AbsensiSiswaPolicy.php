@@ -29,7 +29,7 @@ class AbsensiSiswaPolicy
      */
     public function create(User $user): bool
     {
-        return true;
+        return $user->isAdmin() || $user->isGuru();
     }
 
     /**
@@ -37,7 +37,7 @@ class AbsensiSiswaPolicy
      */
     public function update(User $user, AbsensiSiswa $absensiSiswa): bool
     {
-        return true;
+        return $user->isAdmin() || $user->isGuru();
     }
 
     /**
@@ -45,7 +45,7 @@ class AbsensiSiswaPolicy
      */
     public function delete(User $user, AbsensiSiswa $absensiSiswa): bool
     {
-        return true;
+        return $user->isAdmin() || $user->isGuru();
     }
 
     /**
@@ -53,7 +53,7 @@ class AbsensiSiswaPolicy
      */
     public function restore(User $user, AbsensiSiswa $absensiSiswa): bool
     {
-        return true;
+        return $user->isAdmin() || $user->isGuru();
     }
 
     /**
@@ -61,6 +61,6 @@ class AbsensiSiswaPolicy
      */
     public function forceDelete(User $user, AbsensiSiswa $absensiSiswa): bool
     {
-        return true;
+        return $user->isAdmin() || $user->isGuru();
     }
 }
