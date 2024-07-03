@@ -94,16 +94,6 @@ class NilaiResource extends Resource
                                 ->label('Mata Pelajaran'),
                             TextEntry::make('kkm')
                                 ->label('KKM'),
-                            TextEntry::make('nilai_tugas')
-                                ->label('Nilai Tugas'),
-                            TextEntry::make('nilai_uts')
-                                ->label('Nilai UTS'),
-                            TextEntry::make('nilai_uas')
-                                ->label('Nilai UAS'),
-                            TextEntry::make('nilai_akhir')
-                                ->label('Nilai Akhir'),
-                            TextEntry::make('predikat')
-                                ->label('Predikat'),
                         ]),
                     Fieldset::make('Nilai Tugas')
                         ->schema([

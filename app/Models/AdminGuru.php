@@ -25,7 +25,7 @@ class AdminGuru extends Model
 
     public function guruMapel()
     {
-        return $this->hasMany(MapelKelas::class, 'nik_guru', 'nik_guru_mapel');
+        return $this->hasMany(MapelKelas::class, 'nik_guru_mapel', 'nik_guru');
     }
 
     public function scopeActiveUserWithRole($query)

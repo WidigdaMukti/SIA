@@ -101,16 +101,10 @@ class JadwalMapelResource extends Resource
                     ->getStateUsing(function (JadwalMapel $mapelKelas) {
                         return ucwords($mapelKelas->mapelKelas->guruMapel->nama_lengkap_tendik);
                     }),
-                TextColumn::make('Kelas / Semester')
-                    ->label('Kelas / Semester')
-                    ->getStateUsing(function (JadwalMapel $mapelKelas) {
-                        $kelas = $mapelKelas->mapelKelas->kelas->tingkat_kelas;
-                        $semester = $mapelKelas->mapelKelas->kelas->semester;
-                        // $tanggalMulai = Carbon::parse($mapelKelas->mapelKelas->kelas->tanggal_mulai)->format('Y/m');
-                        // $tanggalSelesai = Carbon::parse($mapelKelas->mapelKelas->kelas->tanggal_selesai)->format('Y/m');
-                        $label = "{$kelas} / {$semester}";
-                        return ucwords($label);
-                    }),
+                TextColumn::make('mapelKelas.kelas.tingkat_kelas')
+                    ->label('Tingkat Kelas')
+                    ->sortable(),
+                TextColumn::make('mapelKelas.kelas.semester'),
                 TextColumn::make('Tahun Ajaran')
                     ->label('Tahun Ajaran')
                     ->getStateUsing(function (JadwalMapel $mapelKelas) {

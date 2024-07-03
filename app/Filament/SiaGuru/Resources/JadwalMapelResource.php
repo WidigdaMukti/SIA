@@ -34,6 +34,7 @@ class JadwalMapelResource extends Resource
     public static function table(Table $table): Table
     {
         return $table
+            ->query(JadwalMapel::activeKelas())
             ->columns([
                 TextColumn::make('jam_mulai')
                     ->label('Jam Mulai')

@@ -2,9 +2,11 @@
 
 namespace Database\Factories;
 
+use App\Models\AbsensiSiswa;
 use App\Models\AdminGuru;
 use App\Models\Kelas;
 use App\Models\MapelKelas;
+use App\Models\Nilai;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -23,6 +25,12 @@ class MapelKelasFactory extends Factory
         return [
             'kelas_id' => function() {
                 return Kelas::inRandomOrder()->first()->id;
+            },
+            'nilai_id' => function() {
+                return Nilai::inRandomOrder()->first()->id;
+            },
+            'absensi_siswa_id' => function() {
+                return AbsensiSiswa::inRandomOrder()->first()->id;
             },
             'nik_guru_mapel' => function() {
                 return AdminGuru::inRandomOrder()->first()->nik_guru;
