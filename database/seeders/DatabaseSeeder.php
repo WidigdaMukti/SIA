@@ -38,10 +38,10 @@ class DatabaseSeeder extends Seeder
         // Kelas::factory()->create()
         \App\Models\User::factory(20)->create();
 
-        MapelKelas::factory(20)->create();
-        JadwalMapel::factory(20)->create();
         Nilai::factory(30)->create();
         AbsensiSiswa::factory(30)->create();
+        MapelKelas::factory(20)->create();
+        JadwalMapel::factory(20)->create();
         Berita::factory(1)->create();
         RaportSiswa::factory(20)->create();
         MapelRaport::factory(20)->create();

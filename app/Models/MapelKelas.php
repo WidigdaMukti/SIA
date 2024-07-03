@@ -29,13 +29,21 @@ class MapelKelas extends Model
 
     public function nilaiMapel()
     {
-        return $this->hasMany(Nilai::class, 'id_mapel_kelas', 'id');
+        return $this->belongsTo(Nilai::class, 'nilai_id', 'id');
     }
+    // public function nilaiMapel()
+    // {
+    //     return $this->hasMany(Nilai::class, 'id_mapel_kelas', 'id');
+    // }
 
     public function absenMapel()
     {
-        return $this->hasMany(AbsensiSiswa::class, 'id_mapel_kelas', 'id');
+        return $this->belongsTo(AbsensiSiswa::class, 'absensi_siswa_id', 'id');
     }
+    // public function absenMapel()
+    // {
+    //     return $this->hasMany(AbsensiSiswa::class, 'id_mapel_kelas', 'id');
+    // }
 
     public function scopeActiveKelas($query)
     {

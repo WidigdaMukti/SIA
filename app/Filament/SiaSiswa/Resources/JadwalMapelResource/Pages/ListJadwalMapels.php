@@ -7,6 +7,7 @@ use Filament\Actions;
 use Filament\Resources\Components\Tab;
 use Filament\Resources\Pages\ListRecords;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Facades\Auth;
 
 class ListJadwalMapels extends ListRecords
 {
@@ -21,56 +22,25 @@ class ListJadwalMapels extends ListRecords
 
     public function getTabs(): array
     {
-        return [
-            "Semua Kelas" => Tab::make(),
-            "Kelas 1" => Tab::make()
-                ->modifyQueryUsing(function (Builder $query) {
-                    return $query->whereHas('mapelKelas', function ($query) {
-                        $query->whereHas('kelas', function ($query) {
-                            $query->where('tingkat_kelas', 'I / Satu');
-                        });
-                    });
-                }),
-            "Kelas 2" => Tab::make()
-                ->modifyQueryUsing(function (Builder $query) {
-                    return $query->whereHas('mapelKelas', function ($query) {
-                        $query->whereHas('kelas', function ($query) {
-                            $query->where('tingkat_kelas', 'II / Dua');
-                        });
-                    });
-                }),
-            "Kelas 3" => Tab::make()
-                ->modifyQueryUsing(function (Builder $query) {
-                    return $query->whereHas('mapelKelas', function ($query) {
-                        $query->whereHas('kelas', function ($query) {
-                            $query->where('tingkat_kelas', 'III / Tiga');
-                        });
-                    });
-                }),
-            "Kelas 4" => Tab::make()
-                ->modifyQueryUsing(function (Builder $query) {
-                    return $query->whereHas('mapelKelas', function ($query) {
-                        $query->whereHas('kelas', function ($query) {
-                            $query->where('tingkat_kelas', 'IV / Empat');
-                        });
-                    });
-                }),
-            "Kelas 5" => Tab::make()
-                ->modifyQueryUsing(function (Builder $query) {
-                    return $query->whereHas('mapelKelas', function ($query) {
-                        $query->whereHas('kelas', function ($query) {
-                            $query->where('tingkat_kelas', 'V / Lima');
-                        });
-                    });
-                }),
-            "Kelas 6" => Tab::make()
-                ->modifyQueryUsing(function (Builder $query) {
-                    return $query->whereHas('mapelKelas', function ($query) {
-                        $query->whereHas('kelas', function ($query) {
-                            $query->where('tingkat_kelas', 'VI / Enam');
-                        });
-                    });
-                }),
-        ];
+        // Mendapatkan user yang sedang login
+        $user = Auth::user();
+
+        // Mendapatkan siswa terkait dengan user yang sedang login
+        $siswa = $user->siswa;
+
+        // Mendapatkan tingkat kelas dari siswa yang sedang login
+        $tingkatKelas = $siswa->kelas->tingkat_kelas;
+
+        // Menambahkan tab untuk kelas yang sesuai dengan tingkat kelas siswa
+        $tabs["Kelas " . $tingkatKelas] = Tab::make()->modifyQueryUsing(function (Builder $query) use ($tingkatKelas) {
+            return $query->whereHas('mapelKelas', function ($query) use ($tingkatKelas) {
+                $query->whereHas('kelas', function ($query) use ($tingkatKelas) {
+                    $query->where('tingkat_kelas', $tingkatKelas);
+                });
+            });
+        });
+
+        return $tabs;
     }
+
 }

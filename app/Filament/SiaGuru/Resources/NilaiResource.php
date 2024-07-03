@@ -134,7 +134,8 @@ class NilaiResource extends Resource
         ->columns([
             TextColumn::make('nik_siswa')
                 ->label('NIK Siswa')
-                ->searchable(),
+                ->searchable()
+                ->copyable(),
             TextColumn::make('nama_lengkap')
                 ->label('Nama Siswa')
                 ->getStateUsing(function (Nilai $nilai) {

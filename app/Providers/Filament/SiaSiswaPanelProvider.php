@@ -18,6 +18,8 @@ use Illuminate\Routing\Middleware\SubstituteBindings;
 use Illuminate\Session\Middleware\AuthenticateSession;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
+use Rupadana\ApiService\ApiService;
+use Rupadana\ApiService\ApiServicePlugin;
 
 class SiaSiswaPanelProvider extends PanelProvider
 {
@@ -29,7 +31,6 @@ class SiaSiswaPanelProvider extends PanelProvider
             ->id('siaSiswa')
             ->path('siaSiswa')
             ->sidebarFullyCollapsibleOnDesktop()
-            ->profile()
             ->breadcrumbs(false)
             ->colors([
                 'primary' => Color::Amber,
@@ -54,11 +55,12 @@ class SiaSiswaPanelProvider extends PanelProvider
                 SubstituteBindings::class,
                 DisableBladeIconComponents::class,
                 DispatchServingFilamentEvent::class,
-                // CheckUserRole::class. ':siaSiswa'
             ])
-            // ->authGate('siaSiswa')
             ->authMiddleware([
                 Authenticate::class,
+            ])
+            ->plugins([
+                ApiServicePlugin::make()
             ]);
     }
 }

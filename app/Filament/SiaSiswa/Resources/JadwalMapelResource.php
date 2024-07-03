@@ -14,6 +14,7 @@ use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Illuminate\Support\Facades\Auth;
 
 class JadwalMapelResource extends Resource
 {
@@ -35,7 +36,23 @@ class JadwalMapelResource extends Resource
 
     public static function table(Table $table): Table
     {
+        // Mendapatkan user yang sedang login
+        $user = Auth::user();
+
+        // Mendapatkan siswa terkait dengan user yang sedang login
+        $siswa = $user->siswa;
+
+        $tingkatKelas = $siswa->kelas->tingkat_kelas;
+
         return $table
+            ->query(function () use ($siswa, $tingkatKelas) {
+                // Ambil data jadwal mapel berdasarkan kelas siswa yang sedang login
+                return JadwalMapel::whereHas('mapelKelas.kelas', function ($query) use ($tingkatKelas, $siswa) {
+                    $query->where('tingkat_kelas', $tingkatKelas)
+                        ->where('status', 1)
+                        ->where('id', $siswa->kelas_id);
+                })->with(['mapelKelas.kelas']);
+            })
             ->columns([
                 TextColumn::make('jam_mulai')
                     ->label('Jam Mulai')
@@ -52,6 +69,8 @@ class JadwalMapelResource extends Resource
                     ->label('Mata Pelajaran'),
                 TextColumn::make('mapelKelas.kelas.tingkat_kelas')
                     ->label('Tingkat Kelas'),
+                TextColumn::make('mapelKelas.guruMapel.nama_lengkap_tendik')
+                    ->label('Guru Mapel'),
             ])
             ->filters([
                 //

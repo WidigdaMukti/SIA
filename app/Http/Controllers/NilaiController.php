@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Nilai;
 use App\Http\Requests\StoreNilaiRequest;
 use App\Http\Requests\UpdateNilaiRequest;
+use Illuminate\Support\Facades\Auth;
 
 class NilaiController extends Controller
 {
@@ -62,5 +63,52 @@ class NilaiController extends Controller
     public function destroy(Nilai $nilai)
     {
         //
+    }
+
+    public function getNilaiBySiswa()
+    {
+        $user = Auth::user();
+
+        $nilai = Nilai::where('nik_siswa', $user->nik)->get();
+
+        if($nilai) {
+            return response()->json($nilai);
+        } else {
+            return response()->json(['message' => 'Data Nilai tidak ditemukan'], 405);
+        }
+    }
+
+    public function getNilaiBySiswaId($id)
+    {
+        $user = Auth::user();
+
+        $nilai = Nilai::where('id', $id)->where('nik_siswa', $user->nik)->with('mapel')->first();
+
+        if($nilai) {
+            $formattedNilai = [
+                'id' => $nilai->id,
+                'nik_siswa' => $nilai->nik_siswa,
+                'nama_lengkap' => $nilai->siswa->nama_lengkap,
+                'tingkat_kelas' => $nilai->siswa->kelas->tingkat_kelas,
+                'semester' => $nilai->siswa->kelas->semester,
+                'mapel' => $nilai->mapel->nama_mapel,
+                'kkm' => $nilai->kkm,
+                'nilai_uh1' => $nilai->nilai_uh1,
+                'nilai_uh2' => $nilai->nilai_uh2,
+                'nilai_uh3' => $nilai->nilai_uh3,
+                'nilai_tgs_1' => $nilai->nilai_tgs_1,
+                'nilai_tgs_2' => $nilai->nilai_tgs_2,
+                'nilai_tgs_3' => $nilai->nilai_tgs_3,
+                'nilai_uts' => $nilai->nilai_uts,
+                'nilai_uas' => $nilai->nilai_uas,
+                'rata_rata' => $nilai->rata_rata
+            ];
+        }
+
+        if ($nilai) {
+            return response()->json($formattedNilai);
+        } else {
+            return response()->json(['message' => 'Data Nilai tidak ditemukan'], 405);
+        }
     }
 }
