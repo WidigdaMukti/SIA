@@ -57,6 +57,9 @@ class NilaiResource extends Resource
                     ->label('Semester'),
                 TextColumn::make('mapel.nama_mapel')
                     ->label('Mata Pelajaran')
+                    ->getStateUsing(function (Nilai $nilai) {
+                        return ucwords($nilai->mapel ? $nilai->mapel->nama_mapel : 'Mapel Tidak Terdaftar');
+                    })
             ])
             ->filters([
                 //

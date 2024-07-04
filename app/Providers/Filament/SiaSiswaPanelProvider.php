@@ -2,11 +2,14 @@
 
 namespace App\Providers\Filament;
 
+// use App\Filament\SiaSiswa\Pages\LoginSiswa as PagesLoginSiswa;
 use App\Http\Middleware\CheckUserRole;
+// use App\Livewire\Auth\LoginSiswa;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\DisableBladeIconComponents;
 use Filament\Http\Middleware\DispatchServingFilamentEvent;
 use Filament\Pages;
+use Filament\Pages\Auth\LoginSiswa as AuthLoginSiswa;
 use Filament\Panel;
 use Filament\PanelProvider;
 use Filament\Support\Colors\Color;
@@ -26,12 +29,14 @@ class SiaSiswaPanelProvider extends PanelProvider
     public function panel(Panel $panel): Panel
     {
         return $panel
-            ->login()
+            ->login(AuthLoginSiswa::class)
             ->profile()
             ->id('siaSiswa')
             ->path('siaSiswa')
             ->sidebarFullyCollapsibleOnDesktop()
             ->breadcrumbs(false)
+            ->passwordReset()
+            ->emailVerification()
             ->colors([
                 'primary' => Color::Amber,
             ])

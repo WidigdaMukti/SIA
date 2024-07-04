@@ -73,7 +73,7 @@ class AbsensiSiswaController extends Controller
         $absensiSiswa = AbsensiSiswa::where('nik_siswa', $user->nik)->get();
 
         if ($absensiSiswa->isEmpty()) {
-            return response()->json(['message' => 'Data tidak ditemukan'], 404);
+            return response()->json(['message' => 'Data tidak ditemukan'], 405);
         }
 
          // Memformat data absensi siswa
@@ -84,12 +84,12 @@ class AbsensiSiswaController extends Controller
                 'nama_lengkap' => $absen->absenSiswa->nama_lengkap,
                 'kelas' => $absen->absenSiswa->kelas->tingkat_kelas,
                 'semester' => $absen->absenSiswa->kelas->semester,
-                'mapel' => $absen->mapel->nama_mapel ?? 'Mapel tidak tersedia',
-                'absen_kehadiran' => $absen->absenKehadiran ?? 'Absen kehadiran tidak tersedia'
+                'mapel' => $absen->mapel->nama_mapel ?? 'Mapel Tidak Terdaftar',
+                'absen_kehadiran' => $absen->absenKehadiran ?? 'Absen Kehadiran Tidak Tersedia'
             ];
         });
 
-        return response()->json($formattedAbsen);
+        return response()->json($formattedAbsen, 200);
     }
 
     public function getAbsenBySiswaId($id)
@@ -105,8 +105,8 @@ class AbsensiSiswaController extends Controller
                 'nama_lengkap' => $absens->absenSiswa->nama_lengkap,
                 'kelas' => $absens->absenSiswa->kelas->tingkat_kelas,
                 'semester' => $absens->absenSiswa->kelas->semester,
-                'mapel' => $absens->mapel->nama_mapel ?? 'Mapel tidak tersedia',
-                'absen_kehadiran' => $absens->absenKehadiran ?? 'Absen kehadiran tidak tersedia'
+                'mapel' => $absens->mapel->nama_mapel ?? 'Mapel Tidak Terdaftar',
+                'absen_kehadiran' => $absens->absenKehadiran ?? 'Absen Kehadiran Tidak Tersedia'
             ];
         }
 

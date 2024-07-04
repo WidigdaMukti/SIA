@@ -59,6 +59,9 @@ class AbsenSiswaResource extends Resource
                     ->label('Semester'),
                 TextColumn::make('mapel.nama_mapel')
                     ->label('Mata Pelajaran')
+                    ->getStateUsing(function (AbsensiSiswa $absen) {
+                        return ucwords($absen->mapel ? $absen->mapel->nama_mapel : 'Mapel Tidak Terdaftar');
+                    })
             ])
             ->filters([
                 //

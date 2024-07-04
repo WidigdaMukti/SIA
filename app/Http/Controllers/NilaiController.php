@@ -71,8 +71,29 @@ class NilaiController extends Controller
 
         $nilai = Nilai::where('nik_siswa', $user->nik)->get();
 
+        $formattedNilai = $nilai->map(function ($nilis) {
+            return [
+                'id' => $nilis->id,
+                'nik_siswa' => $nilis->nik_siswa,
+                'nama_lengkap' => $nilis->siswa->nama_lengkap,
+                'tingkat_kelas' => $nilis->siswa->kelas->tingkat_kelas,
+                'semester' => $nilis->siswa->kelas->semester,
+                'mapel' => $nilis->mapel->nama_mapel ?? 'Mapel tidak tersedia',
+                'kkm' => $nilis->kkm,
+                'nilai_uh1' => $nilis->nilai_uh1,
+                'nilai_uh2' => $nilis->nilai_uh2,
+                'nilai_uh3' => $nilis->nilai_uh3,
+                'nilai_tgs_1' => $nilis->nilai_tgs_1,
+                'nilai_tgs_2' => $nilis->nilai_tgs_2,
+                'nilai_tgs_3' => $nilis->nilai_tgs_3,
+                'nilai_uts' => $nilis->nilai_uts,
+                'nilai_uas' => $nilis->nilai_uas,
+                'rata_rata' => $nilis->rata_rata
+            ];
+        });
+
         if($nilai) {
-            return response()->json($nilai);
+            return response()->json($formattedNilai, 200);
         } else {
             return response()->json(['message' => 'Data Nilai tidak ditemukan'], 405);
         }
@@ -91,7 +112,7 @@ class NilaiController extends Controller
                 'nama_lengkap' => $nilai->siswa->nama_lengkap,
                 'tingkat_kelas' => $nilai->siswa->kelas->tingkat_kelas,
                 'semester' => $nilai->siswa->kelas->semester,
-                'mapel' => $nilai->mapel->nama_mapel,
+                'mapel' => $nilai->mapel->nama_mapel  ?? 'Mapel Tidak Terdaftar',
                 'kkm' => $nilai->kkm,
                 'nilai_uh1' => $nilai->nilai_uh1,
                 'nilai_uh2' => $nilai->nilai_uh2,
