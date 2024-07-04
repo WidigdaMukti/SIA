@@ -30,6 +30,7 @@ class SiaAdminPanelProvider extends PanelProvider
             ->path('siaAdmin')
             ->login()
             ->passwordReset()
+            ->emailVerification()
             ->breadcrumbs(false)
             ->sidebarCollapsibleOnDesktop()
             ->colors([

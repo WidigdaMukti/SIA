@@ -11,24 +11,18 @@ class AuthController extends Controller
 {
     public function login(Request $request)
     {
+        // Validasi input untuk menerima baik NIK atau email
         $request->validate([
-            'nik' => 'required|integer',
+            'login' => 'required',  // Bisa berupa NIK atau email
             'password' => 'required',
         ]);
 
-        // $credentials = request(['nik', 'password']);
-
-        // if (!Auth::attempt($credentials)) {
-        //     return response()->json([
-        //         'message' => 'Unauthorized'
-        //     ], 401);
-        // }
-
-        $user = User::where('nik', $request->nik)->first();
+        // Coba cari user berdasarkan NIK
+        $user = User::where('nik', $request->login)->orWhere('email', $request->login)->first();
 
         if (!$user) {
             return response()->json([
-                'message' => 'NIK tidak ditemukan.'
+                'message' => 'NIK atau email tidak ditemukan.'
             ], 401);
         }
 
@@ -49,11 +43,20 @@ class AuthController extends Controller
 
     public function logout(Request $request)
     {
-        // Mengambil token dari request yang aktif
-        $request->user()->currentAccessToken()->delete();
+        // Mendapatkan token yang sedang digunakan
+        $token = $request->bearerToken();
+
+        if ($token) {
+            // Menghapus token yang digunakan
+            $request->user()->tokens()->where('token', hash('sha256', $token))->delete();
+
+            return response()->json([
+                'message' => 'Berhasil Logout',
+            ], 200);
+        }
 
         return response()->json([
-            'message' => 'Logged out successfully'
-        ], 200);
+            'message' => 'Token Tidak Valid',
+        ], 401);
     }
 }

@@ -31,6 +31,8 @@ class SiaGuruPanelProvider extends PanelProvider
             ->path('siaGuru')
             ->sidebarFullyCollapsibleOnDesktop()
             ->profile()
+            ->passwordReset()
+            ->emailVerification()
             ->breadcrumbs(false)
             ->colors([
                 'primary' => Color::Amber,

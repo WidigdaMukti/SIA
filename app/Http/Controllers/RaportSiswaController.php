@@ -73,8 +73,24 @@ class RaportSiswaController extends Controller
         // Ambil data raport berdasarkan NIK pengguna yang sedang login
         $raports = RaportSiswa::where('nik_siswa', $user->nik)->get();
 
+        $formattedRaport = $raports->map(function ($raport) {
+            return [
+                'id' => $raport->id,
+                'nik_siswa' => $raport->nik_siswa,
+                'nama_lengkap' => $raport->siswa->nama_lengkap,
+                'tingkat_kelas' => $raport->siswa->kelas->tingkat_kelas,
+                'semester' => $raport->siswa->kelas->semester,
+                'mapelRaport' => $raport->mapelRaport ?? 'Mapel Tidak Terdaftar',
+                'ekskulRaport' => $raport->ekskulRaport ?? 'Ekstrakulikuler Tidak Terdaftar',
+                'sakit' => $raport->sakit,
+                'izin' => $raport->izin,
+                'tanpa_keterangan' => $raport->tanpa_keterangan,
+                'catatan_wali_kelas' => $raport->catatan_wali_kelas,
+            ];
+        });
+
         if($raports) {
-            return response()->json($raports);
+            return response()->json($formattedRaport, 200);
         } else {
             return response()->json(['message' => 'Raport tidak ditemukan / Access Failed.'], 405);
         }
@@ -96,8 +112,8 @@ class RaportSiswaController extends Controller
                 'nama_lengkap' => $raport->siswa->nama_lengkap,
                 'tingkat_kelas' => $raport->siswa->kelas->tingkat_kelas,
                 'semester' => $raport->siswa->kelas->semester,
-                'mapelRaport' => $raport->mapelRaport,
-                'ekskulRaport' => $raport->ekskulRaport,
+                'mapelRaport' => $raport->mapelRaport ?? 'Mapel Tidak Terdaftar',
+                'ekskulRaport' => $raport->ekskulRaport ?? 'Ekstrakulikuler Tidak Terdaftar',
                 'sakit' => $raport->sakit,
                 'izin' => $raport->izin,
                 'tanpa_keterangan' => $raport->tanpa_keterangan,

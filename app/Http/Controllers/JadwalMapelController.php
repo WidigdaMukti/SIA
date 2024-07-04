@@ -102,7 +102,7 @@ class JadwalMapelController extends Controller
                         'jam_mulai' => $jadwal->jam_mulai,
                         'jam_selesai' => $jadwal->jam_selesai,
                         'hari' => $jadwal->hari,
-                        'mata_pelajaran' => $jadwal->mapelKelas->nama_mapel,
+                        'mata_pelajaran' => $jadwal->mapelKelas->nama_mapel ?? 'Mapel Tidak Terdaftar',
                     ];
                 })->toArray()
             ];
@@ -148,7 +148,7 @@ class JadwalMapelController extends Controller
                         'jam_mulai' => $jadwal->jam_mulai,
                         'jam_selesai' => $jadwal->jam_selesai,
                         'hari' => $jadwal->hari,
-                        'mata_pelajaran' => $jadwal->mapelKelas->nama_mapel,
+                        'mata_pelajaran' => $jadwal->mapelKelas->nama_mapel ?? 'Mapel Tidak Terdaftar',
                     ];
                 })->toArray()
             ];
