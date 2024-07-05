@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Raport Siswa</title>
     <style>
         body {
@@ -10,52 +11,63 @@
             line-height: 1.6;
             margin: 20px;
         }
+
         h1 {
             text-align: center;
             margin-bottom: 20px;
         }
+
         .card {
             border: 1px solid #ccc;
             padding: 10px;
             margin-bottom: 20px;
         }
+
         .card-header {
             font-weight: bold;
             background-color: #f8f9fa;
             padding: 10px;
             border-bottom: 1px solid #ccc;
         }
+
         .card-content {
             padding: 10px;
         }
 
-        .row {
-            margin-bottom: 10px;
-        }
-
-        .col-4, .col-1, .col-7 {
-            padding: 5px;
-        }
-
-        .col-4 {
-            font-weight: bold;
-        }
 
         table {
             width: 100%;
             margin-bottom: 20px;
             border-collapse: collapse;
         }
-        table th, table td {
+
+        table th,
+        table td {
             padding: 8px;
             text-align: left;
             border: 1px solid #ddd;
         }
-        col-card-content {
-            width: 50%;
+
+        .item-row {
+            display: flex;
+            margin-bottom: 10px;
+        }
+
+        .biodata-table td {
+            padding: 5px 10px;
+            border: none;
+        }
+
+        .label {
+            font-weight: bold;
+        }
+
+        @page {
+            margin: 20mm;
         }
     </style>
 </head>
+
 <body>
     <div class="container">
         <h1>Raport {{ $dataRaport->siswa->nama_lengkap }}</h1>
@@ -64,52 +76,41 @@
         <div class="card">
             <div class="card-header">Biodata Siswa</div>
             <div class="card-content">
-                <div class="row">
-                    <div class="col-card-content">
-                        <div class="row">
-                            <div class="col-4"><strong>Nama</strong></div>
-                            <div class="col-1">:</div>
-                            <div class="col-7">{{ $dataRaport->siswa->nama_lengkap }}</div>
-                        </div>
-                        <div class="row">
-                            <div class="col-4"><strong>NISN</strong></div>
-                            <div class="col-1">:</div>
-                            <div class="col-7">{{ $dataRaport->siswa->nisn }}</div>
-                        </div>
-                        <div class="row">
-                            <div class="col-4"><strong>No Telepon</strong></div>
-                            <div class="col-1">:</div>
-                            <div class="col-7">{{ $dataRaport->siswa->nomor_telepon }}</div>
-                        </div>
-                        <div class="row">
-                            <div class="col-4"><strong>Alamat</strong></div>
-                            <div class="col-1">:</div>
-                            <div class="col-7">{{ $dataRaport->siswa->alamat }}</div>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="row">
-                            <div class="col-4"><strong>Kelas</strong></div>
-                            <div class="col-1">:</div>
-                            <div class="col-7">{{ $dataRaport->siswa->kelas->tingkat_kelas }}</div>
-                        </div>
-                        <div class="row">
-                            <div class="col-4"><strong>Semester</strong></div>
-                            <div class="col-1">:</div>
-                            <div class="col-7">{{ $dataRaport->siswa->kelas->semester }}</div>
-                        </div>
-                        <div class="row">
-                            <div class="col-4"><strong>Tahun Pelajaran</strong></div>
-                            <div class="col-1">:</div>
-                            <div class="col-7">{{ date('Y', strtotime($dataRaport->siswa->kelas->tanggal_mulai)) }}/{{ date('Y', strtotime($dataRaport->siswa->kelas->tanggal_selesai)) }}</div>
-                        </div>
-                        <div class="row">
-                            <div class="col-4"><strong>Wali Kelas</strong></div>
-                            <div class="col-1">:</div>
-                            <div class="col-7">{{ $dataRaport->siswa->kelas->adminGuru->nama_lengkap_tendik }}</div>
-                        </div>
-                    </div>
-                </div>
+                <table class="biodata-table">
+                    <tr>
+                        <td class="label">Nama</td>
+                        <td>:</td>
+                        <td>{{ $dataRaport->siswa->nama_lengkap }}</td>
+                        <td class="label">Kelas</td>
+                        <td>:</td>
+                        <td>{{ $dataRaport->siswa->kelas->tingkat_kelas }}</td>
+                    </tr>
+                    <tr>
+                        <td class="label">NISN</td>
+                        <td>:</td>
+                        <td>{{ $dataRaport->siswa->nisn }}</td>
+                        <td class="label">Semester</td>
+                        <td>:</td>
+                        <td>{{ $dataRaport->siswa->kelas->semester }}</td>
+                    </tr>
+                    <tr>
+                        <td class="label">No Telepon</td>
+                        <td>:</td>
+                        <td>{{ $dataRaport->siswa->nomor_telepon }}</td>
+                        <td class="label">Tahun Pelajaran</td>
+                        <td>:</td>
+                        <td>{{ date('Y', strtotime($dataRaport->siswa->kelas->tanggal_mulai)) }}/{{ date('Y', strtotime($dataRaport->siswa->kelas->tanggal_selesai)) }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="label">Alamat</td>
+                        <td>:</td>
+                        <td>{{ $dataRaport->siswa->alamat }}</td>
+                        <td class="label">Wali Kelas</td>
+                        <td>:</td>
+                        <td>{{ $dataRaport->siswa->kelas->adminGuru->nama_lengkap_tendik }}</td>
+                    </tr>
+                </table>
             </div>
         </div>
 
@@ -129,13 +130,13 @@
                     </thead>
                     <tbody>
                         @foreach ($dataRaport->mapelRaport as $index => $mapel)
-                        <tr>
-                            <td>{{ $index + 1 }}</td>
-                            <td>{{ $mapel->nama_mapel }}</td>
-                            <td>{{ $mapel->kkm }}</td>
-                            <td>{{ $mapel->nilai_akhir }}</td>
-                            <td>{{ $mapel->capaian_kompetensi }}</td>
-                        </tr>
+                            <tr>
+                                <td>{{ $index + 1 }}</td>
+                                <td>{{ $mapel->nama_mapel }}</td>
+                                <td>{{ $mapel->kkm }}</td>
+                                <td>{{ $mapel->nilai_akhir }}</td>
+                                <td>{{ $mapel->capaian_kompetensi }}</td>
+                            </tr>
                         @endforeach
                     </tbody>
                 </table>
@@ -156,11 +157,11 @@
                     </thead>
                     <tbody>
                         @foreach ($dataRaport->ekskulRaport as $index => $ekskul)
-                        <tr>
-                            <td>{{ $index + 1 }}</td>
-                            <td>{{ $ekskul->nama }}</td>
-                            <td>{{ $ekskul->keterangan }}</td>
-                        </tr>
+                            <tr>
+                                <td>{{ $index + 1 }}</td>
+                                <td>{{ $ekskul->nama }}</td>
+                                <td>{{ $ekskul->keterangan }}</td>
+                            </tr>
                         @endforeach
                     </tbody>
                 </table>
@@ -188,4 +189,5 @@
         </div>
     </div>
 </body>
+
 </html>

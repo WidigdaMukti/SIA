@@ -67,9 +67,9 @@ class RaportSiswaResource extends Resource
             ->actions([
                 Tables\Actions\ViewAction::make(),
                 Action::make('Download')
-                ->url(fn (RaportSiswa $record) => route('pdf.show-raports', $record->id))
-                ->openUrlInNewTab()
-                ->icon('heroicon-o-arrow-down-tray'),
+                    ->url(fn (RaportSiswa $record) => route('export.pdf', $record->id))
+                    ->openUrlInNewTab()
+                    ->icon('heroicon-o-arrow-down-tray'),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
