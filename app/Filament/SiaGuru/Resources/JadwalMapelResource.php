@@ -21,7 +21,7 @@ class JadwalMapelResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-calendar-days';
 
-    protected static ?string $label = 'Jadwal Mata Pelajaran';
+    protected static ?string $label = 'Jadwal Pelajaran';
 
     public static function form(Form $form): Form
     {

@@ -32,7 +32,7 @@ class PpdbResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-identification';
 
-    protected static ?string $navigationGroup = 'Data Admin & Guru';
+    protected static ?string $navigationGroup = 'Data Peserta Didik';
 
     protected static ?int $navigationSort = 5;
 

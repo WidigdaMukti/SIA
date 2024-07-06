@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Filament\SiaAdmin\Resources\Enums;
+namespace App\Enums;
 
 use Filament\Support\Contracts\HasColor;
 use Filament\Support\Contracts\HasIcon;
