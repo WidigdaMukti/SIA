@@ -34,7 +34,7 @@ class JadwalMapelResource extends Resource
 
     protected static ?int $navigationSort = 4;
 
-    protected static ?string $navigationLabel = 'Jadwal Mata Pelajaran';
+    protected static ?string $navigationLabel = 'Jadwal Pelajaran';
 
     protected static ?string $label = 'Jadwal Mata Pelajaran';
 
