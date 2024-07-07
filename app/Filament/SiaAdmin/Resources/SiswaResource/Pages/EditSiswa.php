@@ -51,7 +51,7 @@ class EditSiswa extends EditRecord
             'nik_siswa' => $user->nik,
             'nama_lengkap' => $data['nama_lengkap'],
             'email' => $data['email'],
-            'id_kelas' => $data['id_kelas'],
+            'kelas_id' => $data['kelas_id'],
             // Update field lainnya di sini sesuai dengan kolom yang ada di tabel siswa
         ]);
 

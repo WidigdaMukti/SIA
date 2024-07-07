@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Siswa;
 use App\Http\Requests\StoreSiswaRequest;
 use App\Http\Requests\UpdateSiswaRequest;
+use Illuminate\Support\Facades\Auth;
 
 class SiswaController extends Controller
 {
@@ -62,5 +63,26 @@ class SiswaController extends Controller
     public function destroy(Siswa $siswa)
     {
         //
+    }
+
+    public function getDataSiswa()
+    {
+        $user = Auth::user();
+
+        $siswa = Siswa::where('nik_siswa', $user->nik)->get();
+
+        $formattedSiswa = $siswa->map(function ($siswa) {
+            return [
+                'nik_siswa' => $siswa->nik_siswa,
+                'nisn' => $siswa->nisn,
+                'nama_lengkap' => $siswa->nama_lengkap,
+                'tingkat_kelas' => $siswa->kelas->tingkat_kelas ?? 'Kelas Tidak Tersedia'
+            ];
+        });
+        if ($siswa) {
+            return response()->json($formattedSiswa, 200);
+        } else {
+            return response()->json(['message' => 'Data Siswa Tidak Ditemukan']);
+        }
     }
 }

@@ -240,7 +240,7 @@ class SiswaResource extends Resource
                                 ->required()
                                 ->autocapitalize('words')
                                 ->helperText('Jika tidak ada, ketik Tidak Ada'),
-                            Select::make('id_kelas')
+                            Select::make('kelas_id')
                                 ->label('Kelas')
                                 ->options(function () {
                                     return Kelas::query()
