@@ -25,6 +25,7 @@ return new class extends Migration
             $table->date('tanggal_lahir')->nullable();
             $table->string('agama')->nullable();
             $table->string('kewarganegaraan')->nullable();
+            $table->integer('anak_ke')->nullable();
             $table->integer('jumlah_saudara_kandung')->nullable();
             $table->integer('jumlah_saudara_tiri')->nullable();
             $table->integer('jumlah_saudara_angkat')->nullable();

@@ -29,6 +29,7 @@ class SiaAdminPanelProvider extends PanelProvider
             ->id('siaAdmin')
             ->path('siaAdmin')
             ->login()
+            ->profile()
             ->passwordReset()
             ->emailVerification()
             ->breadcrumbs(false)
@@ -43,7 +44,7 @@ class SiaAdminPanelProvider extends PanelProvider
             ])
             ->discoverWidgets(in: app_path('Filament/SiaAdmin/Widgets'), for: 'App\\Filament\\SiaAdmin\\Widgets')
             ->widgets([
-                Widgets\AccountWidget::class,
+                // Widgets\AccountWidget::class,
                 // Widgets\FilamentInfoWidget::class,
             ])
             ->middleware([

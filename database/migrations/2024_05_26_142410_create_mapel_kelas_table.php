@@ -14,16 +14,16 @@ return new class extends Migration
         Schema::create('mapel_kelas', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('kelas_id')->nullable();
-            $table->unsignedBigInteger('nilai_id')->nullable();
-            $table->unsignedBigInteger('absensi_siswa_id')->nullable();
+            // $table->unsignedBigInteger('nilai_id')->nullable();
+            // $table->unsignedBigInteger('absensi_siswa_id')->nullable();
             $table->unsignedBigInteger('nik_guru_mapel')->nullable();
             $table->string('nama_mapel')->nullable();
             // $table->boolean('status')->default(1);
             $table->timestamps();
 
             $table->foreign('kelas_id')->references('id')->on('kelas')->onUpdate('cascade')->onDelete('cascade');
-            $table->foreign('nilai_id')->references('id')->on('nilais')->onUpdate('cascade')->onDelete('cascade');
-            $table->foreign('absensi_siswa_id')->references('id')->on('absensi_siswas')->onUpdate('cascade')->onDelete('cascade');
+            // $table->foreign('nilai_id')->references('id')->on('nilais')->onUpdate('cascade')->onDelete('cascade');
+            // $table->foreign('absensi_siswa_id')->references('id')->on('absensi_siswas')->onUpdate('cascade')->onDelete('cascade');
             $table->foreign('nik_guru_mapel')->references('nik_guru')->on('admin_gurus')->onUpdate('cascade')->onDelete('cascade');
         });
     }

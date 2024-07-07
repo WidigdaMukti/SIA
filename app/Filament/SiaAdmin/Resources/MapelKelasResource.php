@@ -41,7 +41,7 @@ class MapelKelasResource extends Resource
         return $form
             ->schema([
                 Card::make([
-                    Select::make('id_kelas')->label('Tingkat Kelas')
+                    Select::make('kelas_id')->label('Tingkat Kelas')
                         ->options(function() {
                             return Kelas::query()
                                 ->where('status', 1)

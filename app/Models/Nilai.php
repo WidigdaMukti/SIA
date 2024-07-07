@@ -21,10 +21,11 @@ class Nilai extends Model
     {
         return $this->hasOne(MapelKelas::class, 'nilai_id', 'id');
     }
-    // public function mapel()
-    // {
-    //     return $this->belongsTo(MapelKelas::class, 'id_mapel_kelas', 'id');
-    // }
+
+    public function mapelId()
+    {
+        return $this->belongsTo(MapelKelas::class, 'id_mapel_kelas', 'id');
+    }
 
     public function mapelRaports()
     {

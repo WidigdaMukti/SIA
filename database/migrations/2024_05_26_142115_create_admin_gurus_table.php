@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('admin_gurus', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('nik_guru')->nullable();
+            // $table->string('foto')->nullable();
             $table->bigInteger('no_kk')->nullable();
             $table->bigInteger('nuptk')->nullable();
             $table->bigInteger('nip')->nullable();

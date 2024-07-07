@@ -78,7 +78,7 @@ class NilaiController extends Controller
                 'nama_lengkap' => $nilis->siswa->nama_lengkap,
                 'tingkat_kelas' => $nilis->siswa->kelas->tingkat_kelas,
                 'semester' => $nilis->siswa->kelas->semester,
-                'mapel' => $nilis->mapel->nama_mapel ?? 'Mapel tidak tersedia',
+                'mapel' => $nilis->mapelId->nama_mapel ?? 'Mapel tidak tersedia',
                 'kkm' => $nilis->kkm,
                 'nilai_uh1' => $nilis->nilai_uh1,
                 'nilai_uh2' => $nilis->nilai_uh2,
@@ -103,7 +103,7 @@ class NilaiController extends Controller
     {
         $user = Auth::user();
 
-        $nilai = Nilai::where('id', $id)->where('nik_siswa', $user->nik)->with('mapel')->first();
+        $nilai = Nilai::where('id', $id)->where('nik_siswa', $user->nik)->with('mapelId')->first();
 
         if($nilai) {
             $formattedNilai = [
@@ -112,7 +112,7 @@ class NilaiController extends Controller
                 'nama_lengkap' => $nilai->siswa->nama_lengkap,
                 'tingkat_kelas' => $nilai->siswa->kelas->tingkat_kelas,
                 'semester' => $nilai->siswa->kelas->semester,
-                'mapel' => $nilai->mapel->nama_mapel  ?? 'Mapel Tidak Terdaftar',
+                'mapel' => $nilai->mapelId->nama_mapel  ?? 'Mapel Tidak Terdaftar',
                 'kkm' => $nilai->kkm,
                 'nilai_uh1' => $nilai->nilai_uh1,
                 'nilai_uh2' => $nilai->nilai_uh2,

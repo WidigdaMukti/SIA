@@ -31,7 +31,7 @@ class EditAdminGuru extends EditRecord
         if (!$user) {
             $user = User::create([
                 'nik' => $data['nik_guru'],
-                'nama_lengkap' => $data['nama_lengkap'],
+                'nama_lengkap' => $data['nama_lengkap_tendik'],
                 'email' => $data['email'],
                 'password' => bcrypt('password'),  // Ganti 'password' dengan password yang diinginkan
                 'role_id' => 2,
@@ -40,7 +40,7 @@ class EditAdminGuru extends EditRecord
             // Jika user ditemukan, update user
             $user->update([
                 'nik' => $data['nik_guru'],
-                'nama_lengkap' => $data['nama_lengkap'],
+                'nama_lengkap_tendik' => $data['nama_lengkap_tendik'],
                 'email' => $data['email'],
                 // Update field lainnya di sini
             ]);
@@ -49,10 +49,11 @@ class EditAdminGuru extends EditRecord
         // Update Admin & Guru
         $record->update([
             'nik_guru' => $user->nik,
+            // 'foto' => $data['foto'],
             'no_kk' => $data['no_kk'],
             'nuptk' => $data['nuptk'],
             'nip' => $data['nip'],
-            'nama_lengkap' => $data['nama_lengkap'],
+            'nama_lengkap_tendik' => $data['nama_lengkap_tendik'],
             'email' => $data['email'],
             'jenis_kelamin' => $data['jenis_kelamin'],
             'tempat_lahir' => $data['tempat_lahir'],

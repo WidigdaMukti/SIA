@@ -12,6 +12,6 @@ class CreateGuruStaff extends CreateRecord
 
     protected function getRedirectUrl(): string
     {
-        return route('filament.siaAdmin.resources.guru_staffs.index');
+        return route('filament.siaAdmin.resources.guru-staffs.index');
     }
 }

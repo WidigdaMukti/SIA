@@ -42,6 +42,7 @@ class SiswaFactory extends Factory
             'tanggal_lahir' => $this->faker->date,
             'agama' => $this->faker->randomElement(['Islam', 'Kristen', 'Katolik', 'Hindu', 'Buddha']),
             'kewarganegaraan' => $this->faker->randomElement(['WNI', 'WNA', 'Keturunan']),
+            'anak_ke' => $this->faker->randomNumber(1),
             'jumlah_saudara_kandung' => $this->faker->randomNumber(1),
             'jumlah_saudara_tiri' => $this->faker->randomNumber(1),
             'jumlah_saudara_angkat' => $this->faker->randomNumber(1),

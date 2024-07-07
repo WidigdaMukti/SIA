@@ -83,11 +83,11 @@ class User extends Authenticatable implements FilamentUser, HasName, MustVerifyE
 
         switch ($panel->getId()) {
             case 'siaAdmin':
-                return $this->role_id == 1;
+                return $this->isAdmin();
             case 'siaGuru':
-                return $this->role_id == 2;
+                return $this->isGuru();
             case 'siaSiswa':
-                return $this->role_id == 3;
+                return $this->isSiswa();
             default:
                 return false;
         }

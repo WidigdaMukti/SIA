@@ -7,6 +7,7 @@ use App\Models\Ppdb;
 use Filament\Tables;
 use Filament\Forms\Form;
 use App\Enums\PpdbStatus;
+use App\Filament\SiaAdmin\Resources\Enums\PpdbStatus as EnumsPpdbStatus;
 use Filament\Tables\Table;
 use Filament\Resources\Resource;
 use Filament\Forms\Components\Card;
@@ -25,6 +26,8 @@ use Filament\Infolists\Components\TextEntry;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use App\Filament\SiaAdmin\Resources\PpdbResource\Pages;
 use App\Filament\SiaAdmin\Resources\PpdbResource\RelationManagers;
+use App\Http\Controllers\PpdbController;
+use Filament\Tables\Actions\Action;
 
 class PpdbResource extends Resource
 {
@@ -296,7 +299,7 @@ class PpdbResource extends Resource
                 Section::make([
                     Forms\Components\ToggleButtons::make('status')
                         ->inline()
-                        ->options(PpdbStatus::class)
+                        ->options(EnumsPpdbStatus::class)
                 ])->columnSpan(1)
             ])->columns(3);
     }
@@ -326,7 +329,19 @@ class PpdbResource extends Resource
                 //
             ])
             ->actions([
-                Tables\Actions\EditAction::make(),
+                Action::make('Diterima')
+                ->icon('heroicon-m-check-badge')
+                ->color('success')
+                ->action(function ($record) {
+                    return (new PpdbController)->diterima($record->id);
+                }),
+                Action::make('Ditolak')
+                ->icon('heroicon-m-x-circle')
+                ->color('danger')
+                ->action(function ($record) {
+                    return (new PpdbController)->ditolak($record->id);
+                }),
+                // Tables\Actions\EditAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([

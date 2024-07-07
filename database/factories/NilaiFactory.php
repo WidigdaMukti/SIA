@@ -22,9 +22,9 @@ class NilaiFactory extends Factory
             'nik_siswa' => function() {
                 return Siswa::inRandomOrder()->first()->nik_siswa;
             },
-            // 'id_mapel_kelas' => function() {
-            //     return MapelKelas::inRandomOrder()->first()->id;
-            // },
+            'id_mapel_kelas' => function() {
+                return MapelKelas::inRandomOrder()->first()->id;
+            },
             'kkm' => $this->faker->numberBetween(60, 100),
             'nilai_uh1' => $this->faker->numberBetween(0, 100),
             'nilai_uh2' => $this->faker->numberBetween(0, 100),
