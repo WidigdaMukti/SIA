@@ -19,6 +19,6 @@ class EditAbsensiSiswa extends EditRecord
 
     protected function getRedirectUrl(): ?string
     {
-        return route('filament.siaAdmin.resources.absensi-siswas.index');
+        return route('filament.siaGuru.resources.absensi-siswas.index');
     }
 }

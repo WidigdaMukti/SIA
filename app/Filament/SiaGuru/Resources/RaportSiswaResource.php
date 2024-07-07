@@ -27,6 +27,7 @@ use Illuminate\Database\Eloquent\SoftDeletingScope;
 use App\Filament\SiaGuru\Resources\RaportSiswaResource\Pages;
 use Filament\Tables\Actions\ActionGroup as ActionsActionGroup;
 use App\Filament\SiaGuru\Resources\RaportSiswaResource\RelationManagers;
+use App\Models\AdminGuru;
 use Filament\Infolists\Components\Card as ComponentsCard;
 use Filament\Infolists\Components\Component;
 use Filament\Infolists\Components\Fieldset;
@@ -44,6 +45,7 @@ class RaportSiswaResource extends Resource
         return $form
             ->schema([
                 Card::make([
+                    Card::make([
                     Select::make('nik_siswa')
                     ->label('Nama Siswa')
                     ->options(function() {
@@ -52,14 +54,47 @@ class RaportSiswaResource extends Resource
                             ->mapWithKeys(function ($siswa) {
                                 $nikSiswa = $siswa->nik_siswa;
                                 $namaSiswa = $siswa->nama_lengkap;
-                                $tingkatKelas = $siswa->kelas->tingkat_kelas;
-                                $semester = $siswa->kelas->semester;
-                                $label = "$nikSiswa - $namaSiswa - $tingkatKelas - $semester";
+                                $label = "$nikSiswa - $namaSiswa";
                                 // $label = "$namaSiswa";
                                 return [$siswa->nik_siswa => $label];
                             });
                     })
                     ->searchable(),
+                    Select::make('kelas')
+                        ->label('Tingkat Kelas')
+                        ->options(['I / Satu' => 'I / Satu', 'II / Dua' => 'II / Dua', 'III / Tiga' => 'III / Tiga', 'IV / Empat' => 'IV / Empat', 'V / Lima' => 'V / Lima', 'VI / Enam' => 'VI / Enam']),
+                    Select::make('semester')
+                        ->label('Semester')
+                        ->options([
+                            'Ganjil' => 'Ganjil',
+                            'Genap' => 'Genap',
+                        ]),
+                    Select::make('tahun_ajaran')
+                        ->label('Tahun Ajaran')
+                        ->options(function() {
+                            return Kelas::query()
+                                ->where('status', 1)
+                                ->get()
+                                ->mapWithKeys(function ($kelas) {
+                                    $tanggalMulai = Carbon::parse($kelas->tanggal_mulai)->format('Y');
+                                    $tanggalSelesai = Carbon::parse($kelas->tanggal_selesai)->format('Y');
+                                    $label = "$tanggalMulai - $tanggalSelesai";
+                                    return [$label => $label]; // Menetapkan ID kelas sebagai kunci dan label sebagai nilai
+                                });
+                        }),
+                    Select::make('wali_kelas')
+                        ->label('Wali Kelas')
+                        ->options(function() {
+                            return AdminGuru::activeUserWithRole()
+                                ->get()
+                                ->mapWithKeys(function ($guru) {
+                                    // $nikGuru = $guru->nik_guru;
+                                    $namaGuru = $guru->nama_lengkap_tendik;
+                                    $label = "$namaGuru";
+                                    return [$label => $label];
+                                });
+                        }),
+                    ])->columns(2),
                     Card::make([
                         Repeater::make('mapelRaport')
                         ->label('Nilai dan Capaian Komepetensi')
@@ -117,8 +152,8 @@ class RaportSiswaResource extends Resource
             ->columns([
                 TextColumn::make('nik_siswa'),
                 TextColumn::make('siswa.nama_lengkap'),
-                TextColumn::make('siswa.kelas.tingkat_kelas'),
-                TextColumn::make('siswa.kelas.semester'),
+                TextColumn::make('kelas'),
+                TextColumn::make('semester'),
             ])
             ->filters([
                 //
@@ -148,9 +183,9 @@ class RaportSiswaResource extends Resource
                                 ->label('NIK Siswa'),
                             TextEntry::make('siswa.nama_lengkap')
                                 ->label('Nama Lengkap'),
-                            TextEntry::make('siswa.kelas.tingkat_kelas')
+                            TextEntry::make('kelas')
                                 ->label('Tingkat Kelas'),
-                            TextEntry::make('siswa.kelas.semester')
+                            TextEntry::make('semester')
                                 ->label('Semester'),
                         ]),
                     Fieldset::make('Niali dan Capaian Kompetensi')

@@ -22,6 +22,8 @@ use Filament\Forms\Components\Wizard\Step;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use App\Filament\SiaAdmin\Resources\AdminGuruResource\Pages;
 use App\Filament\SiaAdmin\Resources\AdminGuruResource\RelationManagers;
+use Filament\Forms\Components\FileUpload;
+use Filament\Tables\Columns\ImageColumn;
 
 class AdminGuruResource extends Resource
 {
@@ -48,9 +50,9 @@ class AdminGuruResource extends Resource
                         Step::make('Lengkapi Biodata Diri')
                             ->schema([
                                 TextInput::make('nik_guru')
-                                ->label('NIK Guru')
-                                ->required()
-                                ->numeric(),
+                                    ->label('NIK Guru')
+                                    ->required()
+                                    ->numeric(),
                                 TextInput::make('no_kk')
                                     ->label('No Kartu Keluarga')
                                     ->numeric()

@@ -48,6 +48,7 @@ class NilaiResource extends Resource
                         })
                         ->searchable(),
                     Select::make('id_mapel_kelas')
+                        // ->relationship('mapel.nilai_id')
                         ->label('Mata Pelajaran')
                         ->options(function() {
                             return MapelKelas::query()
@@ -160,20 +161,20 @@ class NilaiResource extends Resource
             TextColumn::make('nama_mapel')
                 ->label('Mata Pelajaran')
                 ->getStateUsing(function (Nilai $nilai) {
-                    return ucwords($nilai->mapel ? $nilai->mapel->nama_mapel : 'Belum ada');
+                    return ucwords($nilai->mapelId ? $nilai->mapelId->nama_mapel : 'Belum ada');
                 })
                 ->searchable(query: function (Builder $query, string $search): Builder {
-                    return $query->whereHas('mapel', function (Builder $query) use ($search) {
+                    return $query->whereHas('mapelId', function (Builder $query) use ($search) {
                         $query->where('nama_mapel', 'like', '%' . $search . '%');
                     });
                 }),
             TextColumn::make('nama_lengkap_tendik')
                 ->label('Guru Mata Pelajaran')
                 ->getStateUsing(function (Nilai $nilai) {
-                    return ucwords($nilai->mapel && $nilai->mapel->guruMapel ? $nilai->mapel->guruMapel->nama_lengkap_tendik : 'Belum ada');
+                    return ucwords($nilai->mapelId && $nilai->mapelId->guruMapel ? $nilai->mapelId->guruMapel->nama_lengkap_tendik : 'Belum ada');
                 })
                 ->searchable(query: function (Builder $query, string $search): Builder {
-                    return $query->whereHas('mapel', function (Builder $query) use ($search) {
+                    return $query->whereHas('mapelId', function (Builder $query) use ($search) {
                         $query->whereHas('guruMapel', function (Builder $query) use ($search) {
                             $query->where('nama_lengkap_tendik', 'like', '%' . $search . '%');
                         });

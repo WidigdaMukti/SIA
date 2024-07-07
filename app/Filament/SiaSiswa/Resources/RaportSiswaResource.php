@@ -56,9 +56,9 @@ class RaportSiswaResource extends Resource
                     ->label('NIK Siswa'),
                 TextColumn::make('siswa.nama_lengkap')
                     ->label('Nama Lengkap'),
-                TextColumn::make('siswa.kelas.tingkat_kelas')
+                TextColumn::make('kelas')
                     ->label('Tingkat Kelas'),
-                TextColumn::make('siswa.kelas.semester')
+                TextColumn::make('semester')
                     ->label('Semester'),
             ])
             ->filters([

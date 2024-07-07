@@ -26,12 +26,12 @@ class MapelKelasFactory extends Factory
             'kelas_id' => function() {
                 return Kelas::inRandomOrder()->first()->id;
             },
-            'nilai_id' => function() {
-                return Nilai::inRandomOrder()->first()->id;
-            },
-            'absensi_siswa_id' => function() {
-                return AbsensiSiswa::inRandomOrder()->first()->id;
-            },
+            // 'nilai_id' => function() {
+            //     return optional(Nilai::inRandomOrder()->first())->id;
+            // },
+            // 'absensi_siswa_id' => function() {
+            //     return AbsensiSiswa::inRandomOrder()->first()->id;
+            // },
             'nik_guru_mapel' => function() {
                 return AdminGuru::inRandomOrder()->first()->nik_guru;
             },

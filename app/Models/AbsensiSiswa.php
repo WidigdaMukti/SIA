@@ -17,14 +17,14 @@ class AbsensiSiswa extends Model
         return $this->belongsTo(Siswa::class, 'nik_siswa', 'nik_siswa');
     }
 
-    public function mapel()
-    {
-        return $this->hasOne(MapelKelas::class, 'absensi_siswa_id', 'id');
-    }
     // public function mapel()
     // {
-    //     return $this->belongsTo(MapelKelas::class, 'id_mapel_kelas', 'id');
+    //     return $this->hasOne(MapelKelas::class, 'absensi_siswa_id', 'id');
     // }
+    public function mapel()
+    {
+        return $this->belongsTo(MapelKelas::class, 'id_mapel_kelas', 'id');
+    }
 
     public function absenKehadiran()
     {

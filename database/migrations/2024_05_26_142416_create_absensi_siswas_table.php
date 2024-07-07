@@ -14,13 +14,13 @@ return new class extends Migration
         Schema::create('absensi_siswas', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('nik_siswa')->nullable();
-            // $table->unsignedBigInteger('id_mapel_kelas')->nullable();
+            $table->unsignedBigInteger('id_mapel_kelas')->nullable();
             // $table->date('tanggal')->nullable();
             // $table->boolean('status_kehadiran')->nullable();
             $table->timestamps();
 
             $table->foreign('nik_siswa')->references('nik_siswa')->on('siswas')->onUpdate('cascade');
-            // $table->foreign('id_mapel_kelas')->references('id')->on('mapel_kelas')->onUpdate('cascade')->onDelete('set null');
+            $table->foreign('id_mapel_kelas')->references('id')->on('mapel_kelas')->onUpdate('cascade')->onDelete('set null');
         });
     }
 

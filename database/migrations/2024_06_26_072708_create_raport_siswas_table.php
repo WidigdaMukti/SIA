@@ -16,6 +16,10 @@ return new class extends Migration
             $table->unsignedBigInteger('nik_siswa')->nullable();
             // $table->unsignedBigInteger('id_mapel_raport')->nullable();
             // $table->unsignedBigInteger('id_ekskul_raport')->nullable();
+            $table->string('kelas')->nullable();
+            $table->string('semester')->nullable();
+            $table->string('tahun_ajaran')->nullable();
+            $table->string('wali_kelas')->nullable();
             $table->integer('sakit')->nullable();
             $table->integer('izin')->nullable();
             $table->integer('tanpa_keterangan')->nullable();

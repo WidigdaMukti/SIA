@@ -55,10 +55,10 @@ class NilaiResource extends Resource
                     ->label('Tingkat Kelas'),
                 TextColumn::make('siswa.kelas.semester')
                     ->label('Semester'),
-                TextColumn::make('mapel.nama_mapel')
+                TextColumn::make('mapelId.nama_mapel')
                     ->label('Mata Pelajaran')
                     ->getStateUsing(function (Nilai $nilai) {
-                        return ucwords($nilai->mapel ? $nilai->mapel->nama_mapel : 'Mapel Tidak Terdaftar');
+                        return ucwords($nilai->mapelId ? $nilai->mapelId->nama_mapel : 'Mapel Tidak Terdaftar');
                     })
             ])
             ->filters([
@@ -93,7 +93,7 @@ class NilaiResource extends Resource
                     ]),
                     Fieldset::make('Mata Pelajaran')
                         ->schema([
-                            TextEntry::make('mapel.nama_mapel')
+                            TextEntry::make('mapelId.nama_mapel')
                                 ->label('Mata Pelajaran'),
                             TextEntry::make('kkm')
                                 ->label('KKM'),

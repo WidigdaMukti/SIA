@@ -139,6 +139,6 @@ Route::get('/download/{id}', [PdfExportController::class, 'exportPdf'])->name('e
 Route::get('/download/{id}', [PdfExportController::class, 'downloadPdf'])->name('export.pdf');
 Route::get('/pdf-export', [PdfExportController::class, 'index'])->name('pdf.export');
 Route::get('/pdf/{id}', [PdfExportController::class, 'showPdf'])->name('pdf.show-raports');
-// Route::get('/pdf/', [PdfExportController::class, 'index'])->name('pdf.show');
-// Route::get('/generate-pdf',[PdfExportController::class, 'generatePdf'])->name('pdf');
+
+
 

@@ -16,4 +16,9 @@ class EditRaportSiswa extends EditRecord
             Actions\DeleteAction::make(),
         ];
     }
+
+    protected function getRedirectUrl(): string
+    {
+        return route('filament.siaGuru.resources.raport-siswas.index');
+    }
 }
