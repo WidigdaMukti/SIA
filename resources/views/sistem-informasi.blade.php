@@ -30,7 +30,7 @@
             </div>
 
             <!-- Card 3: Sistem Informasi Admin -->
-            <div class="col-md-6 col-lg-4 mb-4">
+            {{-- <div class="col-md-6 col-lg-4 mb-4">
                 <div class="card" style="border-radius: 12px;">
                     <div class="card-body">
                         <h5 class="card-title" style="font-weight: bold">Sistem Informasi Admin</h5>
@@ -39,7 +39,7 @@
                             <i class="bi bi-box-arrow-up-right"></i></a>
                     </div>
                 </div>
-            </div>
+            </div> --}}
         </div>
     </div>
 @endsection
