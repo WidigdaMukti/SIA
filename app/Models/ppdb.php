@@ -15,6 +15,6 @@ class ppdb extends Model
     protected $guarded = [];
 
     protected $casts = [
-        'status' => EnumsPpdbStatus::class
+        'status' => PpdbStatus::class
     ];
 }

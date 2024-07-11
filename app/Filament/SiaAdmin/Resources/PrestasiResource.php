@@ -42,13 +42,17 @@ class PrestasiResource extends Resource
                         ->image()
                         ->imageEditor()
                         ->disk('public')
-                        ->directory('img/prestasi'),
-                    TextInput::make('nama'),
-                    TextInput::make('slug'),
+                        ->directory('img/prestasi')
+                        ->required(),
+                    TextInput::make('nama')
+                        ->required(),
+                    TextInput::make('slug')
+                        ->required(),
                     MarkdownEditor::make('content')
                         ->label('Content')
                         ->fileAttachmentsDisk('public')
-                        ->fileAttachmentsDirectory('img/prestasi'),
+                        ->fileAttachmentsDirectory('img/prestasi')
+                        ->required(),
                 ])
             ]);
     }

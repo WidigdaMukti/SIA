@@ -88,10 +88,12 @@ class RaportSiswaController extends Controller
                 'izin' => $raport->izin,
                 'tanpa_keterangan' => $raport->tanpa_keterangan,
                 'catatan_wali_kelas' => $raport->catatan_wali_kelas,
+                'dibuat' => $raport->created_at,
+                'diperbaharui' => $raport->updated_at,
             ];
         });
 
-        if($raports) {
+        if ($raports) {
             return response()->json($formattedRaport, 200);
         } else {
             return response()->json(['message' => 'Raport tidak ditemukan / Access Failed.'], 405);
@@ -122,6 +124,8 @@ class RaportSiswaController extends Controller
                 'izin' => $raport->izin,
                 'tanpa_keterangan' => $raport->tanpa_keterangan,
                 'catatan_wali_kelas' => $raport->catatan_wali_kelas,
+                'dibuat' => $raport->created_at,
+                'diperbaharui' => $raport->updated_at,
             ];
         }
 
