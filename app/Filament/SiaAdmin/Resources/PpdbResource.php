@@ -33,6 +33,8 @@ class PpdbResource extends Resource
 {
     protected static ?string $model = Ppdb::class;
 
+    protected static ?string $modelStatus = PpdbStatus::class;
+
     protected static ?string $navigationIcon = 'heroicon-o-identification';
 
     protected static ?string $navigationGroup = 'Data Peserta Didik';

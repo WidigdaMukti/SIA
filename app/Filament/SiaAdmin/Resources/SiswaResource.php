@@ -63,8 +63,7 @@ class SiswaResource extends Resource
                                 ->label('Nama Lengkap')
                                 ->required()
                                 ->autocapitalize('words'),
-                            TextInput::make('email')
-                                ->required(),
+                            TextInput::make('email'),
                             Select::make('jenis_kelamin')
                                 ->label('Jenis Kelamin')
                                 ->required()

@@ -71,7 +71,7 @@
                 <div class="col mb-4 d-flex justify-content-center me-4">
                     <div class="card" style="width: 24rem; height: 32rem;">
                         <div class="img-container rounded-1" style="overflow: hidden;">
-                            <a href="{{ route('berita', ['id' => $berita->id]) }}" class="img-link">
+                            <a href="{{ route('info-umum') }}" class="img-link">
                                 <img src="{{ asset('storage/' . $berita->gambar_thumbnail) }}" alt="Thumbnail Gambar"
                                     style="object-fit: cover; height: 19rem; width: 100%;">
                             </a>
@@ -81,7 +81,7 @@
                                 <i class="bi bi-calendar-week me-2" aria-hidden="true"></i>
                                 {{ $berita->created_at->format('d F Y') }}
                             </p>
-                            <a class="text-decoration-none" href="{{ route('berita', ['id' => $berita->id]) }}">
+                            <a class="text-decoration-none" href="{{ route('info-umum') }}">
                                 <h2 class="card-title text-truncate mb-2 text-black responsive-text-head"
                                     style="font-weight:bold;">{{ $berita->judul }}</h2>
                             </a>

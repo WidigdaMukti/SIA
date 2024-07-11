@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\PpdbStatus as EnumsPpdbStatus;
 use App\Filament\SiaAdmin\Resources\Enums\PpdbStatus;
+use App\Http\Requests\StoreppdbRequest;
 use App\Models\OrangTua;
 use App\Models\ppdb;
 use App\Models\Siswa;
@@ -31,13 +33,11 @@ class PpdbController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreppdbRequest $request)
     {
+        $validatedData = $request->validated();
+        ppdb::create($validatedData);
 
-        // Simpan data ke dalam tabel ppdbs
-        Ppdb::create($request->all());
-
-        // Redirect atau response jika diperlukan
         return redirect('/ppdb-online')->with('success', 'Data berhasil disimpan');
     }
 
@@ -86,7 +86,7 @@ class PpdbController extends Controller
         }
 
         $dataPpdb->update([
-            'status' => PpdbStatus::Diterima
+            'status' => EnumsPpdbStatus::Diterima
         ]);
 
         $user = User::create([
@@ -177,7 +177,7 @@ class PpdbController extends Controller
         }
 
         $dataPpdb->update([
-            'status' => PpdbStatus::Ditolak
+            'status' => EnumsPpdbStatus::Ditolak
         ]);
 
         Notification::make()

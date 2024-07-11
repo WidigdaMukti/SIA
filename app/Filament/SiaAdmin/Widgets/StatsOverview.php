@@ -23,13 +23,13 @@ class StatsOverview extends BaseWidget
             $query->where('status', 1)->whereIn('role_id', [1, 2]);
         })->count();
         $totalSiswaAktif = Siswa::whereHas('user', function ($query) {
-            $query->where('status', 1);
+            $query->where('status', 1)->where('role_id', 3);
         })->count();
 
         return [
             Stat::make('Total User SIA Aktif', $totalUserAktif)
                 ->descriptionIcon('heroicon-m-arrow-trending-up')
-                ->color('success')
+                ->color('info')
                 ->chart([7, 2, 10, 3, 15, 4, 17]),
             Stat::make('Total Tenaga TenDik Aktif', $totalTenagaTenDik)
                 ->descriptionIcon('heroicon-m-arrow-trending-down')
