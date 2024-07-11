@@ -44,9 +44,12 @@ class GuruStaffResource extends Resource
                         ->image()
                         ->imageEditor()
                         ->disk('public')
-                        ->directory('img/gurustaf'),
-                    TextInput::make('nama'),
-                    TextInput::make('jabatan'),
+                        ->directory('img/gurustaf')
+                        ->required(),
+                    TextInput::make('nama')
+                        ->required(),
+                    TextInput::make('jabatan')
+                        ->required(),
                 ])
             ]);
     }

@@ -38,8 +38,13 @@ class SiaSiswaPanelProvider extends PanelProvider
             ->passwordReset()
             ->emailVerification()
             ->colors([
-                'primary' => Color::Amber,
+                'primary' => '#61876e',
+                'gray' => 'rgb(107, 114, 128)',
             ])
+            ->brandLogo(asset('svg/logo.svg'))
+            ->darkModeBrandLogo(asset('svg/logo-dark.svg'))
+            ->brandLogoHeight('2.8rem')
+            ->favicon(asset('img/logo.png'))
             ->discoverResources(in: app_path('Filament/SiaSiswa/Resources'), for: 'App\\Filament\\SiaSiswa\\Resources')
             ->discoverPages(in: app_path('Filament/SiaSiswa/Pages'), for: 'App\\Filament\\SiaSiswa\\Pages')
             ->pages([
@@ -48,7 +53,7 @@ class SiaSiswaPanelProvider extends PanelProvider
             ->discoverWidgets(in: app_path('Filament/SiaSiswa/Widgets'), for: 'App\\Filament\\SiaSiswa\\Widgets')
             ->widgets([
                 Widgets\AccountWidget::class,
-                Widgets\FilamentInfoWidget::class,
+                // Widgets\FilamentInfoWidget::class,
             ])
             ->middleware([
                 EncryptCookies::class,

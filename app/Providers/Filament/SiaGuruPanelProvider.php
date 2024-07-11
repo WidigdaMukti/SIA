@@ -35,8 +35,13 @@ class SiaGuruPanelProvider extends PanelProvider
             ->emailVerification()
             ->breadcrumbs(false)
             ->colors([
-                'primary' => Color::Amber,
+                'primary' => '#61876e',
+                'gray' => 'rgb(107, 114, 128)',
             ])
+            ->brandLogo(asset('svg/logo.svg'))
+            ->darkModeBrandLogo(asset('svg/logo-dark.svg'))
+            ->brandLogoHeight('2.8rem')
+            ->favicon(asset('img/logo.png'))
             ->discoverResources(in: app_path('Filament/SiaGuru/Resources'), for: 'App\\Filament\\SiaGuru\\Resources')
             ->discoverPages(in: app_path('Filament/SiaGuru/Pages'), for: 'App\\Filament\\SiaGuru\\Pages')
             ->pages([
@@ -62,9 +67,9 @@ class SiaGuruPanelProvider extends PanelProvider
             ->authMiddleware([
                 Authenticate::class,
             ]);
-            // ->authGate('siaGuru')
-            // ->plugins([
-            //     FilamentEditProfilePlugin::make()
-            // ]);
+        // ->authGate('siaGuru')
+        // ->plugins([
+        //     FilamentEditProfilePlugin::make()
+        // ]);
     }
 }

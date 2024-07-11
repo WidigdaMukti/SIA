@@ -35,8 +35,14 @@ class SiaAdminPanelProvider extends PanelProvider
             ->breadcrumbs(false)
             ->sidebarCollapsibleOnDesktop()
             ->colors([
-                'primary' => Color::Amber,
+                'primary' => '#61876e',
+                'gray' => 'rgb(107, 114, 128)',
+
             ])
+            ->brandLogo(asset('svg/logo.svg'))
+            ->darkModeBrandLogo(asset('svg/logo-dark.svg'))
+            ->brandLogoHeight('2.8rem')
+            ->favicon(asset('img/logo.png'))
             ->discoverResources(in: app_path('Filament/SiaAdmin/Resources'), for: 'App\\Filament\\SiaAdmin\\Resources')
             ->discoverPages(in: app_path('Filament/SiaAdmin/Pages'), for: 'App\\Filament\\SiaAdmin\\Pages')
             ->pages([
@@ -62,9 +68,9 @@ class SiaAdminPanelProvider extends PanelProvider
             ->authMiddleware([
                 Authenticate::class,
             ]);
-            // ->authGate('siaAdmin')
-            // ->plugins([
-            //     FilamentEditProfilePlugin::make()
-            // ]);
+        // ->authGate('siaAdmin')
+        // ->plugins([
+        //     FilamentEditProfilePlugin::make()
+        // ]);
     }
 }

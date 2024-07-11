@@ -42,13 +42,17 @@ class EkstrakulikulerResource extends Resource
                         ->image()
                         ->imageEditor()
                         ->disk('public')
-                        ->directory('img/ekskul'),
-                    TextInput::make('nama'),
-                    TextInput::make('slug'),
+                        ->directory('img/ekskul')
+                        ->required(),
+                    TextInput::make('nama')
+                        ->required(),
+                    TextInput::make('slug')
+                        ->required(),
                     MarkdownEditor::make('content')
                         ->label('Content')
                         ->fileAttachmentsDisk('public')
-                        ->fileAttachmentsDirectory('img/ekskul'),
+                        ->fileAttachmentsDirectory('img/ekskul')
+                        ->required(),
                 ])
             ]);
     }

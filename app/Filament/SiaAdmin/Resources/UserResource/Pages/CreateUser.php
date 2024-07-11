@@ -50,6 +50,7 @@ class CreateUser extends CreateRecord
         } elseif ($user->role_id == 1 || $user->role_id == 2) {
             $adminGuru = new AdminGuru();
             $adminGuru->nik_guru = $user->nik;
+            $adminGuru->email = $user->email;
             // Isi kolom lainnya untuk admin/guru
             $adminGuru->save();
             return $adminGuru;

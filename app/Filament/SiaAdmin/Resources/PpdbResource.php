@@ -299,7 +299,7 @@ class PpdbResource extends Resource
                 Section::make([
                     Forms\Components\ToggleButtons::make('status')
                         ->inline()
-                        ->options(EnumsPpdbStatus::class)
+                        ->options(PpdbStatus::class)
                 ])->columnSpan(1)
             ])->columns(3);
     }
@@ -330,17 +330,17 @@ class PpdbResource extends Resource
             ])
             ->actions([
                 Action::make('Diterima')
-                ->icon('heroicon-m-check-badge')
-                ->color('success')
-                ->action(function ($record) {
-                    return (new PpdbController)->diterima($record->id);
-                }),
+                    ->icon('heroicon-m-check-badge')
+                    ->color('success')
+                    ->action(function ($record) {
+                        return (new PpdbController)->diterima($record->id);
+                    }),
                 Action::make('Ditolak')
-                ->icon('heroicon-m-x-circle')
-                ->color('danger')
-                ->action(function ($record) {
-                    return (new PpdbController)->ditolak($record->id);
-                }),
+                    ->icon('heroicon-m-x-circle')
+                    ->color('danger')
+                    ->action(function ($record) {
+                        return (new PpdbController)->ditolak($record->id);
+                    }),
                 // Tables\Actions\EditAction::make(),
             ])
             ->bulkActions([

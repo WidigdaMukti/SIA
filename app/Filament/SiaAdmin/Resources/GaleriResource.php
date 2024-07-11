@@ -42,8 +42,10 @@ class GaleriResource extends Resource
                         ->image()
                         ->imageEditor()
                         ->disk('public')
-                        ->directory('img/galeri'),
-                    TextInput::make('judul'),
+                        ->directory('img/galeri')
+                        ->required(),
+                    TextInput::make('judul')
+                        ->required(),
                     FileUpload::make('gambar')
                         ->label('Gambar')
                         ->multiple()
@@ -51,7 +53,8 @@ class GaleriResource extends Resource
                         ->image()
                         ->imageEditor()
                         ->disk('public')
-                        ->directory('img/galeri'),
+                        ->directory('img/galeri')
+                        ->required(),
                 ])
             ]);
     }
