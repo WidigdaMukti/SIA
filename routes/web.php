@@ -32,23 +32,19 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [BeritaController::class, 'index'])->name('Beranda');
 
-Route::get('/program', [ProgramController::class, 'index'])->name('Program');
-
-Route::get('/prestasi', [PrestasiController::class, 'index'])->name('Prestasi');
-
-Route::get('/ekstrakulikuler', [EkstrakulikulerController::class, 'index'])->name('Ekstrakulikuler');
-
 Route::get('/guru-karyawan', [GuruStaffController::class, 'index']);
 
-Route::get('/Berita/{id}', [BeritaController::class, 'indexContentBerita'])->name('berita');
+Route::get('/program', [ProgramController::class, 'index'])->name('Program');
+Route::get('/program/{id}', [ProgramController::class, 'indexContentProgram'])->name('program');
 
-Route::get('/Program/{id}', [ProgramController::class, 'indexContentProgram'])->name('program');
+Route::get('/prestasi', [PrestasiController::class, 'index'])->name('Prestasi');
+Route::get('/prestasi/{id}', [PrestasiController::class, 'indexContentPrestasi'])->name('prestasi');
 
-Route::get('/Prestasi/{id}', [PrestasiController::class, 'indexContentPrestasi'])->name('prestasi');
+Route::get('/ekstrakulikuler', [EkstrakulikulerController::class, 'index'])->name('Ekstrakulikuler');
+Route::get('/ekstrakulikuler/{id}', [EkstrakulikulerController::class, 'indexContentEkskul'])->name('ekskul');
 
-Route::get('/Ekstrakulikuler/{id}', [EkstrakulikulerController::class, 'indexContentEkskul'])->name('ekskul');
-
-Route::get('/Informasi', [BeritaController::class, 'infoUmum'])->name('info-umum');
+Route::get('/informasi', [BeritaController::class, 'infoUmum'])->name('info-umum');
+Route::get('/informasi/{id}', [BeritaController::class, 'indexContentBerita'])->name('berita');
 
 Route::get('/galeri', [GaleriController::class, 'index'])->name('galeri.index');
 Route::get('/galeri/{galeri}', [GaleriController::class, 'show'])->name('galeri.show');

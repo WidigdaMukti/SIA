@@ -16,7 +16,7 @@ return new class extends Migration
             $table->unsignedBigInteger('nik_siswa');
             // $table->foreignId('nik_siswa')->constrained('siswas');
 
-            $table->integer('nik_ayah')->nullable();
+            $table->bigInteger('nik_ayah')->nullable();
             $table->string('nama_lengkap_ayah')->nullable();
             $table->string('tempat_lahir_ayah')->nullable();
             $table->date('tanggal_lahir_ayah')->nullable();
@@ -29,7 +29,7 @@ return new class extends Migration
             $table->text('alamat_rumah_ayah')->nullable();
             $table->bigInteger('no_hp_ayah')->nullable();
 
-            $table->integer('nik_wali')->nullable();
+            $table->bigInteger('nik_wali')->nullable();
             $table->string('nama_lengkap_wali')->nullable();
             $table->string('tempat_lahir_wali')->nullable();
             $table->date('tanggal_lahir_wali')->nullable();
@@ -42,7 +42,7 @@ return new class extends Migration
             $table->text('alamat_rumah_wali')->nullable();
             $table->bigInteger('no_hp_wali')->nullable();
 
-            $table->integer('nik_ibu')->nullable();
+            $table->bigInteger('nik_ibu')->nullable();
             $table->string('nama_lengkap_ibu')->nullable();
             $table->string('tempat_lahir_ibu')->nullable();
             $table->date('tanggal_lahir_ibu')->nullable();

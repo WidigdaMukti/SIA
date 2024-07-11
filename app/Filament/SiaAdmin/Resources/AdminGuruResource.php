@@ -39,7 +39,7 @@ class AdminGuruResource extends Resource
 
     protected static ?string $label = 'Admin & Guru';
 
-    public static ?string $recordTitleAttribute = 'nama_lengkap';
+    public static ?string $recordTitleAttribute = 'nama_lengkap_tendik';
 
     public static function form(Form $form): Form
     {
