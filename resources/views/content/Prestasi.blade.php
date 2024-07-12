@@ -24,7 +24,7 @@
                     {{ $prestasi->slug }}
                 </p> --}}
                 <p class="card-text text-gray responsive-text-normal"
-                    style="display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical; overflow: hidden;">
+                    style="display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical; overflow: hidden; text-align: justify;">
                     {!! convertMarkdownToHtml($prestasi->content) !!}
                 </p>
             </div>

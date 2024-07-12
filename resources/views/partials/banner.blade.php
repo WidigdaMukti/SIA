@@ -19,6 +19,8 @@
                 @endphp
                 @foreach ($items as $key => $item)
                     @php
+                        // Ganti tanda hubung dengan spasi
+                        $item = str_replace('-', ' ', $item);
                         $pathAccumulated .= $item . '/';
                     @endphp
                     @if ($loop->last)

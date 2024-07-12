@@ -39,7 +39,7 @@ class SiaAdminPanelProvider extends PanelProvider
                 'gray' => 'rgb(107, 114, 128)',
 
             ])
-            ->brandLogo(asset('svg/logo.svg'))
+            ->brandLogo(asset('svg/logo-light.svg'))
             ->darkModeBrandLogo(asset('svg/logo-dark.svg'))
             ->brandLogoHeight('2.8rem')
             ->favicon(asset('img/logo.png'))
