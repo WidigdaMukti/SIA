@@ -17,6 +17,38 @@
             margin-bottom: 20px;
         }
 
+        .kop-surat {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        .kop-surat img {
+            height: 100px;
+            /* Sesuaikan ukuran logo */
+        }
+
+        .kop-surat .text-center {
+            text-align: center;
+            flex-grow: 1;
+            margin: 0 20px;
+            /* Memberi jarak antara logo dan teks */
+        }
+
+        .kop-surat .text-center h2,
+        .kop-surat .text-center h3,
+        .kop-surat .text-center h4 {
+            margin: 5px 0;
+        }
+
+        hr {
+            border: 0;
+            border-top: 2px solid #000;
+            /* Garis bawah */
+            margin-bottom: 20px;
+        }
+
         .card {
             border: 1px solid #ccc;
             padding: 10px;
@@ -33,7 +65,6 @@
         .card-content {
             padding: 10px;
         }
-
 
         table {
             width: 100%;
@@ -70,6 +101,18 @@
 
 <body>
     <div class="container">
+        <div class="kop-surat">
+            <img src="{{ url('svg/logo-sdit.svg') }}" alt="Logo 1">
+            <div class="text-center">
+                <h2>YAYASAN AL QUDWAH TEMANGGUNG</h2>
+                <h3>SEKOLAH DASAR ISLAM TERPADU (SDIT)</h3>
+                <h4>“AL QUDWAH NGADIREJO”</h4>
+                <p>Demangan Rt 8 Rw 5 Ngadirejo 56255</p>
+            </div>
+            <img src="{{ url('img/logo-jsit.png') }}" alt="Logo 2">
+        </div>
+        <hr>
+
         <h1>Raport {{ $dataRaport->siswa->nama_lengkap }}</h1>
 
         <!-- Biodata Siswa -->

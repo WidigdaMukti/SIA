@@ -75,36 +75,6 @@ Route::get('/yayasan', function () {
     ]);
 });
 
-// Route::get('/guru-karyawan', function () {
-//     return view('guru-karyawan', [
-//         "title" => "Guru & Karyawan",
-//     ]);
-// });
-
-// Route::get('/program', function () {
-//     return view('program', [
-//         "title" => "Program",
-//     ]);
-// });
-
-// Route::get('/prestasi', function () {
-//     return view('prestasi', [
-//         "title" => "Prestasi",
-//     ]);
-// });
-
-// Route::get('/ekstrakulikuler', function () {
-//     return view('ekstrakulikuler', [
-//         "title" => "Ekstrakulikuler",
-//     ]);
-// });
-
-// Route::get('/informasi-umum', function () {
-//     return view('info-umum', [
-//         "title" => "Informasi Umum",
-//     ]);
-// });
-
 Route::get('/informasi-ppdb', function () {
     return view('info-ppdb', [
         "title" => "Informasi PPDB",
@@ -116,24 +86,6 @@ Route::get('/sistem-informasi', function () {
         "title" => "Sistem Informasi",
     ]);
 });
-
-// Route::get('/galeri', function () {
-//     return view('galeri', [
-//         "title" => "Galeri",
-//     ]);
-// });
-
-// Route::get('/card-content', function () {
-//     return view('card-content', [
-//         "title" => "Content",
-//     ]);
-// });
-
-// Route::get('/detail-galeri', function () {
-//     return view('content.detail-galeri', [
-//         "title" => "Detail Galeri",
-//     ]);
-// });
 
 Route::get('/download/{id}', [PdfExportController::class, 'exportPdf'])->name('export.pdf');
 Route::get('/download/{id}', [PdfExportController::class, 'downloadPdf'])->name('export.pdf');
