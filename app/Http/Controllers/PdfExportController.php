@@ -31,28 +31,6 @@ class PdfExportController extends Controller
         return view('exports.pdf', compact('dataRaport'));
     }
 
-    // public function exportPdf($id)
-    // {
-    //     // Retrieve data RaportSiswa based on $id
-    //     $dataRaport = RaportSiswa::find($id);
-
-    //     // Load the view and pass the data
-    //     $html = view('exports.pdf', compact('dataRaport'))->render();
-
-    //     // Instantiate and use the dompdf class
-    //     $dompdf = new Dompdf();
-    //     $dompdf->loadHtml($html);
-
-    //     // (Optional) Setup the paper size and orientation
-    //     $dompdf->setPaper('A4', 'portrait');
-
-    //     // Render the HTML as PDF
-    //     $dompdf->render();
-
-    //     // Output the generated PDF to Browser
-    //     return $dompdf->stream('raport-siswa.pdf', ['Attachment' => 1]);
-    // }
-
     public function downloadPdf($id)
     {
         // Retrieve data RaportSiswa based on $id
@@ -65,6 +43,7 @@ class PdfExportController extends Controller
         // Instantiate DomPDF with options
         $options = new Options();
         $options->set('defaultFont', 'Arial');
+
         $dompdf = new Dompdf($options);
 
         // Load the view and pass the data
@@ -77,22 +56,4 @@ class PdfExportController extends Controller
         // Stream the PDF with the name 'raport-siswa.pdf'
         return $dompdf->stream('raport-siswa.pdf');
     }
-
-    // public function generatePdf(Request $request)
-    // {
-    //     // Buat objek Infolist (asumsikan Anda tahu cara membuatnya)
-    //     $infolist = new Infolist(); // Pastikan ini objek Infolist yang sesuai
-
-    //     // Panggil method infolist dari RaportSiswaResource dengan objek Infolist sebagai argumen
-    //     $result = RaportSiswaResource::infolist($infolist);
-
-    //     // Render view 'pdf.infolist' dengan data $infolist ke dalam PDF
-    //     $pdf = PDF::loadView('pdf.infolist', compact('infolist'));
-
-    //     // Optional: Set nama file PDF yang akan di-download
-    //     $pdf->setPaper('A4', 'portrait');
-
-    //     // Return PDF sebagai response
-    //     return $pdf->stream('infolist.pdf');
-    // }
 }
