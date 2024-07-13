@@ -33,7 +33,7 @@ class SiaSiswaPanelProvider extends PanelProvider
             ->profile()
             ->id('siaSiswa')
             ->path('siaSiswa')
-            ->sidebarFullyCollapsibleOnDesktop()
+            ->sidebarCollapsibleOnDesktop()
             ->breadcrumbs(false)
             ->passwordReset()
             ->emailVerification()

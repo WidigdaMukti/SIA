@@ -25,52 +25,28 @@ class ListRaportSiswas extends ListRecords
             "Semua Kelas" => Tab::make('Semua Kelas'),
             "Kelas 1" => Tab::make()
                 ->modifyQueryUsing(function (Builder $query) {
-                    return $query->whereHas('siswa', function ($query) {
-                        $query->whereHas('raportSiswa', function ($query) {
-                            $query->where('kelas', 'I / Satu');
-                        });
-                    });
+                    return $query->where('kelas', 'I / Satu');
                 }),
             "Kelas 2" => Tab::make()
                 ->modifyQueryUsing(function (Builder $query) {
-                    return $query->whereHas('siswa', function ($query) {
-                        $query->whereHas('raportSiswa', function ($query) {
-                            $query->where('kelas', 'II / Dua');
-                        });
-                    });
+                    return $query->where('kelas', 'II / Dua');
                 }),
             "Kelas 3" => Tab::make()
                 ->modifyQueryUsing(function (Builder $query) {
-                    return $query->whereHas('siswa', function ($query) {
-                        $query->whereHas('raportSiswa', function ($query) {
-                            $query->where('kelas', 'III / Tiga');
-                        });
-                    });
+                    return $query->where('kelas', 'III / Tiga');
                 }),
             "Kelas 4" => Tab::make()
                 ->modifyQueryUsing(function (Builder $query) {
-                    return $query->whereHas('siswa', function ($query) {
-                        $query->whereHas('raportSiswa', function ($query) {
-                            $query->where('kelas', 'IV / Empat');
-                        });
-                    });
+                    return $query->where('kelas', 'IV / Empat');
                 }),
             "Kelas 5" => Tab::make()
                 ->modifyQueryUsing(function (Builder $query) {
-                    return $query->whereHas('siswa', function ($query) {
-                        $query->whereHas('raportSiswa', function ($query) {
-                            $query->where('kelas', 'V / Lima');
-                        });
-                    });
+                    return $query->where('kelas', 'V / Lima');
                 }),
             "Kelas 6" => Tab::make()
                 ->modifyQueryUsing(function (Builder $query) {
-                    return $query->whereHas('siswa', function ($query) {
-                        $query->whereHas('raportSiswa', function ($query) {
-                            $query->where('kelas', 'VI / Enam');
-                        });
-                    });
-                }),
+                    return $query->where('kelas', 'VI / Enam');
+                })
         ];
     }
 }

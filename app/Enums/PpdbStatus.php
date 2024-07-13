@@ -10,7 +10,7 @@ enum PpdbStatus: string implements HasColor, HasIcon, HasLabel
 {
     case Baru = 'baru';
 
-    case Pending = 'pending';
+    // case Pending = 'pending';
 
     case Diterima = 'diterima';
 
@@ -20,7 +20,7 @@ enum PpdbStatus: string implements HasColor, HasIcon, HasLabel
     {
         return match ($this) {
             self::Baru => 'Baru',
-            self::Pending => 'Processing',
+            // self::Pending => 'Processing',
             self::Diterima => 'Diterima',
             self::Ditolak => 'Ditolak',
         };
@@ -30,7 +30,7 @@ enum PpdbStatus: string implements HasColor, HasIcon, HasLabel
     {
         return match ($this) {
             self::Baru => 'info',
-            self::Pending => 'warning',
+            // self::Pending => 'warning',
             self::Diterima => 'success',
             self::Ditolak => 'danger',
         };
@@ -40,7 +40,7 @@ enum PpdbStatus: string implements HasColor, HasIcon, HasLabel
     {
         return match ($this) {
             self::Baru => 'heroicon-m-sparkles',
-            self::Pending => 'heroicon-m-arrow-path',
+            // self::Pending => 'heroicon-m-arrow-path',
             self::Diterima => 'heroicon-m-check-badge',
             self::Ditolak => 'heroicon-m-x-circle',
         };

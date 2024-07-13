@@ -16,7 +16,7 @@ class PpdbFactory extends Factory
      */
     public function definition(): array
     {
-        $status = $this->faker->randomElement(['baru', 'pending', 'ditolak', 'diterima']);
+        $status = $this->faker->randomElement(['baru', 'ditolak', 'diterima']);
         $nama_lengkap = $this->faker->name;
         $nik = $this->faker->randomNumber(9);
         $jenis_kelamin = $this->faker->randomElement(['Laki-laki', 'Perempuan']);

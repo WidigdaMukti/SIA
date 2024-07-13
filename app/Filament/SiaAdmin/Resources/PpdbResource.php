@@ -25,9 +25,16 @@ use Filament\Forms\Components\Wizard\Step;
 use Filament\Infolists\Components\TextEntry;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use App\Filament\SiaAdmin\Resources\PpdbResource\Pages;
+use App\Filament\SiaAdmin\Resources\PpdbResource\Pages\ViewPpdb;
 use App\Filament\SiaAdmin\Resources\PpdbResource\RelationManagers;
 use App\Http\Controllers\PpdbController;
+use Filament\Infolists\Components\Card as ComponentsCard;
+use Filament\Infolists\Components\Section as ComponentsSection;
+use Filament\Infolists\Components\Tabs;
+use Filament\Infolists\Components\Tabs\Tab;
+use Filament\Infolists\Infolist;
 use Filament\Tables\Actions\Action;
+use Filament\Tables\Actions\ViewAction;
 
 class PpdbResource extends Resource
 {
@@ -331,6 +338,7 @@ class PpdbResource extends Resource
                 //
             ])
             ->actions([
+                ViewAction::make(),
                 Action::make('Diterima')
                     ->icon('heroicon-m-check-badge')
                     ->color('success')
@@ -352,6 +360,114 @@ class PpdbResource extends Resource
             ]);
     }
 
+    public static function infolist(Infolist $infolist): Infolist
+    {
+        return $infolist
+            ->schema([
+                ComponentsCard::make([
+                    Tabs::make('Tabs')
+                        ->tabs([
+                            Tabs\Tab::make('Biodata Peserta Didik')
+                                ->schema([
+                                    TextEntry::make('nik')
+                                        ->label('NIK Peserta Didik'),
+                                    TextEntry::make('nama_lengkap')
+                                        ->label('Nama Lengkap'),
+                                    TextEntry::make('jenis_kelamin')
+                                        ->label('Jenis Kelamin'),
+                                    TextEntry::make('tempat_lahir')
+                                        ->label('Tempat Lahir'),
+                                    TextEntry::make('tanggal_lahir')
+                                        ->label('Tanggal Lahir'),
+                                    TextEntry::make('agama'),
+                                    TextEntry::make('kewarganegaraan'),
+                                    TextEntry::make('jumlah_saudara_kandung')
+                                        ->label('Jumlah Saudara Kandung'),
+                                    TextEntry::make('jumlah_saudara_tiri'),
+                                    TextEntry::make('jumlah_saudara_angkat')
+                                        ->label('Jumlah Saudara Angkat'),
+                                    TextEntry::make('bahasa_sehari_hari')
+                                        ->label('Bahasa Sehari-hari'),
+                                    TextEntry::make('berat_badan')
+                                        ->label('Berat Badan'),
+                                    TextEntry::make('tinggi_badan')
+                                        ->label('Tinggi Badan'),
+                                    TextEntry::make('golongan_darah')
+                                        ->label('Golongan Darah'),
+                                    TextEntry::make('alamat')
+                                        ->label('Alamat Rumah'),
+                                    TextEntry::make('bertempat_tinggal')
+                                        ->label('Bertempat Tinggal'),
+                                    TextEntry::make('masuk_sekolah_sebagai')
+                                        ->label('Masuk Sekolah Sebagai'),
+                                    TextEntry::make('asal_anak')
+                                        ->label('Asal Anak'),
+                                    TextEntry::make('nama_tk')
+                                        ->label('Nama Taman Kanak-kanak'),
+                                    TextEntry::make('nomor_tahun_surat_keterangan')
+                                        ->label('No Tahun Surat Keterangan'),
+                                    TextEntry::make('lama_belajar')
+                                        ->label('Lama Belajar')
+                                        ->helperText('Dalam Tahun'),
+                                ])->columns(3),
+                            Tabs\Tab::make('Data Ayah atau Wali')
+                                ->schema([
+                                    TextEntry::make('nama_ayah')
+                                        ->label('Nama Ayah'),
+                                    TextEntry::make('tempat_lahir_ayah')
+                                        ->label('Tempat lahir'),
+                                    TextEntry::make('tanggal_lahir_ayah')
+                                        ->label('Tanggal Lahir'),
+                                    TextEntry::make('agama_ayah'),
+                                    TextEntry::make('kewarganegaraan_ayah'),
+                                    TextEntry::make('pendidikan_terakhir_ayah'),
+                                    TextEntry::make('pekerjaan_ayah')
+                                        ->label('Pekerjaan'),
+                                    TextEntry::make('gaji_perbulan_ayah')
+                                        ->label('Gaji Perbulan Ayah'),
+                                    TextEntry::make('alamat_rumah_ayah')
+                                        ->label('Alamat Rumah'),
+                                    TextEntry::make('alamat_kantor_ayah')
+                                        ->label('Alamat Kantor'),
+                                    TextEntry::make('alamat_kantor_ayah')
+                                        ->label('Alamat Kantor'),
+                                    TextEntry::make('nomor_telepon_hp_ayah')
+                                        ->label('Nomor Telepon'),
+                                ])->columns(2),
+                            Tabs\Tab::make('Data Ibu')
+                                ->schema([
+                                    TextEntry::make('nama_ibu')
+                                        ->label('Nama Ibu'),
+                                    TextEntry::make('tempat_lahir_ibu')
+                                        ->label('Tempat lahir'),
+                                    TextEntry::make('tanggal_lahir_ibu')
+                                        ->label('Tanggal Lahir'),
+                                    TextEntry::make('agama_ibu'),
+                                    TextEntry::make('kewarganegaraan_ibu')
+                                        ->label('Kewarganegaraan Ibu'),
+                                    TextEntry::make('pendidikan_terakhir_ibu')
+                                        ->label('Pendidikan Terakhir Ibu'),
+                                    TextEntry::make('pekerjaan_ibu')
+                                        ->label('Pekerjaan Ibu'),
+                                    TextEntry::make('gaji_perbulan_ibu')
+                                        ->label('Gaji Perbulan Ibu'),
+                                    TextEntry::make('alamat_rumah_ibu')
+                                        ->label('Alamat Rumah'),
+                                    TextEntry::make('alamat_kantor_ibu')
+                                        ->label('Alamat Kantor'),
+                                    TextEntry::make('alamat_kantor_ibu')
+                                        ->label('Alamat Kantor'),
+                                    TextEntry::make('nomor_telepon_hp_ibu')
+                                        ->label('Nomor Telepon'),
+                                ])->columns(2),
+                        ])->columnSpanFull()
+                        ->contained(false),
+                ])
+
+
+            ]);
+    }
+
     public static function getRelations(): array
     {
         return [
@@ -365,6 +481,7 @@ class PpdbResource extends Resource
             'index' => Pages\ListPpdbs::route('/'),
             'create' => Pages\CreatePpdb::route('/create'),
             'edit' => Pages\EditPpdb::route('/{record}/edit'),
+            'view' => ViewPpdb::route('/{record}')
         ];
     }
 
