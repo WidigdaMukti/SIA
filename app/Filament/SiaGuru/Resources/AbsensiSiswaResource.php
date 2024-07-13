@@ -32,6 +32,8 @@ class AbsensiSiswaResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-pencil-square';
 
+    protected static ?int $navigationSort = 0;
+
     public static function form(Form $form): Form
     {
         return $form
@@ -98,18 +100,26 @@ class AbsensiSiswaResource extends Resource
                 ->getStateUsing(function (AbsensiSiswa $absensiSiswa)
                 {
                     return ucwords($absensiSiswa->absenSiswa->nama_lengkap);
+                })
+                ->searchable(query: function (Builder $query, string $search): Builder {
+                    return $query->whereHas('absenSiswa', function ($query) use ($search) {
+                        $query->where('nama_lengkap', 'like', '%' . $search . '%');
+                    });
                 }),
-                // ->searchable(query: function (Builder $query, string $search): Builder {
-                //     return $query->whereHas('absenSiswa', function ($query) use ($search) {
-                //         $query->where('nama_lengkap', 'like', '%' . $search . '%');
-                //     });
-                // }),
             TextColumn::make('mapel.nama_mapel')
                 ->label('Mata Pelajaran')
                 ->getStateUsing(function (AbsensiSiswa $absensiSiswa)
                 {
                     return ucwords($absensiSiswa->mapel ? $absensiSiswa->mapel->nama_mapel : 'Belum ada mapel');
-                })
+                }),
+            TextColumn::make('absenSiswa.kelas.tingkat_kelas')
+                ->label('Tingkat Kelas'),
+            TextColumn::make('absenSiswa.kelas.semester')
+                ->label('Tingkat Kelas')
+                // ->getStateUsing(function (AbsensiSiswa $absensiSiswa)
+                // {
+                //     return $absensiSiswa->kelas ? $absensiSiswa->kelas->tingkat_kelas : 'Belum ada kelas';
+                // }),
             //     ->searchable(query: function (Builder $query, string $search): Builder {
             //         return $query->whereHas('mapel', function ($query) use ($search) {
             //             $query->where('nama_mapel', 'like', '%' . $search . '%');

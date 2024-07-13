@@ -29,7 +29,7 @@ class SiaGuruPanelProvider extends PanelProvider
             ->id('siaGuru')
             ->login()
             ->path('siaGuru')
-            ->sidebarFullyCollapsibleOnDesktop()
+            ->sidebarCollapsibleOnDesktop()
             ->profile()
             ->passwordReset()
             ->emailVerification()
