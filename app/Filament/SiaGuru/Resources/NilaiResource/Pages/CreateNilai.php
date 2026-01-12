@@ -9,4 +9,9 @@ use Filament\Resources\Pages\CreateRecord;
 class CreateNilai extends CreateRecord
 {
     protected static string $resource = NilaiResource::class;
+    
+    protected function getRedirectUrl(): string
+    {
+        return route('filament.siaGuru.resources.nilais.index');
+    }
 }

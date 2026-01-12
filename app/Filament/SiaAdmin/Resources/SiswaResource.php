@@ -25,6 +25,7 @@ use Filament\Forms\Components\Card;
 use Filament\Forms\Components\Wizard;
 use Filament\Forms\Components\Wizard\Step;
 use Illuminate\Database\Eloquent\Model;
+use Filament\Tables\Actions\ActionGroup as ActionsActionGroup;
 
 class SiswaResource extends Resource
 {
@@ -49,22 +50,25 @@ class SiswaResource extends Resource
                         ->schema([
                             TextInput::make('nik_siswa')
                                 ->label('NIK Peserta Didik')
-                                ->required(),
+                                ->required()
+                                ->numeric(),
                             TextInput::make('no_kk')
                                 ->label('No Kartu Keluarga')
-                                ->required(),
+                                ->required()
+                                ->numeric(),
                             TextInput::make('nisn')
                                 ->label('NISN')
-                                ->required(),
+                                ->required()
+                                ->numeric(),
                             TextInput::make('nipd')
                                 ->label('NIPD')
-                                ->required(),
+                                ->required()
+                                ->numeric(),
                             TextInput::make('nama_lengkap')
                                 ->label('Nama Lengkap')
                                 ->required()
                                 ->autocapitalize('words'),
-                            TextInput::make('email')
-                                ->required(),
+                            TextInput::make('email'),
                             Select::make('jenis_kelamin')
                                 ->label('Jenis Kelamin')
                                 ->required()
@@ -95,6 +99,10 @@ class SiswaResource extends Resource
                                     'WNA' => 'WNA',
                                     'Keturunan' => 'Keturunan',
                                 ]),
+                            TextInput::make('anak_ke')
+                                ->label('Anak Ke-Berapa')
+                                ->required()
+                                ->numeric(),
                             TextInput::make('jumlah_saudara_kandung')
                                 ->label('Jumlah Saudara Kandung')
                                 ->numeric()
@@ -132,7 +140,7 @@ class SiswaResource extends Resource
                                     'AB' => 'AB',
                                     'O' => 'O',
                                 ]),
-                            Textarea::make('alamat rumah')
+                            Textarea::make('alamat')
                                 ->label('Alamat Rumah'),
                             TextInput::make('nomor_telepon')
                                 ->label('Nomor Telepon')
@@ -211,7 +219,8 @@ class SiswaResource extends Resource
                                     'Tidak' => 'Tidak',
                                 ]),
                             TextInput::make('nomor_kip')
-                                ->label('Nomor KIP'),
+                                ->label('Nomor KIP')
+                                ->numeric(),
                             TextInput::make('nama_kip')
                                 ->label('Nama KIP')
                                 ->autocapitalize('words'),
@@ -222,7 +231,8 @@ class SiswaResource extends Resource
                             TextInput::make('bank')
                                 ->label('Bank'),
                             TextInput::make('no_rek_bank')
-                                ->label('No Rekening Bank'),
+                                ->label('No Rekening Bank')
+                                ->numeric(),
                             TextInput::make('rek_atas_nama')
                                 ->label('Rekening Atas Nama')
                                 ->autocapitalize('words'),
@@ -292,8 +302,10 @@ class SiswaResource extends Resource
             ])
             ->actions([
                 Tables\Actions\ViewAction::make(),
-                Tables\Actions\EditAction::make(),
-                // Tables\Actions\DeleteAction::make(),
+                ActionsActionGroup::make([
+                    Tables\Actions\EditAction::make(),
+                    Tables\Actions\DeleteAction::make(),
+                ]),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([

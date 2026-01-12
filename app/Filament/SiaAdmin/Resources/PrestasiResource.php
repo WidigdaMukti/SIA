@@ -41,7 +41,7 @@ class PrestasiResource extends Resource
                         ->preserveFilenames()
                         ->image()
                         ->imageEditor()
-                        ->disk('public')
+                        // ->disk('public')
                         ->directory('img/prestasi')
                         ->required(),
                     TextInput::make('nama')

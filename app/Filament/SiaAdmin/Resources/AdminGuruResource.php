@@ -24,6 +24,7 @@ use App\Filament\SiaAdmin\Resources\AdminGuruResource\Pages;
 use App\Filament\SiaAdmin\Resources\AdminGuruResource\RelationManagers;
 use Filament\Forms\Components\FileUpload;
 use Filament\Tables\Columns\ImageColumn;
+use Filament\Tables\Actions\ActionGroup as ActionsActionGroup;
 
 class AdminGuruResource extends Resource
 {
@@ -39,7 +40,7 @@ class AdminGuruResource extends Resource
 
     protected static ?string $label = 'Admin & Guru';
 
-    public static ?string $recordTitleAttribute = 'nama_lengkap';
+    public static ?string $recordTitleAttribute = 'nama_lengkap_tendik';
 
     public static function form(Form $form): Form
     {
@@ -113,20 +114,20 @@ class AdminGuruResource extends Resource
 
                         Step::make('Lengkapi Data Pendidik')
                                 ->schema([
-                                    Select::make('status_kepegawaian')
+                                    TextInput::make('status_kepegawaian')
                                         ->label('Status Kepegawaian')
-                                        ->required()
-                                        ->options([
-                                            'GTY/PTY' => 'GTY/PTY',
-                                            'Guru Honor Sekolah' => 'Guru Honor Sekolah',
-                                        ]),
-                                    Select::make('jenis_ptk')
+                                        ->required(),
+                                        // ->options([
+                                        //     'GTY/PTY' => 'GTY/PTY',
+                                        //     'Guru Honor Sekolah' => 'Guru Honor Sekolah',
+                                        // ]),
+                                    TextInput::make('jenis_ptk')
                                         ->label('Jenis PTK')
-                                        ->required()
-                                        ->options([
-                                            'Guru Mapel' => 'Guru Mapel',
-                                            'Guru Kelas' => 'Guru kelas',
-                                        ]),
+                                        ->required(),
+                                        // ->options([
+                                        //     'Guru Mapel' => 'Guru Mapel',
+                                        //     'Guru Kelas' => 'Guru kelas',
+                                        // ]),
                                     TextInput::make('tugas_tambahan')
                                         ->label('Tugas Tambahan'),
                                     TextInput::make('sk_cpns')
@@ -156,7 +157,8 @@ class AdminGuruResource extends Resource
                                     TextInput::make('nama_suami_atau_istri')
                                         ->label('Nama Suami/Istri'),
                                     TextInput::make('nip_suami_atau_istri')
-                                        ->label('NIP Suami/Istri'),
+                                        ->label('NIP Suami/Istri')
+                                        ->numeric(),
                                     TextInput::make('pekerjaan_suami_atau_istri')
                                         ->label('Pekerjaan Suami/Istri'),
                                     TextInput::make('tmt_pns')
@@ -196,7 +198,8 @@ class AdminGuruResource extends Resource
                                     TextInput::make('bank')
                                         ->label('Bank'),
                                     TextInput::make('norek_bank')
-                                        ->label('No Rekening Bank'),
+                                        ->label('No Rekening Bank')
+                                        ->numeric(),
                                     TextInput::make('rek_anama')
                                         ->label('Rekening Atas Nama'),
                                     Select::make('karpeg')
@@ -260,8 +263,10 @@ class AdminGuruResource extends Resource
             ])
             ->actions([
                 Tables\Actions\ViewAction::make(),
-                Tables\Actions\EditAction::make(),
-                // Tables\Actions\DeleteAction::make(),
+                ActionsActionGroup::make([
+                    Tables\Actions\EditAction::make(),
+                    Tables\Actions\DeleteAction::make(),
+                ]),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([

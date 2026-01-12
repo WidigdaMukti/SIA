@@ -41,4 +41,14 @@ class AdminGuru extends Model
             $query->where('status', 1)->where('role_id', 2);
         });
     }
+    
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::deleting(function ($adminGuru) {
+            // Hapus user terkait
+            $adminGuru->user()->delete();
+        });
+    }
 }

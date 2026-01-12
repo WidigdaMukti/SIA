@@ -51,7 +51,7 @@ class JadwalMapelResource extends Resource
                         return MapelKelas::activeKelas()
                             ->get()
                             ->mapWithKeys(function ($mapelKelas) {
-                                $guru = $mapelKelas->guruMapel->nama_lengkap;
+                                $guru = $mapelKelas->guruMapel->nama_lengkap_tendik;
                                 $mapel = $mapelKelas->nama_mapel;
                                 $tingkatKelas = $mapelKelas->kelas->tingkat_kelas;
                                 $semester = $mapelKelas->kelas->semester;

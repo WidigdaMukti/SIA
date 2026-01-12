@@ -44,7 +44,7 @@ class KelasResource extends Resource
                             ->get()
                             ->mapWithKeys(function ($guru) {
                                 // $nikGuruMapel = $guru->nik_guru;
-                                $namaGuruMapel = $guru->nama_lengkap;
+                                $namaGuruMapel = $guru->nama_lengkap_tendik;
                                 // $label = "$nikGuruMapel / $namaGuruMapel";
                                 $label = "$namaGuruMapel";
                                 return [$guru->nik_guru => $label];

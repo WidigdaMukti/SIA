@@ -9,4 +9,9 @@ use Filament\Resources\Pages\CreateRecord;
 class CreateJadwalMapel extends CreateRecord
 {
     protected static string $resource = JadwalMapelResource::class;
+    
+    protected function getRedirectUrl(): string
+    {
+        return route('filament.siaAdmin.resources.jadwal-mapels.index');
+    }
 }

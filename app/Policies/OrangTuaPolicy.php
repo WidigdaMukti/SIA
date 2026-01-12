@@ -29,7 +29,7 @@ class OrangTuaPolicy
      */
     public function create(User $user): bool
     {
-        return false;
+        return $user->role_id == 1;
     }
 
     /**
@@ -37,7 +37,7 @@ class OrangTuaPolicy
      */
     public function update(User $user, OrangTua $orangTua): bool
     {
-        return true;
+        return $user->role_id == 1;
     }
 
     /**
@@ -45,7 +45,7 @@ class OrangTuaPolicy
      */
     public function delete(User $user, OrangTua $orangTua): bool
     {
-        return true;
+        return $user->role_id == 1;
     }
 
     /**
@@ -53,7 +53,7 @@ class OrangTuaPolicy
      */
     public function restore(User $user, OrangTua $orangTua): bool
     {
-        return true;
+        return $user->role_id == 1;
     }
 
     /**
@@ -61,6 +61,6 @@ class OrangTuaPolicy
      */
     public function forceDelete(User $user, OrangTua $orangTua): bool
     {
-        return true;
+        return $user->role_id == 1;
     }
 }

@@ -43,7 +43,7 @@ class GuruStaffResource extends Resource
                         ->preserveFilenames()
                         ->image()
                         ->imageEditor()
-                        ->disk('public')
+                        // ->disk('public')
                         ->directory('img/gurustaf')
                         ->required(),
                     TextInput::make('nama')

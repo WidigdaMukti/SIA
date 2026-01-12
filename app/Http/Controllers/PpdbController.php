@@ -2,13 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\PpdbStatus as EnumsPpdbStatus;
 use App\Filament\SiaAdmin\Resources\Enums\PpdbStatus;
+use App\Http\Requests\StoreppdbRequest;
 use App\Models\OrangTua;
 use App\Models\ppdb;
 use App\Models\Siswa;
 use App\Models\User;
 use Filament\Notifications\Notification;
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\PDF;
+use Dompdf\Dompdf;
+use Dompdf\Options;
 
 class PpdbController extends Controller
 {
@@ -31,13 +36,11 @@ class PpdbController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreppdbRequest $request)
     {
+        $validatedData = $request->validated();
+        ppdb::create($validatedData);
 
-        // Simpan data ke dalam tabel ppdbs
-        Ppdb::create($request->all());
-
-        // Redirect atau response jika diperlukan
         return redirect('/ppdb-online')->with('success', 'Data berhasil disimpan');
     }
 
@@ -86,13 +89,16 @@ class PpdbController extends Controller
         }
 
         $dataPpdb->update([
-            'status' => PpdbStatus::Diterima
+            'status' => EnumsPpdbStatus::Diterima
         ]);
+        
+        $email = strtolower(str_replace(' ', '.', $dataPpdb->nama_lengkap)) . '@example.com';
 
         $user = User::create([
             'nik' => $dataPpdb->nik,
             'nama_lengkap' => $dataPpdb->nama_lengkap,
-            'email' => null,
+            'email' => $email,
+            'email_verified_at' => now(),
             'password' => bcrypt('password'),
             'role_id' => 3,
             'status' => 1
@@ -177,12 +183,39 @@ class PpdbController extends Controller
         }
 
         $dataPpdb->update([
-            'status' => PpdbStatus::Ditolak
+            'status' => EnumsPpdbStatus::Ditolak
         ]);
 
         Notification::make()
         ->title('Status berhasil diubah')
         ->success()
         ->send();
+    }
+
+    public function exportPdf($id)
+    {
+        $ppdb = ppdb::findOrFail($id);
+
+        // Pilih salah satu cara:
+
+        // CARA 1: Gunakan Dompdf langsung (direkomendasikan)
+        $options = new Options();
+        $options->set('defaultFont', 'Arial');
+        $options->set('isRemoteEnabled', true);
+        $options->set('chroot', realpath(base_path()));
+        
+        $dompdf = new Dompdf($options);
+        
+        $html = view('exports.pdf-ppdb', compact('ppdb'))->render();
+        $dompdf->loadHtml($html);
+        $dompdf->setPaper('A4', 'portrait');
+        $dompdf->render();
+        
+        return $dompdf->stream('PPDB-' . $ppdb->nama_lengkap . '.pdf');
+
+        // CARA 2: Gunakan Facade dengan benar
+        // Hapus: use Barryvdh\DomPDF\PDF;
+        // Tambah di atas: use PDF;
+        // Kemudian: $pdf = PDF::loadView('exports.pdf-ppdb', compact('ppdb'));
     }
 }

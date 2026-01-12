@@ -33,7 +33,7 @@ class SiaSiswaPanelProvider extends PanelProvider
             ->profile()
             ->id('siaSiswa')
             ->path('siaSiswa')
-            ->sidebarFullyCollapsibleOnDesktop()
+            ->sidebarCollapsibleOnDesktop()
             ->breadcrumbs(false)
             ->passwordReset()
             ->emailVerification()
@@ -44,7 +44,7 @@ class SiaSiswaPanelProvider extends PanelProvider
             ->brandLogo(asset('svg/logo-light.svg'))
             ->darkModeBrandLogo(asset('svg/logo-dark.svg'))
             ->brandLogoHeight('2.8rem')
-            ->favicon(asset('img/logo.png'))
+            ->favicon(asset('svg/logo-sdit.svg'))
             ->discoverResources(in: app_path('Filament/SiaSiswa/Resources'), for: 'App\\Filament\\SiaSiswa\\Resources')
             ->discoverPages(in: app_path('Filament/SiaSiswa/Pages'), for: 'App\\Filament\\SiaSiswa\\Pages')
             ->pages([

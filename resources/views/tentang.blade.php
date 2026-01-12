@@ -60,46 +60,37 @@
         </div>
     </div>
     {{-- visi dan misi --}}
-    <div class="container-fluid" style="padding: 7vh 8vh ;">
-        <div class="d-flex justify-content-center align-items-center responsive-text-title-1 mb-5">
-            <h1 style="font-weight: bold;">Visi dan Misi SDIT Al-Qudwah</h1>
+    <div class="container-fluid py-5">
+        <div class="d-flex justify-content-center align-items-center mb-5">
+            <h1 class="font-weight-bold text-center">Visi dan Misi SDIT Al-Qudwah</h1>
         </div>
-        <div class="row align-items-start" style="padding-left: 8vh; padding-right: 8vh;">
+        <div class="row align-items-start px-4">
             <div class="col-md-6 d-flex align-items-center justify-content-center flex-column mb-5">
-                <div class="container bg-green-4 bg-green-4-pointer text-center p-4 rounded-4 " style="height: 92vh">
-                    <img class="mb-4" src="{{ asset('svg/vision.svg') }}" alt="" width="100" height="auto">
-                    <h2 class="mb-3 responsive-text-title-5" style="font-weight: bold;">Visi</i></h2>
-                    <p class="mb-4 responsive-text-head-2">Terwujudnya lulusan yang
-                        berbudi, mandiri, berprestasi, Cinta NKRI dengan Al Quran dan potensi kearifan lokal serta
-                        berwawasan lingkungan
-                    </p>
+                <div id="vision-container" class="container bg-green-4 bg-green-4-pointer text-center p-4 rounded-4">
+                    <img class="mb-4" src="{{ asset('svg/vision.svg') }}" alt="Vision Icon" width="100" height="auto">
+                    <h2 class="mb-3 font-weight-bold responsive-text-title-5">Visi</h2>
+                    <p class="mb-4 responsive-text-head-2">Terwujudnya lulusan yang berbudi, mandiri, berprestasi, cinta
+                        NKRI dengan Al Quran dan potensi kearifan lokal serta berwawasan lingkungan</p>
                 </div>
             </div>
             <div class="col-md-6 d-flex align-items-center justify-content-center flex-column">
-                <div class="container bg-green-4 bg-green-4-pointer text-center p-4 rounded-4">
-                    <img class="mb-4" src="{{ asset('svg/mission.svg') }}" alt="" width="100" height="auto">
-                    <h2 class="mb-3 responsive-text-title-5" style="font-weight: bold;">Misi</i></h2>
-                    <ul class="responsive-text-head-2" style="text-align: left; text-align: justify;">
+                <div id="mission-container" class="container bg-green-4 bg-green-4-pointer text-center p-4 rounded-4">
+                    <img class="mb-4" src="{{ asset('svg/mission.svg') }}" alt="Mission Icon" width="100"
+                        height="auto">
+                    <h2 class="mb-3 font-weight-bold responsive-text-title-5">Misi</h2>
+                    <ul class="responsive-text-head-2 text-left" style="text-align: justify;">
                         <li class="mb-2">Menciptakan lingkungan belajar yang mendukung perkembangan keterampilan sosial,
-                            emosional, fisik, dan intelektual.
-                        </li>
-                        <li class="mb-2">Melaksanakan pembelajaran yang berpusat pada siswa.
-                        </li>
-                        <li class="mb-2">Memberikan kesempatan kepada siswa untuk memahami fitroh manusia, fitroh alam
-                            responsive-text-title-5semista agar
-                            karakter dapat berkembang sesuai nilai-nilai qur’ani.
-                        </li>
+                            emosional, fisik, dan intelektual.</li>
+                        <li class="mb-2">Melaksanakan pembelajaran yang berpusat pada siswa.</li>
+                        <li class="mb-2">Memberikan kesempatan kepada siswa untuk memahami fitrah manusia, fitrah alam
+                            semesta agar karakter dapat berkembang sesuai nilai-nilai Qur’ani.</li>
                         <li class="mb-2">Menyelenggarakan program yang menumbuhkan dan mengembangkan rasa bangga dan
-                            responsive-text-title-5perilaku cinta NKRI.
-                        </li>
-                        <li class="mb-2">Mewujudkan komunitas belajar sekolah.
-                        </li>
+                            perilaku cinta NKRI.</li>
+                        <li class="mb-2">Mewujudkan komunitas belajar sekolah.</li>
                         <li class="mb-2">Menciptakan partisipasi aktif seluruh komponen Sekolah, termasuk orang tua, dalam
-                            rangka peningkatan kualitas pendidikan.
-                        </li>
-                        <li class="">Mengembangkan kualitas pendidikan secara terus menerus dalam rangka
-                            penjaminan mutu pendidikan sekolah.
-                        </li>
+                            rangka peningkatan kualitas pendidikan.</li>
+                        <li>Mengembangkan kualitas pendidikan secara terus menerus dalam rangka penjaminan mutu pendidikan
+                            sekolah.</li>
                     </ul>
                 </div>
             </div>
@@ -187,6 +178,16 @@
 @endsection
 
 @section('page-script')
+    <script>
+        function matchHeights() {
+            var missionHeight = document.getElementById('mission-container').offsetHeight;
+            document.getElementById('vision-container').style.height = missionHeight + 'px';
+        }
+
+        window.addEventListener('load', matchHeights);
+        window.addEventListener('resize', matchHeights);
+    </script>
+
     <script>
         var audio = document.getElementById('audio');
         var playButton = document.getElementById('play');

@@ -16,4 +16,9 @@ class EditJadwalMapel extends EditRecord
             Actions\DeleteAction::make(),
         ];
     }
+    
+    protected function getRedirectUrl(): string
+    {
+        return route('filament.siaAdmin.resources.jadwal-mapels.index');
+    }
 }

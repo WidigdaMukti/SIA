@@ -41,7 +41,7 @@ class ProgramResource extends Resource
                         ->preserveFilenames()
                         ->image()
                         ->imageEditor()
-                        ->disk('public')
+                        // ->disk('public')
                         ->directory('img/program')
                         ->required(),
                     TextInput::make('nama')

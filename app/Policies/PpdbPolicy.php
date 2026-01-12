@@ -37,7 +37,7 @@ class PpdbPolicy
      */
     public function update(User $user, ppdb $ppdb): bool
     {
-        return true;
+        return false;
     }
 
     /**

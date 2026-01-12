@@ -19,7 +19,17 @@ class CreateUser extends CreateRecord
 
     protected function handleRecordCreation(array $data): Model
     {
-        $user = User::create($data);
+        $user = User::create([
+            'nik' => $data['nik'],
+            'nama_lengkap' => $data['nama_lengkap'],
+            'email' => $data['email'],
+            'email_verified_at' => now(),
+            'password' => bcrypt($data['password'] ?? 'password'),
+            'role_id' => $data['role_id'],
+            'status' => $data['status']
+        ]);
+        
+        //  $token = $user->createToken('API Token')->plainTextToken;
 
         // Membuat siswa baru atau admin/guru baru dan menghubungkannya dengan user
         if ($user->role_id == 3) {
@@ -50,6 +60,7 @@ class CreateUser extends CreateRecord
         } elseif ($user->role_id == 1 || $user->role_id == 2) {
             $adminGuru = new AdminGuru();
             $adminGuru->nik_guru = $user->nik;
+            $adminGuru->nama_lengkap_tendik = $user->nama_lengkap;
             $adminGuru->email = $user->email;
             // Isi kolom lainnya untuk admin/guru
             $adminGuru->save();

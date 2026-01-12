@@ -15,7 +15,7 @@ class GaleriController extends Controller
     {
         $title = 'Galeri';
         $dataGaleri = Galeri::all();
-        return view('Galeri', compact('title', 'dataGaleri'));
+        return view('galeri', compact('title', 'dataGaleri'));
     }
 
     /**

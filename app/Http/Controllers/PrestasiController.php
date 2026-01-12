@@ -22,7 +22,7 @@ class PrestasiController extends Controller
             return $prestasi;
         });
 
-        return view('Prestasi', compact('title', 'dataPrestasi'));
+        return view('prestasi', compact('title', 'dataPrestasi'));
     }
 
     public function indexContentPrestasi($id)

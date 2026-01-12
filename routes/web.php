@@ -87,6 +87,8 @@ Route::get('/sistem-informasi', function () {
     ]);
 });
 
+Route::get('/ppdb/{id}/export-pdf', [PpdbController::class, 'exportPdf'])->name('export.pdf-ppdb');
+
 Route::get('/download/{id}', [PdfExportController::class, 'exportPdf'])->name('export.pdf');
 Route::get('/download/{id}', [PdfExportController::class, 'downloadPdf'])->name('export.pdf');
 Route::get('/pdf-export', [PdfExportController::class, 'index'])->name('pdf.export');

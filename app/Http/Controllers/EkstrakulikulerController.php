@@ -22,7 +22,7 @@ class EkstrakulikulerController extends Controller
             return $ekskul;
         });
 
-        return view('Ekstrakulikuler', compact('title', 'dataEkskul'));
+        return view('ekstrakulikuler', compact('title', 'dataEkskul'));
     }
 
     public function indexContentEkskul($id)
@@ -39,7 +39,7 @@ class EkstrakulikulerController extends Controller
         }
 
         // Mengarahkan ke file blade card.blade.php di folder partials/card
-        return view('content.Ekstrakulikuler', compact('title', 'ekskul'));
+        return view('content.ekstrakulikuler', compact('title', 'ekskul'));
     }
 
     /**

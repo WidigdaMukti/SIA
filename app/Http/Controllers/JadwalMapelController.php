@@ -127,11 +127,19 @@ class JadwalMapelController extends Controller
         // Dapatkan data siswa dari user yang login
         $siswa = $user->siswa;
 
+        // // Ambil jadwal mapel berdasarkan kelas siswa yang sedang login
+        // $jadwalMapel = JadwalMapel::whereHas('mapelKelas.kelas', function ($query) use ($siswa) {
+        //     $query->where('id', $siswa->kelas_id)->where('status', 1);
+        // })->with(['mapelKelas.kelas'])->get();
+        
+        
+        $tingkatKelas = $siswa->kelas->tingkat_kelas;
+        
         // Ambil jadwal mapel berdasarkan kelas siswa yang sedang login
-        $jadwalMapel = JadwalMapel::whereHas('mapelKelas.kelas', function ($query) use ($siswa) {
-            $query->where('id', $siswa->kelas_id)->where('status', 1);
-        })->with(['mapelKelas.kelas'])->get();
-
+        $jadwalMapel = JadwalMapel::whereHas('mapelKelas.kelas', function ($query) use ($tingkatKelas) {
+                $query->where('tingkat_kelas', $tingkatKelas);
+            })->with(['mapelKelas.kelas'])->get();
+            
         if ($jadwalMapel->isEmpty()) {
             return response()->json(['message' => 'Data Jadwal Mapel tidak ditemukan'], 404);
         }

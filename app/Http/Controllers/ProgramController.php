@@ -23,7 +23,7 @@ class ProgramController extends Controller
             return $program;
         });
 
-        return view('Program', compact('title', 'dataProgram'));
+        return view('program', compact('title', 'dataProgram'));
     }
 
     public function indexContentProgram($id)

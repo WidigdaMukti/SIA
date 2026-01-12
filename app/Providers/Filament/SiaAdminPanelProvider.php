@@ -25,7 +25,6 @@ class SiaAdminPanelProvider extends PanelProvider
     public function panel(Panel $panel): Panel
     {
         return $panel
-            ->default()
             ->id('siaAdmin')
             ->path('siaAdmin')
             ->login()
@@ -42,7 +41,7 @@ class SiaAdminPanelProvider extends PanelProvider
             ->brandLogo(asset('svg/logo-light.svg'))
             ->darkModeBrandLogo(asset('svg/logo-dark.svg'))
             ->brandLogoHeight('2.8rem')
-            ->favicon(asset('img/logo.png'))
+            ->favicon(asset('svg/logo-sdit.svg'))
             ->discoverResources(in: app_path('Filament/SiaAdmin/Resources'), for: 'App\\Filament\\SiaAdmin\\Resources')
             ->discoverPages(in: app_path('Filament/SiaAdmin/Pages'), for: 'App\\Filament\\SiaAdmin\\Pages')
             ->pages([
@@ -68,9 +67,5 @@ class SiaAdminPanelProvider extends PanelProvider
             ->authMiddleware([
                 Authenticate::class,
             ]);
-        // ->authGate('siaAdmin')
-        // ->plugins([
-        //     FilamentEditProfilePlugin::make()
-        // ]);
     }
 }

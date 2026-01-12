@@ -41,7 +41,7 @@ class GaleriResource extends Resource
                         ->preserveFilenames()
                         ->image()
                         ->imageEditor()
-                        ->disk('public')
+                        // ->disk('public')
                         ->directory('img/galeri')
                         ->required(),
                     TextInput::make('judul')

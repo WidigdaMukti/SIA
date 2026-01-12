@@ -16,6 +16,11 @@ class Siswa extends Model
     {
         return $this->belongsTo(User::class, 'nik_siswa', 'nik');
     }
+    
+    public function orangTua()
+    {
+        return $this->hasOne(OrangTua::class, 'nik_siswa', 'nik_siswa');
+    }
 
     public function kelas()
     {
@@ -48,6 +53,17 @@ class Siswa extends Model
     {
         return $query->whereHas('kelas', function ($query) {
             $query->where('status', 1);
+        });
+    }
+    
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::deleting(function ($siswa) {
+            // Hapus user terkait
+            $siswa->orangTua()->delete();
+            $siswa->user()->delete();
         });
     }
 }

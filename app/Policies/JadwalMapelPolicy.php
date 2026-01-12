@@ -29,7 +29,7 @@ class JadwalMapelPolicy
      */
     public function create(User $user): bool
     {
-        return $user->isAdmin();
+        return $user->role_id == 1;
     }
 
     /**
@@ -37,7 +37,7 @@ class JadwalMapelPolicy
      */
     public function update(User $user, JadwalMapel $jadwalMapel): bool
     {
-        return $user->isAdmin();
+        return $user->role_id == 1;
     }
 
     /**
@@ -45,7 +45,7 @@ class JadwalMapelPolicy
      */
     public function delete(User $user, JadwalMapel $jadwalMapel): bool
     {
-        return $user->isAdmin();
+        return $user->role_id == 1;
     }
 
     /**
@@ -53,7 +53,7 @@ class JadwalMapelPolicy
      */
     public function restore(User $user, JadwalMapel $jadwalMapel): bool
     {
-        return $user->isAdmin();
+        return $user->role_id == 1;
     }
 
     /**
@@ -61,6 +61,6 @@ class JadwalMapelPolicy
      */
     public function forceDelete(User $user, JadwalMapel $jadwalMapel): bool
     {
-        return $user->isAdmin();
+        return $user->role_id == 1;
     }
 }

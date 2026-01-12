@@ -69,15 +69,21 @@ class EditUser extends EditRecord
 
                     // Perbarui nik guru dengan nik baru
                     $adminGuru->nik_guru = $user->nik;
-                    $adminGuru->nama_lengkap = $user->nama_lengkap;
-                    $adminGuru->email = $user->email;
                     $adminGuru->save();
                 }
 
                 // Isi kolom lain untuk admin/guru, baik nik berubah atau tidak
-                $adminGuru->nama_lengkap = $user->nama_lengkap;
+                $adminGuru->nama_lengkap_tendik = $user->nama_lengkap;
                 $adminGuru->email = $user->email;
                 $adminGuru->save();
+            } else {
+                // Jika adminGuru tidak ditemukan, buat yang baru
+                AdminGuru::create([
+                    'nik_guru' => $user->nik,
+                    'nama_lengkap_tendik' => $user->nama_lengkap,
+                    'email' => $user->email,
+                    // tambahkan kolom lainnya jika diperlukan
+                ]);
             }
         }
 

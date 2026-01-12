@@ -26,6 +26,8 @@ class NilaiResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-arrows-up-down';
 
+    protected static ?int $navigationSort = 1;
+
     public static function form(Form $form): Form
     {
         return $form
@@ -39,8 +41,8 @@ class NilaiResource extends Resource
                                 ->mapWithKeys(function ($siswa) {
                                     $nikSiswa = $siswa->nik_siswa;
                                     $namaSiswa = $siswa->nama_lengkap;
-                                    $tingkatKelas = $siswa->kelas->tingkat_kelas;
-                                    $semester = $siswa->kelas->semester;
+                                    $tingkatKelas = $siswa->kelas ? $siswa->kelas->tingkat_kelas : 'Belum ada kelas';
+                                    $semester = $siswa->kelas ? $siswa->kelas->semester : 'Belum ada semester';
                                     $label = "$nikSiswa - $namaSiswa - $tingkatKelas - $semester";
                                     // $label = "$namaSiswa";
                                     return [$siswa->nik_siswa => $label];

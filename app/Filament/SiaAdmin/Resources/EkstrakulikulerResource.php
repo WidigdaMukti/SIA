@@ -41,7 +41,7 @@ class EkstrakulikulerResource extends Resource
                         ->preserveFilenames()
                         ->image()
                         ->imageEditor()
-                        ->disk('public')
+                        // ->disk('public')
                         ->directory('img/ekskul')
                         ->required(),
                     TextInput::make('nama')

@@ -43,14 +43,19 @@ class JadwalMapelResource extends Resource
         $siswa = $user->siswa;
 
         $tingkatKelas = $siswa->kelas->tingkat_kelas;
-
         return $table
-            ->query(function () use ($siswa, $tingkatKelas) {
-                // Ambil data jadwal mapel berdasarkan kelas siswa yang sedang login
-                return JadwalMapel::whereHas('mapelKelas.kelas', function ($query) use ($tingkatKelas, $siswa) {
-                    $query->where('tingkat_kelas', $tingkatKelas)
-                        ->where('status', 1)
-                        ->where('id', $siswa->kelas_id);
+            // ->query(function () use ($siswa, $tingkatKelas) {
+            //     // Ambil data jadwal mapel berdasarkan kelas siswa yang sedang login
+            //     return JadwalMapel::whereHas('mapelKelas.kelas', function ($query) use ($tingkatKelas, $siswa) {
+            //         $query->where('tingkat_kelas', $tingkatKelas)
+            //             ->where('status', 1)
+            //             ->where('id', $siswa->kelas_id);
+            //     })->with(['mapelKelas.kelas']);
+            // })
+            ->query(function() use ($tingkatKelas)
+            {
+                return JadwalMapel::whereHas('mapelKelas.kelas', function ($query) use ($tingkatKelas) {
+                    $query->where('tingkat_kelas', $tingkatKelas);
                 })->with(['mapelKelas.kelas']);
             })
             ->columns([

@@ -42,10 +42,10 @@ class BeritaResource extends Resource
                         ->preserveFilenames()
                         ->image()
                         ->imageEditor()
-                        ->disk('public')
+                        // ->disk('public')
                         ->directory('img/berita')
                         ->required(),
-                    // ->visibility('private'),
+                        // ->visibility(),
                     TextInput::make('judul')
                         ->required(),
                     TextInput::make('slug')

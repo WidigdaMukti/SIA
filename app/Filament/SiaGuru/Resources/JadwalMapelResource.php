@@ -23,6 +23,8 @@ class JadwalMapelResource extends Resource
 
     protected static ?string $label = 'Jadwal Pelajaran';
 
+    protected static ?int $navigationSort = 3;
+
     public static function form(Form $form): Form
     {
         return $form

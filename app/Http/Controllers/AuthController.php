@@ -18,11 +18,11 @@ class AuthController extends Controller
         ]);
 
         // Coba cari user berdasarkan NIK
-        $user = User::where('nik', $request->login)->orWhere('email', $request->login)->first();
+        $user = User::where('nama_lengkap', $request->login)->orWhere('email', $request->login)->first();
 
         if (!$user) {
             return response()->json([
-                'message' => 'NIK atau email tidak ditemukan.'
+                'message' => 'Nama pengguna atau email tidak ditemukan.'
             ], 401);
         }
 
